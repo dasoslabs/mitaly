@@ -2,10 +2,11 @@ import { useEffect, useCallback, useState } from "react"
 import useEmblaCarousel from "embla-carousel-react"
 // import Autoplay from 'embla-carousel-autoplay'
 
-export default function Slider({ children }) {
+export default function SliderFull({ children }) {
   const [emblaRef, emblaApi] = useEmblaCarousel(
     { align: "start", loop: true } /** [Autoplay()] */,
   )
+  const [selectedIndex, setSelectedIndex] = useState(0)
 
   const onNavButtonClick = useCallback((emblaApi) => {
     const autoplay = emblaApi?.plugins()?.autoplay
@@ -19,6 +20,17 @@ export default function Slider({ children }) {
     resetOrStop()
   }, [])
 
+  const onSelect = useCallback(() => {
+    if (!emblaApi) return
+    setSelectedIndex(emblaApi.selectedScrollSnap())
+  }, [emblaApi])
+
+  useEffect(() => {
+    if (!emblaApi) return
+    emblaApi.on("select", onSelect)
+    onSelect()
+  }, [emblaApi, onSelect])
+
   const {
     prevBtnDisabled,
     nextBtnDisabled,
@@ -31,16 +43,23 @@ export default function Slider({ children }) {
       <div className="overflow-hidden max-w-pc m-auto" ref={emblaRef}>
         <div className="flex">{children}</div>
       </div>
-      <PrevButton
-        onClick={onPrevButtonClick}
-        disabled={prevBtnDisabled}
-        className="absolute -left-16 top-1/2 transform -translate-y-1/2"
-      />
-      <NextButton
-        onClick={onNextButtonClick}
-        disabled={nextBtnDisabled}
-        className="absolute -right-16 top-1/2 transform -translate-y-1/2"
-      />
+      <div className="absolute left-1/2 bottom-5 transform -translate-x-1/2 flex justify-between items-center bg-white bg-opacity-85 rounded-full p-1 w-[228px]">
+        <PrevButton
+          onClick={onPrevButtonClick}
+          disabled={prevBtnDisabled}
+          className="w-12 h-12 bg-white rounded-full flex justify-center items-center"
+        />
+        <div className="flex justify-between items-center text-[#999] space-x-4">
+          <p className="text-black font-bold">{selectedIndex + 1}</p>
+          <p>/</p>
+          <p>{children?.length}</p>
+        </div>
+        <NextButton
+          onClick={onNextButtonClick}
+          disabled={nextBtnDisabled}
+          className="w-12 h-12 bg-white rounded-full flex justify-center items-center"
+        />
+      </div>
     </div>
   )
 }
@@ -85,8 +104,8 @@ function PrevButton({ children, ...props }) {
   return (
     <button type="button" {...props}>
       <svg
-        width="40"
-        height="40"
+        width="28"
+        height="28"
         viewBox="0 0 40 40"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
@@ -102,8 +121,8 @@ function NextButton({ children, ...restProps }) {
   return (
     <button type="button" {...restProps}>
       <svg
-        width="40"
-        height="40"
+        width="28"
+        height="28"
         viewBox="0 0 40 40"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
@@ -115,10 +134,10 @@ function NextButton({ children, ...restProps }) {
   )
 }
 
-export function SliderCard({ children, className, ...props }) {
+export function SliderFullCard({ children, className, ...props }) {
   return (
     <div
-      className={`min-w-0 flex-grow-0 flex-shrink-0 basis-1/4 ${className}`}
+      className={`min-w-0 flex-grow-0 flex-shrink-0 basis-full ${className}`}
       {...props}
     >
       {children}
