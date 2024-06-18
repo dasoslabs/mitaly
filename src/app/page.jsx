@@ -2,8 +2,10 @@
 
 import { useRef, useState } from "react"
 import Image from "next/image"
+import Link from "next/link"
 
 import SvgIcon from "@/components/common/SvgIcon"
+import Slider, { SliderCard } from "@/components/common/Slider"
 
 const tab = {
   menu: [
@@ -11,6 +13,37 @@ const tab = {
     { name: "dining", text: "다이닝" },
     { name: "drink-side", text: "음료&사이드" },
   ],
+}
+
+const data = {
+  original: [
+    {
+      name: "베이컨 토마토 파스터",
+      subTitle: "Bacon Tomato Pasta",
+      imgUrl: "",
+      imgAlt: "",
+    },
+    {
+      name: "로제맵제 파스타",
+      subTitle: "Spicy Rose pasta",
+      imgUrl: "",
+      imgAlt: "",
+    },
+    {
+      name: "감바스 파스타",
+      subTitle: "Gambas Pasta",
+      imgUrl: "",
+      imgAlt: "",
+    },
+    {
+      name: "베이컨 크림 파스타",
+      subTitle: "Bacon Cream Pasta",
+      imgUrl: "",
+      imgAlt: "",
+    },
+  ],
+  dining: [],
+  "drink-side": [],
 }
 
 export default function Home() {
@@ -102,7 +135,8 @@ export default function Home() {
             <p className="font-black">미태리만의 시그니처 메뉴를 소개합니다.</p>
           </h2>
         </div>
-        <div className="flex flex-col justify-center items-center space-y-8">
+        
+        <div className="flex flex-col justify-center items-center space-y-10">
           <ul className="flex justify-center items-center">
             {tab.menu.map(({ name, text }) => (
               <li key={name}>
@@ -115,15 +149,23 @@ export default function Home() {
               </li>
             ))}
           </ul>
-          
-          <div>
-            슬라이드
-          </div>
 
-          <button className="py-1.5 px-7 flex justify-center items-center border border-light-gray rounded-full">
+          <Slider>
+            {[...data[menuTab], ...data[menuTab], ...data[menuTab]].map(
+              ({ name, subTitle, imgUrl, imgAlt }, idx) => (
+                <SliderCard  key={name + idx} className="text-center">
+                  <div className="bg-bg-gray w-[342px] h-64 rounded-2xl"></div>
+                  <p className="text-xl mt-4 mb-2">{name}</p>
+                  <p className="text-[#999]">{subTitle}</p>
+                </SliderCard>
+              ),
+            )}
+          </Slider>
+
+          <Link href="#" className="py-1.5 px-7 flex justify-center items-center border border-light-gray rounded-full">
             <p>메뉴 더보기</p>
             <SvgIcon name="arrow-right" />
-          </button>
+          </Link>
         </div>
       </section>
 
