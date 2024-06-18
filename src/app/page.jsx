@@ -1,12 +1,22 @@
 "use client"
 
 import { useRef, useState } from "react"
+import Image from "next/image"
 
 import SvgIcon from "@/components/common/SvgIcon"
+
+const tab = {
+  menu: [
+    { name: "original", text: "오리지널" },
+    { name: "dining", text: "다이닝" },
+    { name: "drink-side", text: "음료&사이드" },
+  ],
+}
 
 export default function Home() {
   const videoRef = useRef(null)
   const [isMuted, setIsMuted] = useState(true)
+  const [menuTab, setMenuTab] = useState(tab.menu[0].name)
 
   const toggleMute = () => {
     if (videoRef.current) {
@@ -17,7 +27,8 @@ export default function Home() {
 
   return (
     <>
-      <section>
+      {/* 배너 */}
+      <section className="relative">
         <div className="flex items-center justify-center h-screen">
           <div className="relative w-full h-screen">
             <video
@@ -46,11 +57,83 @@ export default function Home() {
           className="absolute bottom-12 left-40 text-white flex justify-center items-center space-x-2 border border-white rounded-full py-2 px-4"
         >
           <SvgIcon name="volume" />
-          <p>
-            { isMuted ? "SOUND ON" : "SOUND OFF"}
-          </p>
+          <p>{isMuted ? "SOUND ON" : "SOUND OFF"}</p>
         </button>
       </section>
+
+      {/* 소개 */}
+      <section className="relative">
+        <Image
+          width="1920"
+          height="1151"
+          src="/home/background.png"
+          alt="배경 사진"
+          quality={100}
+        />
+        <div className="absolute top-0 left-0 w-full h-full flex flex-col space-y-12 items-center justify-center text-center">
+          <div className="flex flex-col space-y-8">
+            <h3 className="font-extrabold text-2xl">SMILE with mitaly 😄</h3>
+            <h2 className="text-5xl leading-[68px]">
+              <p className="font-extralight">4년 이상 연구한 맛과 가격</p>
+              <p className="font-black">
+                누구나 부담 없이, 더 맛있는 이태리를 즐길 수 있도록!
+              </p>
+            </h2>
+          </div>
+          <div className="text-xl">
+            <p>
+              미태리는 100% 이탈리아산 면과 최고급 엑스트라 버진 올리브오일만을
+              사용합니다.
+            </p>
+            <p>
+              언제, 어디서, 누구와 함께 즐겨도 항상 만족스러운 한끼를 완성시켜
+              드리겠습니다.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* 메뉴 */}
+      <section className="py-40 flex flex-col justify-center items-center space-y-12">
+        <div className="flex flex-col space-y-8 text-center">
+          <h3 className="font-extrabold text-2xl">ENJOY with mitaly 😎</h3>
+          <h2 className="text-5xl leading-[68px]">
+            <p className="font-extralight">남녀노소 좋아하는</p>
+            <p className="font-black">미태리만의 시그니처 메뉴를 소개합니다.</p>
+          </h2>
+        </div>
+        <div className="flex flex-col justify-center items-center space-y-8">
+          <ul className="flex justify-center items-center">
+            {tab.menu.map(({ name, text }) => (
+              <li key={name}>
+                <button
+                  onClick={() => setMenuTab(name)}
+                  className={`py-2 px-6 font-bold rounded-full ${menuTab === name ? "bg-primary" : "bg-white"}`}
+                >
+                  {text}
+                </button>
+              </li>
+            ))}
+          </ul>
+          
+          <div>
+            슬라이드
+          </div>
+
+          <button className="py-1.5 px-7 flex justify-center items-center border border-light-gray rounded-full">
+            <p>메뉴 더보기</p>
+            <SvgIcon name="arrow-right" />
+          </button>
+        </div>
+      </section>
+
+      {/* 인테리어 */}
+
+      {/* 가맹점 문의 */}
+
+      {/* 리뷰 */}
+
+      {/* 매장찾기, 제휴문의 */}
     </>
   )
 }
