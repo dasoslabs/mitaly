@@ -51,6 +51,32 @@ const data = {
     dining: [],
     "drink-side": [],
   },
+  interior: {
+    original: [],
+    dining: [],
+  },
+  startup: [
+    {
+      text: "가장 완벽한\n소자본 창업",
+      imgUrl: "/home/wallet.png",
+      imgAlt: "지갑 이미지",
+    },
+    {
+      text: "365일\n매일매일이 성수기!",
+      imgUrl: "/home/notice.png",
+      imgAlt: "알림 이미지",
+    },
+    {
+      text: "누구나 할 수 있는\n쉬운 창업",
+      imgUrl: "/home/user.png",
+      imgAlt: "사람 이미지",
+    },
+    {
+      text: "앞으로가\n더 기대되는 창업!",
+      imgUrl: "/home/analytics.png",
+      imgAlt: "그래프 이미지",
+    },
+  ],
 }
 
 export default function Home() {
@@ -174,7 +200,7 @@ export default function Home() {
 
           <Link
             href="#"
-            className="py-1.5 px-7 flex justify-center items-center border border-light-gray rounded-full"
+            className="py-2 px-7 flex justify-center items-center border border-light-gray rounded-full font-bold"
           >
             <p>메뉴 더보기</p>
             <SvgIcon name="arrow-right" />
@@ -236,6 +262,59 @@ export default function Home() {
       </section>
 
       {/* 가맹점 문의 */}
+      <section className="py-40 bg-primary">
+        <div className="flex flex-col justify-center items-center space-y-12 text-center mb-12">
+          <div className="flex flex-col space-y-8">
+            <h3 className="font-extrabold text-2xl">START with mitaly 😎</h3>
+            <h2 className="text-5xl leading-[68px]">
+              <p className="font-extralight">가맹점이 살아야 본사가 산다!</p>
+              <p className="font-black">미태리 가맹점 문의</p>
+            </h2>
+          </div>
+          <div className="text-xl">
+            <p>
+              미태리는 4년 이상 끊임없는 연구개발을 통해 독보적인 맛과 퀄리티,
+              효율적인 운영 시스템을 구축했습니다.
+            </p>
+            <p>탄탄한 경쟁력으로 안정적인 창업을 시작해 보세요.</p>
+          </div>
+          <Link
+            href="#"
+            className="py-2 px-5 flex justify-center items-center border border-light-gray rounded-full font-bold bg-white"
+          >
+            <p>가맹문의 바로가기</p>
+            <SvgIcon name="arrow-right" />
+          </Link>
+        </div>
+
+        <ul className="max-w-pc m-auto flex justify-between items-center space-x-6">
+          {data.startup.map(({ text, imgUrl, imgAlt }) => (
+            <li
+              key={text}
+              className="bg-white rounded-2xl py-10 px-6 flex flex-col items-center justify-between space-y-8"
+            >
+              <Image
+                width="294"
+                height="240"
+                src={imgUrl}
+                alt={imgAlt}
+                quality={100}
+              />
+              <p className="flex space-x-1 text-2xl">
+                {text.split("\n").map((word, idx) => (
+                  <span key={word}>
+                    {text.split("\n").length - 1 === idx ? (
+                      <b>{word}</b>
+                    ) : (
+                      <span>{word}</span>
+                    )}
+                  </span>
+                ))}
+              </p>
+            </li>
+          ))}
+        </ul>
+      </section>
 
       {/* 리뷰 */}
 
