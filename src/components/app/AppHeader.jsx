@@ -38,7 +38,7 @@ const menu = {
 
 export default function AppHeader() {
   return (
-    <header className={`fixed top-0 left-0 w-full h-24 bg-white`}>
+    <header className={`fixed top-0 left-0 w-full h-24 bg-white z-50`}>
       <div className="max-w-pc h-full m-auto flex justify-between items-center">
         <h1>
           <Link href="/">
