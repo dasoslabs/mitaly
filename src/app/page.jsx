@@ -77,6 +77,29 @@ const data = {
       imgAlt: "그래프 이미지",
     },
   ],
+  review: [
+    {
+      imgUrl: "/home/review01.png",
+      imgAlt: "리뷰 이미지",
+      like: 299,
+      id: "mitaly_delicious",
+      text: "맛있어요 맛있어요 맛있어요 맛있어요 맛있어요 맛있어요 맛있어요 맛있어요 맛있어요 맛있어요 맛있어요 맛있어요 맛있어요 맛있어요 맛있어요 맛있어요 맛있어요 맛있어요 맛있어요 맛있어요 맛있어요 맛있어요 맛있어요 맛있어요 맛있어요...",
+    },
+    {
+      imgUrl: "/home/review02.png",
+      imgAlt: "리뷰 이미지",
+      like: 299,
+      id: "mitaly_delicious",
+      text: "맛있어요 맛있어요 맛있어요 맛있어요 맛있어요 맛있어요 맛있어요 맛있어요 맛있어요 맛있어요 맛있어요 맛있어요 맛있어요 맛있어요 맛있어요 맛있어요 맛있어요 맛있어요 맛있어요 맛있어요 맛있어요 맛있어요 맛있어요 맛있어요 맛있어요...",
+    },
+    {
+      imgUrl: "/home/review03.png",
+      imgAlt: "리뷰 이미지",
+      like: 299,
+      id: "mitaly_delicious",
+      text: "맛있어요 맛있어요 맛있어요 맛있어요 맛있어요 맛있어요 맛있어요 맛있어요 맛있어요 맛있어요 맛있어요 맛있어요 맛있어요 맛있어요 맛있어요 맛있어요 맛있어요 맛있어요 맛있어요 맛있어요 맛있어요 맛있어요 맛있어요 맛있어요 맛있어요...",
+    },
+  ],
 }
 
 export default function Home() {
@@ -317,6 +340,51 @@ export default function Home() {
       </section>
 
       {/* 리뷰 */}
+      <section className="py-40 white relative">
+        <div className="flex flex-col justify-center items-center space-y-12 text-center mb-12">
+          <div className="flex flex-col space-y-8">
+            <h3 className="font-extrabold text-2xl">PLAY with mitaly 😎</h3>
+            <h2 className="text-5xl leading-[68px]">
+              <p className="font-extralight">많은 분들이 인정한 미태리</p>
+              <p className="font-black">Shall We MITALY?</p>
+            </h2>
+          </div>
+          <p className="text-xl">맛과 가격, 분위기까지 모든 게 맛집 그 자체!</p>
+        </div>
+
+        <div className="flex flex-col justify-center items-center">
+          <Slider>
+            {[...data.review, ...data.review].map(({ imgUrl, imgAlt, like, id, text }, idx) => (
+              <SliderCard
+                key={text.slice(0, 3) + idx}
+                className="max-w-[464px] bg-white rounded-2xl flex flex-col justify-between border border-light-gray basis-1/3 ml-6"
+              >
+                <Image
+                  width="464"
+                  height="320"
+                  src={imgUrl}
+                  alt={imgAlt}
+                  quality={100}
+                />
+                <div className="p-6">
+                  <div className="flex space-x-4 mb-5">
+                    <SvgIcon name="heart" />
+                    <SvgIcon name="chat" />
+                    <SvgIcon name="send" />
+                  </div>
+                  <div>
+                    <p className="font-bold">좋아요 {like}개</p>
+                    <p>
+                      <span className="font-bold mr-1">{id}</span>
+                      <span>{text}</span>
+                    </p>
+                  </div>
+                </div>
+              </SliderCard>
+            ))}
+          </Slider>
+        </div>
+      </section>
 
       {/* 매장찾기, 제휴문의 */}
     </>
