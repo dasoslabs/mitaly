@@ -42,9 +42,13 @@ const menu = {
 
 export default function AppHeader() {
   const pathname = usePathname()
-  const [headerStyle, setHeaderStyle] = useState(pathname === "/" ? "bg-opacity-0 text-white" : "bg-opacity-100 text-black")
-  const [logoColor, setLogoColor] = useState(pathname === "/" ? "white" : "black")
-  
+  const [headerStyle, setHeaderStyle] = useState(
+    pathname === "/" ? "bg-opacity-0 text-white" : "bg-opacity-100 text-black",
+  )
+  const [logoColor, setLogoColor] = useState(
+    pathname === "/" ? "white" : "black",
+  )
+
   const handleScroll = () => {
     const section = document.getElementById("main_banner")
     if (section) {
@@ -70,7 +74,9 @@ export default function AppHeader() {
   }, [])
 
   return (
-    <header className={`fixed top-0 left-0 w-full h-24 z-50 transition-all duration-300 bg-white ${headerStyle}`}>
+    <header
+      className={`fixed top-0 left-0 w-full h-24 z-50 transition-all duration-300 bg-white ${headerStyle}`}
+    >
       <div className="max-w-pc h-full m-auto flex justify-between items-center">
         <h1>
           <Link href="/">

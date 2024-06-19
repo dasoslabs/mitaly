@@ -406,7 +406,7 @@ export default function Home() {
 
       {/* 매장찾기, 제휴문의 */}
       <section>
-        <ul className="flex justify-center items-center border-y border-light-gray">
+        <ul className="flex justify-center items-center border-t border-light-gray">
           {data.banner.map(
             ({ title, description, linkText, href, className }) => (
               <li
