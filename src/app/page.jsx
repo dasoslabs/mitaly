@@ -115,7 +115,7 @@ const data = {
       href: "#",
       className: "pr-60",
     },
-  ]
+  ],
 }
 
 export default function Home() {
@@ -370,34 +370,36 @@ export default function Home() {
 
         <div className="flex flex-col justify-center items-center">
           <Slider>
-            {[...data.review, ...data.review].map(({ imgUrl, imgAlt, like, id, text }, idx) => (
-              <SliderCard
-                key={text.slice(0, 3) + idx}
-                className="max-w-[464px] bg-white rounded-2xl flex flex-col justify-between border border-light-gray basis-1/3 ml-6"
-              >
-                <Image
-                  width="464"
-                  height="320"
-                  src={imgUrl}
-                  alt={imgAlt}
-                  quality={100}
-                />
-                <div className="p-6">
-                  <div className="flex space-x-4 mb-5">
-                    <SvgIcon name="heart" />
-                    <SvgIcon name="chat" />
-                    <SvgIcon name="send" />
+            {[...data.review, ...data.review].map(
+              ({ imgUrl, imgAlt, like, id, text }, idx) => (
+                <SliderCard
+                  key={text.slice(0, 3) + idx}
+                  className="max-w-[464px] bg-white rounded-2xl flex flex-col justify-between border border-light-gray basis-1/3 ml-6"
+                >
+                  <Image
+                    width="464"
+                    height="320"
+                    src={imgUrl}
+                    alt={imgAlt}
+                    quality={100}
+                  />
+                  <div className="p-6">
+                    <div className="flex space-x-4 mb-5">
+                      <SvgIcon name="heart" />
+                      <SvgIcon name="chat" />
+                      <SvgIcon name="send" />
+                    </div>
+                    <div>
+                      <p className="font-bold">좋아요 {like}개</p>
+                      <p>
+                        <span className="font-bold mr-1">{id}</span>
+                        <span>{text}</span>
+                      </p>
+                    </div>
                   </div>
-                  <div>
-                    <p className="font-bold">좋아요 {like}개</p>
-                    <p>
-                      <span className="font-bold mr-1">{id}</span>
-                      <span>{text}</span>
-                    </p>
-                  </div>
-                </div>
-              </SliderCard>
-            ))}
+                </SliderCard>
+              ),
+            )}
           </Slider>
         </div>
       </section>
@@ -405,9 +407,12 @@ export default function Home() {
       {/* 매장찾기, 제휴문의 */}
       <section>
         <ul className="flex justify-center items-center border-y border-light-gray">
-          {
-            data.banner.map(({ title, description, linkText, href, className }) => (
-              <li key={title} className={`w-1/2 text-xl flex flex-col justify-center items-center space-y-12 py-20 ${className}`}>
+          {data.banner.map(
+            ({ title, description, linkText, href, className }) => (
+              <li
+                key={title}
+                className={`w-1/2 text-xl flex flex-col justify-center items-center space-y-12 py-20 ${className}`}
+              >
                 <div className="flex flex-col justify-center items-center space-y-8">
                   <h3 className="font-black text-[32px]">{title}</h3>
                   <p>{description}</p>
@@ -420,10 +425,21 @@ export default function Home() {
                   <SvgIcon name="arrow-right" />
                 </Link>
               </li>
-            ))
-          }
+            ),
+          )}
         </ul>
       </section>
+
+      <article className="fixed right-10 bottom-10 flex flex-col space-y-6">
+        <Link href="#" className="w-20 h-20 rounded-full bg-white flex flex-col justify-center items-center text-xs font-bold space-y-1 shadow-lg">
+          <SvgIcon name="message" />
+          <p>상담하기</p>
+        </Link>
+        <Link href="#" className="w-20 h-20 rounded-full bg-primary flex flex-col justify-center items-center text-xs font-bold space-y-1 shadow-lg">
+          <SvgIcon name="call" />
+          <p>가맹문의</p>
+        </Link>
+      </article>
     </>
   )
 }
