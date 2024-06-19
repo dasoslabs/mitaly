@@ -2,6 +2,7 @@ import localFont from "next/font/local"
 import "./globals.css"
 
 import AppHeader from "@/components/app/AppHeader"
+import AppFooter from "@/components/app/AppFooter"
 
 const pretendard = localFont({
   src: "../assets/PretendardVariable.woff2",
@@ -21,6 +22,7 @@ export default function RootLayout({ children }) {
       <body className={`${pretendard.className} font-pretendard`}>
         <AppHeader />
         <main>{children}</main>
+        <AppFooter />
       </body>
     </html>
   )
