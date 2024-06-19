@@ -134,7 +134,7 @@ export default function Home() {
   return (
     <>
       {/* 배너 */}
-      <section className="relative">
+      <section className="relative" id="main_banner">
         <div className="flex items-center justify-center h-screen">
           <div className="relative w-full h-screen">
             <video
@@ -431,11 +431,17 @@ export default function Home() {
       </section>
 
       <article className="fixed right-10 bottom-10 flex flex-col space-y-6">
-        <Link href="#" className="w-20 h-20 rounded-full bg-white flex flex-col justify-center items-center text-xs font-bold space-y-1 shadow-lg">
+        <Link
+          href="#"
+          className="w-20 h-20 rounded-full bg-white flex flex-col justify-center items-center text-xs font-bold space-y-1 shadow-lg"
+        >
           <SvgIcon name="message" />
           <p>상담하기</p>
         </Link>
-        <Link href="#" className="w-20 h-20 rounded-full bg-primary flex flex-col justify-center items-center text-xs font-bold space-y-1 shadow-lg">
+        <Link
+          href="#"
+          className="w-20 h-20 rounded-full bg-primary flex flex-col justify-center items-center text-xs font-bold space-y-1 shadow-lg"
+        >
           <SvgIcon name="call" />
           <p>가맹문의</p>
         </Link>
