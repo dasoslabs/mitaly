@@ -2,7 +2,7 @@ import { useEffect, useCallback, useState } from "react"
 import useEmblaCarousel from "embla-carousel-react"
 // import Autoplay from 'embla-carousel-autoplay'
 
-export default function SliderFull({ children }) {
+export default function SliderFull({ children, width = "max-w-pc" }) {
   const [emblaRef, emblaApi] = useEmblaCarousel(
     { align: "start", loop: true } /** [Autoplay()] */,
   )
@@ -40,7 +40,7 @@ export default function SliderFull({ children }) {
 
   return (
     <div className="relative">
-      <div className="overflow-hidden max-w-pc m-auto" ref={emblaRef}>
+      <div className={`overflow-hidden m-auto ${width}`} ref={emblaRef}>
         <div className="flex">{children}</div>
       </div>
       <div className="absolute left-1/2 bottom-5 transform -translate-x-1/2 flex justify-between items-center bg-white bg-opacity-85 rounded-full p-1 w-[228px]">
