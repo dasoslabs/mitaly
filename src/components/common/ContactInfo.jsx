@@ -22,6 +22,7 @@ export default function ContactInfo({
   subTitle = "",
   subDescription = "",
   href = "#",
+  hrefText = "자세히 보기",
 }) {
   return (
     <div className={`flex flex-col space-y-16 ${className}`}>
@@ -57,7 +58,7 @@ export default function ContactInfo({
           </div>
         </div>
         <Link href={href} className="flex items-center space-x-2">
-          <p className="text-lg font-bold">자세히 보기</p>
+          <p className="text-lg font-bold">{hrefText}</p>
           <SvgIcon name="arrow-triangle-right" />
         </Link>
       </div>

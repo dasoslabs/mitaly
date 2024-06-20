@@ -7,12 +7,13 @@ export default function ContactTab() {
   return (
     <div className="max-w-pc m-auto flex justify-center space-x-6 mt-24">
       <ContactInfo
-        title="가맹상담"
-        subTitle={"미태리 창업에 대해\n더 궁금하신가요?"}
+        title="제휴문의"
+        subTitle={"가맹상담에 대해\n궁금한 점이 있으신가요?"}
         subDescription={
-          "하단에 버튼을 누르시면\n더욱 자세한 내용을 확인할 수 있습니다."
+          "하단에 버튼을 눌러 문의주시면\n빠른 시일 내에 연락드리겠습니다."
         }
         href="#"
+        hrefText="가맹문의 바로가기"
         className="w-full"
       />
 
@@ -20,19 +21,32 @@ export default function ContactTab() {
         <h3 className="text-3xl font-black">제휴문의</h3>
 
         <div className="w-full flex flex-col space-y-4">
-          {form.map(({ name, label, placeholder, isRequired }) => (
-            <label key={label} className="flex items-center">
-              <p className="font-bold w-3/12">
+          {form.map(({ name, label, placeholder, isRequired, type, inputClass = "" }) => (
+            <label key={label} className={`flex ${type === "input" ? "items-center" : "items-start"}`}>
+              <p className={`font-bold w-3/12 ${type === "textarea" && "pt-2"}`}>
                 {label}
                 {isRequired && <span className="text-red"> *</span>}
               </p>
-              <input
-                name={name}
-                type="text"
-                placeholder={placeholder}
-                className="w-9/12 border border-light-gray outline-none rounded py-2 md:py-3 px-4 focus:border-black"
-                required={isRequired}
-              />
+              {
+                type === "input"
+                ? (
+                  <input
+                    name={name}
+                    type="text"
+                    placeholder={placeholder}
+                    className={`w-9/12 border border-light-gray outline-none rounded py-2 md:py-3 px-4 focus:border-black`}
+                    required={isRequired}
+                  />
+                )
+                : (
+                  <textarea
+                    name={name}
+                    placeholder={placeholder}
+                    className={`w-9/12 resize-none outline-none border border-light-gray outline-none rounded py-2 md:py-3 px-4 focus:border-black ${inputClass}`}
+                    required={isRequired}
+                  />
+                )
+              }
             </label>
           ))}
         </div>
