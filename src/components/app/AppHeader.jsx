@@ -4,6 +4,7 @@ import { useState, useEffect } from "react"
 import { usePathname } from "next/navigation"
 import Link from "next/link"
 import Logo from "../common/Logo"
+import SvgIcon from "../common/SvgIcon"
 
 const menu = {
   self: [
@@ -75,22 +76,27 @@ export default function AppHeader() {
 
   return (
     <header
-      className={`fixed top-0 left-0 w-full h-24 z-50 transition-all duration-300 bg-white ${headerStyle}`}
+      className={`fixed top-0 left-0 w-full px-6 h-16 lg:h-24 z-50 transition-all duration-300 bg-white ${headerStyle}`}
     >
       <div className="max-w-pc h-full m-auto flex justify-between items-center">
         <h1>
-          <Link href="/">
+          <Link href="/" className="hidden lg:block">
             <Logo color={logoColor} />
           </Link>
+          <Link href="/" className="lg:hidden">
+            <Logo color={logoColor} size="sm" />
+          </Link>
         </h1>
-        <ul className="flex space-x-12">
+
+        <ul className="hidden lg:flex space-x-12">
           {menu.self.map(({ name, href }) => (
             <li key={name}>
               <Link href={href}>{name}</Link>
             </li>
           ))}
         </ul>
-        <ul className="flex space-x-4">
+
+        <ul className="hidden lg:flex space-x-4">
           {menu.blank.map(({ name, href }) => (
             <li key={name}>
               <Link
@@ -102,6 +108,11 @@ export default function AppHeader() {
             </li>
           ))}
         </ul>
+
+        {/* 모바일 햄버거 메뉴 */}
+        <button>
+          <SvgIcon name="menu" color={logoColor} />
+        </button>
       </div>
     </header>
   )
