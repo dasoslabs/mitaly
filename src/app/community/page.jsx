@@ -12,17 +12,11 @@ export default function StorePage() {
   const getCurrentTabUI = () => {
     switch (currentTab) {
       case "notice":
-        return (
-          <ComingSoon />
-        )
+        return <ComingSoon />
       case "news":
-        return (
-          <ComingSoon />
-        )
+        return <ComingSoon />
       case "contact":
-        return (
-          <ContactTab />
-        )
+        return <ContactTab />
     }
   }
 

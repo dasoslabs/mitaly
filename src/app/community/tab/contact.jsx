@@ -17,19 +17,33 @@ export default function ContactTab() {
         className="w-full"
       />
 
-      <form onSubmit={(e) => e.preventDefault()} className="w-full shadow-form px-12 pt-12 pb-16 flex flex-col items-center space-y-10 z-10">
+      <form
+        onSubmit={(e) => e.preventDefault()}
+        className="w-full shadow-form px-12 pt-12 pb-16 flex flex-col items-center space-y-10 z-10"
+      >
         <h3 className="text-3xl font-black">제휴문의</h3>
 
         <div className="w-full flex flex-col space-y-4">
-          {form.map(({ name, label, placeholder, isRequired, type, inputClass = "" }) => (
-            <label key={label} className={`flex ${type === "input" ? "items-center" : "items-start"}`}>
-              <p className={`font-bold w-3/12 ${type === "textarea" && "pt-2"}`}>
-                {label}
-                {isRequired && <span className="text-red"> *</span>}
-              </p>
-              {
-                type === "input"
-                ? (
+          {form.map(
+            ({
+              name,
+              label,
+              placeholder,
+              isRequired,
+              type,
+              inputClass = "",
+            }) => (
+              <label
+                key={label}
+                className={`flex ${type === "input" ? "items-center" : "items-start"}`}
+              >
+                <p
+                  className={`font-bold w-3/12 ${type === "textarea" && "pt-2"}`}
+                >
+                  {label}
+                  {isRequired && <span className="text-red"> *</span>}
+                </p>
+                {type === "input" ? (
                   <input
                     name={name}
                     type="text"
@@ -37,18 +51,17 @@ export default function ContactTab() {
                     className={`w-9/12 border border-light-gray outline-none rounded py-2 md:py-3 px-4 focus:border-black`}
                     required={isRequired}
                   />
-                )
-                : (
+                ) : (
                   <textarea
                     name={name}
                     placeholder={placeholder}
                     className={`w-9/12 resize-none outline-none border border-light-gray outline-none rounded py-2 md:py-3 px-4 focus:border-black ${inputClass}`}
                     required={isRequired}
                   />
-                )
-              }
-            </label>
-          ))}
+                )}
+              </label>
+            ),
+          )}
         </div>
 
         <div className="w-full flex flex-col space-y-4">

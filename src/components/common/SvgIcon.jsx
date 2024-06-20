@@ -1,4 +1,4 @@
-export default function SvgIcon({ name = "", color = "" }) {
+export default function SvgIcon({ name = "", color = "", size = 48 }) {
   switch (name) {
     case "volume":
       return (
@@ -100,8 +100,8 @@ export default function SvgIcon({ name = "", color = "" }) {
     case "facebook":
       return (
         <svg
-          width="48"
-          height="48"
+          width={size}
+          height={size}
           viewBox="0 0 48 48"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
@@ -117,8 +117,8 @@ export default function SvgIcon({ name = "", color = "" }) {
     case "instagram":
       return (
         <svg
-          width="48"
-          height="48"
+          width={size}
+          height={size}
           viewBox="0 0 48 48"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"

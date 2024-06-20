@@ -16,7 +16,10 @@ export default function ContactTab() {
         className="w-full"
       />
 
-      <form onSubmit={(e) => e.preventDefault()} className="w-full shadow-form px-12 pt-12 pb-16 flex flex-col items-center space-y-10 z-10">
+      <form
+        onSubmit={(e) => e.preventDefault()}
+        className="w-full shadow-form px-12 pt-12 pb-16 flex flex-col items-center space-y-10 z-10"
+      >
         <h3 className="text-3xl font-black">제휴문의</h3>
 
         <div className="w-full flex flex-col space-y-4">
