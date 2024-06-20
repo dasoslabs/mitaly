@@ -21,7 +21,7 @@ export default function StorePage() {
   }
 
   return (
-    <section className="mt-24">
+    <section className="mt-16 lg:mt-24">
       {/* 텝 메뉴 */}
       <ul className="h-14 bg-bg-gray flex justify-center items-center space-x-16">
         {menu.map(({ name, text }) => (

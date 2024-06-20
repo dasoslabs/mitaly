@@ -2,7 +2,7 @@ import Image from "next/image"
 
 export default function AboutPage() {
   return (
-    <section className="mt-24 relative">
+    <section className="mt-16 lg:mt-24 relative">
       <div className="relative h-[800px]">
         <div className="max-w-pc w-full flex flex-col space-y-6 absolute left-1/2 transform -translate-x-1/2 bottom-20 z-20">
           <h2 className="font-extrabold text-primary text-2xl">About MITALY</h2>

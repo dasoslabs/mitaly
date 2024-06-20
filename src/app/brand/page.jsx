@@ -30,7 +30,7 @@ export default function BrandPage() {
   }
 
   return (
-    <section className="mt-24">
+    <section className="mt-16 lg:mt-24">
       {/* 배너 */}
       <div className="relative">
         <Image
