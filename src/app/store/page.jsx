@@ -3,6 +3,7 @@
 import { useState } from "react"
 import Image from "next/image"
 
+import ComingSoon from "@/components/common/ComingSoon"
 import SliderFull, { SliderFullCard } from "@/components/common/SliderFull"
 import { menu, interior } from "./data"
 
@@ -47,12 +48,13 @@ export default function StorePage() {
         )
       case "location":
         return (
-          <div className="flex justify-center">
-            <div className="w-[560px]">
-              <h2 className="text-5xl font-extralight">매장찾기</h2>
-            </div>
-            <div className="w-full">지도</div>
-          </div>
+          <ComingSoon />
+          // <div className="flex justify-center">
+          //   <div className="w-[560px]">
+          //     <h2 className="text-5xl font-extralight">매장찾기</h2>
+          //   </div>
+          //   <div className="w-full">지도</div>
+          // </div>
         )
     }
   }
