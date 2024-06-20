@@ -7,6 +7,7 @@ import { menu } from "./data"
 
 import ProfitTab from "./tab/profit"
 import SuccessTab from "./tab/success"
+import SupportTab from "./tab/support"
 
 export default function BrandPage() {
   const [currentTab, setCurrentTab] = useState(menu[0].name)
@@ -17,6 +18,8 @@ export default function BrandPage() {
         return <ProfitTab />
       case "success":
         return <SuccessTab />
+      case "support":
+        return <SupportTab />
     }
   }
 

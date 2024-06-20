@@ -57,3 +57,106 @@ export const successCards = [
     imgAlt: "음식 이미지",
   },
 ]
+
+export const supportCards = [
+  {
+    text: "전문 상권분석",
+    imgUrl: "/brand/support01.png",
+    imgAlt: "전문 상권분석 이미지",
+  },
+  {
+    text: "무료 시식 체험",
+    imgUrl: "/brand/support02.png",
+    imgAlt: "무료 시식 체험 이미지",
+  },
+  {
+    text: "랩실 교육 및 현장 실습",
+    imgUrl: "/brand/support03.png",
+    imgAlt: "랩실 교육 및 현장 실습 이미지",
+  },
+  {
+    text: "오픈 이벤트",
+    imgUrl: "/brand/support04.png",
+    imgAlt: "오픈 이벤트 이미지",
+  },
+  {
+    text: "네이버 플레이스 광고",
+    imgUrl: "/brand/support05.png",
+    imgAlt: "네이버 플레이스 광고 이미지",
+  },
+  {
+    text: "맛집 플랫폼 등록",
+    imgUrl: "/brand/support06.png",
+    imgAlt: "맛집 플랫폼 등록 이미지",
+  },
+  {
+    text: "포스터 홍보물 제공",
+    imgUrl: "/brand/support07.png",
+    imgAlt: "포스터 홍보물 제공 이미지",
+  },
+  {
+    text: "현수막 및 X배너 제작",
+    imgUrl: "/brand/support08.png",
+    imgAlt: "현수막 및 X배너 제작 이미지",
+  },
+  {
+    text: "재방문 쿠폰",
+    imgUrl: "/brand/support09.png",
+    imgAlt: "재방문 쿠폰 이미지",
+  },
+  {
+    text: "카카오톡 채널 홍보",
+    imgUrl: "/brand/support10.png",
+    imgAlt: "카카오톡 채널 홍보 이미지",
+  },
+  {
+    text: "공식 SNS 운영",
+    imgUrl: "/brand/support11.png",
+    imgAlt: "공식 SNS 운영 이미지",
+  },
+  {
+    text: "맘카페 바이럴",
+    imgUrl: "/brand/support12.png",
+    imgAlt: "맘카페 바이럴 이미지",
+  },
+  {
+    text: "블로그 체험단",
+    imgUrl: "/brand/support13.png",
+    imgAlt: "블로그 체험단 이미지",
+  },
+  {
+    text: "인스타그램 광고",
+    imgUrl: "/brand/support14.png",
+    imgAlt: "인스타그램 광고 이미지",
+  },
+  {
+    text: "페이스북 광고",
+    imgUrl: "/brand/support15.png",
+    imgAlt: "페이스북 광고 이미지",
+  },
+  {
+    text: "유튜브 협찬",
+    imgUrl: "/brand/support16.png",
+    imgAlt: "유튜브 협찬 이미지",
+  },
+  {
+    text: "TV프로그램 PPL",
+    imgUrl: "/brand/support17.png",
+    imgAlt: "TV프로그램 PPL 이미지",
+  },
+  {
+    text: "아파트 엘리베이터 광고",
+    imgUrl: "/brand/support18.png",
+    imgAlt: "아파트 엘리베이터 광고 이미지",
+  },
+  {
+    text: "지속적인 신메뉴 개발",
+    imgUrl: "/brand/support19.png",
+    imgAlt: "지속적인 신메뉴 개발 이미지",
+  },
+  {
+    text: "언론보도",
+    imgUrl: "/brand/support20.png",
+    imgAlt: "언론보도 이미지",
+  },
+]
