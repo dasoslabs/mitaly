@@ -7,7 +7,7 @@ import { profitCards } from "../data"
 export default function ProfitTab() {
   return (
     <>
-        <div className="mt-40 flex flex-col space-y-32">
+      <div className="mt-40 flex flex-col space-y-32">
         <div className="max-w-pc m-auto text-center flex flex-col space-y-20 text-xl">
           <div className="flex flex-col space-y-5">
             <div className="font-extrabold flex items-center justify-center space-x-2">
@@ -104,8 +104,12 @@ export default function ProfitTab() {
         </div>
 
         <div className="py-16 bg-primary text-center flex flex-col justify-center items-center">
-          <h3 className="text-[32px] font-bold mb-4">실제 운영매장의 순수익이 궁금하신가요?</h3>
-          <p className="text-lg">하단에 버튼을 눌러서 자세한 내용을 확인해 보세요!</p>
+          <h3 className="text-[32px] font-bold mb-4">
+            실제 운영매장의 순수익이 궁금하신가요?
+          </h3>
+          <p className="text-lg">
+            하단에 버튼을 눌러서 자세한 내용을 확인해 보세요!
+          </p>
           <Link
             href="#"
             className="mt-10 py-2 px-7 flex justify-center items-center bg-white rounded-full font-bold"

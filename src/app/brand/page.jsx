@@ -6,6 +6,7 @@ import Image from "next/image"
 import { menu } from "./data"
 
 import ProfitTab from "./tab/profit"
+import SuccessTab from "./tab/success"
 
 export default function BrandPage() {
   const [currentTab, setCurrentTab] = useState(menu[0].name)
@@ -14,6 +15,8 @@ export default function BrandPage() {
     switch (currentTab) {
       case "profit":
         return <ProfitTab />
+      case "success":
+        return <SuccessTab />
     }
   }
 
