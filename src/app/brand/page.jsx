@@ -9,6 +9,7 @@ import ProfitTab from "./tab/profit"
 import SuccessTab from "./tab/success"
 import SupportTab from "./tab/support"
 import ComingSoon from "@/components/common/ComingSoon"
+import ContactTab from "./tab/contact"
 
 export default function BrandPage() {
   const [currentTab, setCurrentTab] = useState(menu[0].name)
@@ -23,6 +24,8 @@ export default function BrandPage() {
         return <SupportTab />
       case "faq":
         return <ComingSoon />
+      case "contact":
+        return <ContactTab />
     }
   }
 
