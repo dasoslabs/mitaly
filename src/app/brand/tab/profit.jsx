@@ -21,7 +21,7 @@ export default function ProfitTab() {
           <Image
             width="1440"
             height="540"
-            src="/brand/main.png"
+            src="/brand/profit01.png"
             alt="메인 이미지"
             quality={100}
           />
@@ -75,7 +75,7 @@ export default function ProfitTab() {
           <Image
             width="1920"
             height="640"
-            src="/brand/banner02.png"
+            src="/brand/profit02.png"
             alt="배너 이미지"
             quality={100}
           />
