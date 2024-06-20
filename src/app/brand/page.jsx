@@ -36,7 +36,7 @@ export default function BrandPage() {
         <Image
           width="1920"
           height="400"
-          src="/brand/banner01.png"
+          src="/brand/banner.png"
           alt="배너 이미지"
           quality={100}
         />
