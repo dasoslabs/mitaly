@@ -46,28 +46,17 @@ export default function ContactInfo({
       <div className="rounded-2xl bg-bg-gray flex flex-col space-y-10 p-6 max-w-[464px]">
         <div className="flex flex-col space-y-6">
           <h3 className="text-xl font-bold">
-            {
-              subTitle.split("\n").map((part) => (
-                <p key={part}>
-                  {part}
-                </p>
-              ))
-            }
+            {subTitle.split("\n").map((part) => (
+              <p key={part}>{part}</p>
+            ))}
           </h3>
           <div>
-            {
-              subDescription.split("\n").map((part) => (
-                <p key={part}>
-                  {part}
-                </p>
-              ))
-            }
+            {subDescription.split("\n").map((part) => (
+              <p key={part}>{part}</p>
+            ))}
           </div>
         </div>
-        <Link
-          href={href}
-          className="flex items-center space-x-2"
-        >
+        <Link href={href} className="flex items-center space-x-2">
           <p className="text-lg font-bold">자세히 보기</p>
           <SvgIcon name="arrow-triangle-right" />
         </Link>
