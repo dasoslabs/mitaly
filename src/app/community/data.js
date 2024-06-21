@@ -11,7 +11,7 @@ export const form = [
     placeholder: "문의유형을 입력해주세요.",
     isRequired: true,
     type: "input",
-    labelClass: "pb-10",
+    labelClass: "lg:pb-10",
   },
   {
     name: "Name",
@@ -33,7 +33,7 @@ export const form = [
     placeholder: "창업희망지역을 입력해주세요.",
     isRequired: true,
     type: "input",
-    labelClass: "pb-10",
+    labelClass: "lg:pb-10",
   },
   {
     name: "Title",
