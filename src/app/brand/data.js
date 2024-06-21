@@ -17,7 +17,7 @@ export const profitCards = [
     text: "안전한\n포장으로도",
     imgUrl: "/brand/profit-item02.png",
     imgAlt: "포장 이미지",
-    className: "self-end",
+    className: "lg:self-end",
   },
   {
     text: "신속한\n배달로도",

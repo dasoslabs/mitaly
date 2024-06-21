@@ -26,8 +26,7 @@ export default function SvgIcon({ name = "", color = "", size = 48 }) {
     case "arrow-right":
       return (
         <svg
-          width="24"
-          height="24"
+          className="w-4 h-4 lg:w-6 lg:h-6"
           viewBox="0 0 24 24"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"

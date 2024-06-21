@@ -20,6 +20,9 @@ module.exports = {
       boxShadow: {
         form: "0px 16px 40px 0px #0000001A",
       },
+      aspectRatio: {
+        vertical: "16 / 9",
+      }
     },
   },
   plugins: [],
