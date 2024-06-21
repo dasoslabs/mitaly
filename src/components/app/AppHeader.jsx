@@ -119,7 +119,7 @@ export default function AppHeader() {
             </Link>
           </h1>
 
-          <nav className="hidden lg:flex space-x-12">
+          <nav className="list-none hidden lg:flex space-x-12">
             {menu.self.map(({ name, href }) => (
               <li key={name}>
                 <Link href={href}>{name}</Link>
