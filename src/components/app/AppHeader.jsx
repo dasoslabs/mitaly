@@ -178,7 +178,7 @@ export default function AppHeader() {
             <div className="w-full h-full bg-[#D9D9D9]"></div>
           </div>
 
-          <ul className="px-6 flex flex-col space-y-6">
+          <ul className="px-6 flex flex-col space-y-6 pb-10">
             {menu.blank.map(({ name, href }) => (
               <li key={name}>
                 <Link href={href} className="font-extralight">
