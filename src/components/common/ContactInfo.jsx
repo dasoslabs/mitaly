@@ -26,15 +26,15 @@ export default function ContactInfo({
 }) {
   return (
     <div className={`flex flex-col space-y-16 ${className}`}>
-      <div className="flex flex-col space-y-10">
+      <div className="flex flex-col space-y-10 text-center lg:text-left">
         <div className="flex flex-col space-y-5">
-          <h2 className="text-5xl font-extralight">{title}</h2>
-          <div>
+          <h2 className="text-xl lg:text-5xl font-extralight">{title}</h2>
+          <div className="text-sm lg:text-base">
             <p>문의하실 부분이 있으시면 내용을 남겨주세요.</p>
             <p>빠른 시일 내에 연락드리겠습니다.</p>
           </div>
         </div>
-        <ul className="flex flex-col space-y-4">
+        <ul className="flex flex-col m-auto lg:m-0 space-y-4 text-sm lg:text-base">
           {info.map(({ text, svgIcon }) => (
             <li key={text + svgIcon} className="flex items-center">
               <SvgIcon name={svgIcon} />
@@ -44,21 +44,21 @@ export default function ContactInfo({
         </ul>
       </div>
 
-      <div className="rounded-2xl bg-bg-gray flex flex-col space-y-10 p-6 max-w-[464px]">
+      <div className="rounded-2xl bg-bg-gray flex flex-col space-y-10 p-6 lg:max-w-[464px]">
         <div className="flex flex-col space-y-6">
-          <h3 className="text-xl font-bold">
+          <h3 className="lg:text-xl font-bold">
             {subTitle.split("\n").map((part) => (
               <p key={part}>{part}</p>
             ))}
           </h3>
-          <div>
+          <div className="text-sm lg:text-base">
             {subDescription.split("\n").map((part) => (
               <p key={part}>{part}</p>
             ))}
           </div>
         </div>
         <Link href={href} className="flex items-center space-x-2">
-          <p className="text-lg font-bold">{hrefText}</p>
+          <p className="text-sm lg:text-base font-bold">{hrefText}</p>
           <SvgIcon name="arrow-triangle-right" />
         </Link>
       </div>

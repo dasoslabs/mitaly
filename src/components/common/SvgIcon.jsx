@@ -173,8 +173,7 @@ export default function SvgIcon({ name = "", color = "", size = 48 }) {
     case "map":
       return (
         <svg
-          width="24"
-          height="24"
+          className="w-4 h-4 lg:w-6 lg:h-6"
           viewBox="0 0 24 24"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
@@ -198,8 +197,7 @@ export default function SvgIcon({ name = "", color = "", size = 48 }) {
     case "call-outline":
       return (
         <svg
-          width="24"
-          height="24"
+          className="w-4 h-4 lg:w-6 lg:h-6"
           viewBox="0 0 24 24"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
@@ -216,8 +214,7 @@ export default function SvgIcon({ name = "", color = "", size = 48 }) {
     case "message-outline":
       return (
         <svg
-          width="24"
-          height="24"
+          className="w-4 h-4 lg:w-6 lg:h-6"
           viewBox="0 0 24 24"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
@@ -241,8 +238,7 @@ export default function SvgIcon({ name = "", color = "", size = 48 }) {
     case "arrow-triangle-right":
       return (
         <svg
-          width="24"
-          height="24"
+          className="w-4 h-4 lg:w-6 lg:h-6"
           viewBox="0 0 24 24"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
