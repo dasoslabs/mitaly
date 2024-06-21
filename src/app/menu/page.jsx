@@ -88,12 +88,12 @@ export default function MenuPage() {
       </div>
 
       <div className="max-w-pc w-full m-auto">
-        <ul className="flex justify-center items-center">
+        <ul className="pl-6 lg:pl-0 flex lg:justify-center lg:items-center overflow-x-auto lg:overflow-x-hidden scrollbar-hide">
           {menu.map(({ name, text }) => (
-            <li key={name} className="w-full">
+            <li key={name} className="w-2/12 flex-shrink-0 lg:flex-shrink lg:w-full">
               <button
                 onClick={() => setMenuTab(name)}
-                className={`w-full h-full py-3 font-bold border-b-2 text-sm lg:text-base ${menuTab === name ? "text-primary border-primary" : "text-[#666666] lg:text-light-gray border-white font-normal lg:font-bold"}`}
+                className={`w-full py-3 font-bold border-b-2 text-sm lg:text-base ${menuTab === name ? "text-primary border-primary" : "text-[#666666] lg:text-light-gray border-white font-normal lg:font-bold"}`}
               >
                 {text}
               </button>
@@ -101,7 +101,7 @@ export default function MenuPage() {
           ))}
         </ul>
 
-        <ul className="grid grid-cols-2 lg:grid-cols-4 gap-6 mt-8 lg:mt-10 px-6">
+        <ul className="grid grid-cols-2 lg:grid-cols-4 gap-6 mt-8 lg:mt-10 px-6 lg:px-0">
           {[
             ...food[menuTab],
             ...food[menuTab],
