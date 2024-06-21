@@ -314,5 +314,30 @@ export default function SvgIcon({ name = "", color = "", size = 48 }) {
           />
         </svg>
       )
+    case "plus":
+      return (
+        <svg
+          width="16"
+          height="16"
+          viewBox="0 0 16 16"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path d="M8 2L8 14" stroke="black" strokeLinejoin="round" />
+          <path d="M14 8L2 8" stroke="black" strokeLinejoin="round" />
+        </svg>
+      )
+    case "minus":
+      return (
+        <svg
+          width="16"
+          height="16"
+          viewBox="0 0 16 16"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path d="M14 8L2 8" stroke="black" strokeLinejoin="round" />
+        </svg>
+      )
   }
 }
