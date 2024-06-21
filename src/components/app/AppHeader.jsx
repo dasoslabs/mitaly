@@ -141,7 +141,10 @@ export default function AppHeader() {
           </ul>
 
           {/* 모바일 햄버거 메뉴 아이콘 */}
-          <button className="lg:hidden" onClick={() => setIsMobileMenuOpen(true)}>
+          <button
+            className="lg:hidden"
+            onClick={() => setIsMobileMenuOpen(true)}
+          >
             <SvgIcon name="menu" color={logoColor} />
           </button>
         </div>
