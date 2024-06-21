@@ -46,8 +46,18 @@ export default function ProfitTab() {
                   src={imgUrl}
                   alt={imgAlt}
                   quality={100}
+                  className="hidden lg:block"
                 />
-                <div className="absolute left-10 top-10 lg:leading-10">
+                <div className="aspect-video lg:hidden">
+                  <Image
+                    src={imgUrl}
+                    alt={imgAlt}
+                    layout="fill"
+                    quality={100}
+                    className="object-cover object-center"
+                  />
+                </div>
+                <div className="absolute left-4 top-4 lg:left-10 lg:top-10 lg:leading-10">
                   {text.split("\n").map((word) => (
                     <p key={word}>{word}</p>
                   ))}
