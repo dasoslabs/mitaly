@@ -43,13 +43,13 @@ export default function SliderFull({ children, width = "max-w-pc" }) {
       <div className={`overflow-hidden m-auto ${width}`} ref={emblaRef}>
         <div className="flex">{children}</div>
       </div>
-      <div className="absolute left-1/2 bottom-5 transform -translate-x-1/2 flex justify-between items-center bg-white bg-opacity-85 rounded-full p-1 w-[228px]">
+      <div className="absolute left-1/2 bottom-5 transform -translate-x-1/2 flex justify-between items-center bg-white bg-opacity-85 rounded-full p-1 w-[130px] lg:w-[228px]">
         <PrevButton
           onClick={onPrevButtonClick}
           disabled={prevBtnDisabled}
-          className="w-12 h-12 bg-white rounded-full flex justify-center items-center"
+          className="w-6 h-6 lg:w-12 lg:h-12 bg-white rounded-full flex justify-center items-center"
         />
-        <div className="flex justify-between items-center text-[#999] space-x-4">
+        <div className="flex justify-between items-center text-[#999] space-x-4 text-sm lg:text-base">
           <p className="text-black font-bold">{selectedIndex + 1}</p>
           <p>/</p>
           <p>{children?.length}</p>
@@ -57,7 +57,7 @@ export default function SliderFull({ children, width = "max-w-pc" }) {
         <NextButton
           onClick={onNextButtonClick}
           disabled={nextBtnDisabled}
-          className="w-12 h-12 bg-white rounded-full flex justify-center items-center"
+          className="w-6 h-6 lg:w-12 lg:h-12 bg-white rounded-full flex justify-center items-center"
         />
       </div>
     </div>
@@ -104,8 +104,7 @@ function PrevButton({ children, ...props }) {
   return (
     <button type="button" {...props}>
       <svg
-        width="28"
-        height="28"
+        className="w-4 lg:w-7"
         viewBox="0 0 40 40"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
@@ -121,8 +120,7 @@ function NextButton({ children, ...restProps }) {
   return (
     <button type="button" {...restProps}>
       <svg
-        width="28"
-        height="28"
+        className="w-4 lg:w-7"
         viewBox="0 0 40 40"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
