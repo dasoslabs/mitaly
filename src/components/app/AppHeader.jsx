@@ -150,7 +150,6 @@ export default function AppHeader() {
       {/* 모바일 메뉴 */}
       {isMobileMenuOpen && (
         <nav className="w-full h-full bg-white fixed top-0 left-0 lg:hidden z-50 overflow-y-auto">
-
           {/* 모바일 메뉴 헤더 */}
           <div className="flex justify-between items-center w-full px-6 h-16">
             <Logo color={logoColor} size="sm" />
@@ -182,10 +181,7 @@ export default function AppHeader() {
           <ul className="px-6 flex flex-col space-y-6">
             {menu.blank.map(({ name, href }) => (
               <li key={name}>
-                <Link
-                  href={href}
-                  className="font-extralight"
-                >
+                <Link href={href} className="font-extralight">
                   {name}
                 </Link>
               </li>

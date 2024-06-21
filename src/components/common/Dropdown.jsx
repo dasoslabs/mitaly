@@ -9,7 +9,10 @@ export default function Dropdown({ text, items, href }) {
 
   return (
     <div className="relative font-bold">
-      <button onClick={() => setIsOpen(!isOpen)} className="w-full flex justify-between items-center">
+      <button
+        onClick={() => setIsOpen(!isOpen)}
+        className="w-full flex justify-between items-center"
+      >
         <p>{text}</p>
         <div>
           <SvgIcon name={isOpen ? "minus" : "plus"} />
@@ -17,18 +20,10 @@ export default function Dropdown({ text, items, href }) {
       </button>
 
       {isOpen && (
-        <ul
-          className=""
-        >
+        <ul className="">
           {items?.map(({ name, param }, idx) => (
-            <li
-            key={`${name}-${idx}`}
-            className="font-normal text-sm mt-4"
-            >
-              <Link
-                href={href}
-                className=""
-              >
+            <li key={`${name}-${idx}`} className="font-normal text-sm mt-4">
+              <Link href={href} className="">
                 {name}
               </Link>
             </li>

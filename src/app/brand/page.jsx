@@ -33,16 +33,10 @@ export default function BrandPage() {
     <section className="mt-16 lg:mt-24">
       {/* 배너 */}
       <div className="relative">
-        <Image
-          width="1920"
-          height="400"
-          src="/brand/banner.png"
-          alt="배너 이미지"
-          quality={100}
-        />
-        <div className="absolute top-0 left-0 w-full h-full flex flex-col justify-center items-center space-y-10">
-          <h2 className="text-5xl font-extralight">미태리 경쟁력</h2>
-          <p className="text-lg">
+        <div className="w-full h-[174px] lg:h-[400px] bg-[url('/brand/banner.png')] bg-cover bg-center" />
+        <div className="absolute top-0 left-0 w-full h-full flex flex-col justify-center items-center space-y-4 lg:space-y-10">
+          <h2 className="text-xl lg:text-5xl font-extralight">미태리 경쟁력</h2>
+          <p className="text-sm lg:text-lg">
             4년 이상의 오랜 연구 개발로 완성한 체계적인 프랜차이즈 시스템
           </p>
         </div>
@@ -50,7 +44,7 @@ export default function BrandPage() {
 
       {/* 탭 메뉴 */}
       <div className="border-y border-light-gray">
-        <ul className="max-w-pc m-auto flex justify-center items-center">
+        <ul className="max-w-pc m-auto flex justify-center items-center text-xs lg:text-base">
           {menu.map(({ name, text }, idx) => (
             <li key={name} className="w-full">
               <button
