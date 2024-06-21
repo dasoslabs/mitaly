@@ -12,8 +12,8 @@ const pretendard = localFont({
 })
 
 export const metadata = {
-  title: "미테리",
-  description: "미테리 홈페이지",
+  title: "미태리",
+  description: "미태리 홈페이지",
 }
 
 export default function RootLayout({ children }) {
