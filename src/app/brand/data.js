@@ -11,19 +11,19 @@ export const profitCards = [
     text: "청결한\n홀에서도",
     imgUrl: "/brand/profit-item01.png",
     imgAlt: "매장 홀 이미지",
-    className: "",
+    className: "text-white",
   },
   {
     text: "안전한\n포장으로도",
     imgUrl: "/brand/profit-item02.png",
     imgAlt: "포장 이미지",
-    className: "lg:self-end",
+    className: "lg:self-end text-black lg:text-white",
   },
   {
     text: "신속한\n배달로도",
     imgUrl: "/brand/profit-item03.png",
     imgAlt: "배달 이미지",
-    className: "text-black",
+    className: "text-white lg:text-black",
   },
 ]
 

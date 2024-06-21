@@ -38,7 +38,7 @@ export default function ProfitTab() {
             {profitCards.map(({ text, imgUrl, imgAlt, className }) => (
               <li
                 key={text}
-                className={`relative font-black text-xl lg:text-[32px] text-white ${className}`}
+                className={`relative font-black text-xl lg:text-[32px] ${className}`}
               >
                 <Image
                   width="464"
@@ -47,7 +47,7 @@ export default function ProfitTab() {
                   alt={imgAlt}
                   quality={100}
                 />
-                <div className="absolute left-10 top-10">
+                <div className="absolute left-10 top-10 lg:leading-10">
                   {text.split("\n").map((word) => (
                     <p key={word}>{word}</p>
                   ))}
