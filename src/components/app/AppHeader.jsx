@@ -14,7 +14,7 @@ const menu = {
       href: "/about",
     },
     {
-      name: "미테리 메뉴",
+      name: "미태리 메뉴",
       href: "/menu",
     },
     {
@@ -26,7 +26,7 @@ const menu = {
       ],
     },
     {
-      name: "미테리 경쟁력",
+      name: "미태리 경쟁력",
       href: "/brand",
       children: [
         { query: "profit", name: "수익구조" },
