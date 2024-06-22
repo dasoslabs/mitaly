@@ -290,7 +290,7 @@ export default function Home() {
 
       {/* 인테리어 */}
       <section className="py-16 lg:py-40 px-6 lg:px-0">
-        <div className="flex flex-col justify-center items-center space-y-6 lg:sspace-y-12 text-center">
+        <div className="flex flex-col justify-center items-center space-y-6 lg:space-y-12 text-center">
           <div className="flex flex-col space-y-4 lg:space-y-8">
             <h3 className="font-extrabold lg:text-2xl">
               HEALING with mitaly 😎
@@ -344,36 +344,35 @@ export default function Home() {
       </section>
 
       {/* 가맹점 문의 */}
-      <section className="py-40 bg-primary">
-        <div className="flex flex-col justify-center items-center space-y-12 text-center mb-12">
-          <div className="flex flex-col space-y-8">
-            <h3 className="font-extrabold text-2xl">START with mitaly 😎</h3>
-            <h2 className="text-5xl leading-[68px]">
+      <section className="py-16 lg:py-40 bg-primary">
+        <div className="flex flex-col justify-center items-center space-y-6 lg:space-y-12 text-center">
+          <div className="flex flex-col space-y-4 lg:space-y-8">
+            <h3 className="font-extrabold lg:text-2xl">START with mitaly 😎</h3>
+            <h2 className="text-2xl lg:text-5xl leading-8 lg:leading-[68px]">
               <p className="font-extralight">가맹점이 살아야 본사가 산다!</p>
               <p className="font-black">미태리 가맹점 문의</p>
             </h2>
           </div>
-          <div className="text-xl">
-            <p>
-              미태리는 4년 이상 끊임없는 연구개발을 통해 독보적인 맛과 퀄리티,
-              효율적인 운영 시스템을 구축했습니다.
-            </p>
-            <p>탄탄한 경쟁력으로 안정적인 창업을 시작해 보세요.</p>
+          <div className="text-sm lg:text-xl">
+            <div className="flex flex-col lg:flex-row lg:space-x-1">
+              <p>미태리는 4년 이상 끊임없는</p>
+              <p>연구개발을 통해 독보적인 맛과 퀄리티,</p>
+              
+            </div>
+            <div className="flex flex-col lg:flex-row lg:space-x-1">
+              <p>효율적인 운영 시스템을 구축했습니다.</p>
+              <p>탄탄한 경쟁력으로 안정적인 창업을 시작해 보세요.</p>
+              </div>
           </div>
-          <Link
-            href="#"
-            className="py-2 px-5 flex justify-center items-center border border-light-gray rounded-full font-bold bg-white"
-          >
-            <p>가맹문의 바로가기</p>
-            <SvgIcon name="arrow-right" />
-          </Link>
         </div>
 
-        <ul className="max-w-pc m-auto flex justify-between items-center space-x-6">
+        <div className="px-6 flex flex-col items-center space-y-12">
+          <ShowMoreLinkButton href="#" className="order-2 lg:order-1">가맹문의 바로가기</ShowMoreLinkButton>
+          <ul className="w-full lg:px-0 max-w-pc m-auto grid grid-cols-2 gap-4 lg:flex lg:justify-between lg:items-center lg:space-x-6 order-1 lg:order-2">
           {data.startup.map(({ text, imgUrl, imgAlt }) => (
             <li
               key={text}
-              className="bg-white rounded-2xl py-10 px-6 flex flex-col items-center justify-between space-y-8"
+              className="bg-white rounded-2xl py-4 px-3 lg:py-10 lg:px-6 flex flex-col items-center justify-between space-y-4 lg:space-y-8"
             >
               <Image
                 width="294"
@@ -381,8 +380,17 @@ export default function Home() {
                 src={imgUrl}
                 alt={imgAlt}
                 quality={100}
+                className="hidden lg:block"
               />
-              <p className="flex space-x-1 text-2xl">
+              <Image
+                width="120"
+                height="120"
+                src={imgUrl}
+                alt={imgAlt}
+                quality={100}
+                className="lg:hidden"
+              />
+              <p className="flex flex-col lg:flex-row lg:space-x-1 text-sm lg:text-2xl text-center lg:text-left">
                 {text.split("\n").map((word, idx) => (
                   <span key={word}>
                     {text.split("\n").length - 1 === idx ? (
@@ -396,6 +404,8 @@ export default function Home() {
             </li>
           ))}
         </ul>
+        </div>
+        
       </section>
 
       {/* 리뷰 */}
