@@ -5,6 +5,7 @@ import Image from "next/image"
 
 import ComingSoon from "@/components/common/ComingSoon"
 import SliderFull, { SliderFullCard } from "@/components/common/SliderFull"
+import ChipButton from "@/components/common/Button/ChipButton"
 import { menu, interior } from "./data"
 
 export default function StorePage() {
@@ -67,12 +68,12 @@ export default function StorePage() {
       <ul className="h-14 bg-bg-gray flex justify-center items-center space-x-16">
         {menu.map(({ name, text }) => (
           <li key={name}>
-            <button
+            <ChipButton
               onClick={() => setCurrentTab(name)}
-              className={`text-sm ${currentTab === name ? "font-bold text-black" : "font-normal text-[#999999]"}`}
+              isSelected={currentTab === name}
             >
               {text}
-            </button>
+            </ChipButton>
           </li>
         ))}
       </ul>

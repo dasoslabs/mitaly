@@ -8,6 +8,7 @@ import SvgIcon from "@/components/common/SvgIcon"
 import Slider, { SliderCard } from "@/components/common/Slider"
 import SliderFull, { SliderFullCard } from "@/components/common/SliderFull"
 import ShowMoreLinkButton from "@/components/common/Button/ShowMoreLinkButton"
+import ChipButton from "@/components/common/Button/ChipButton"
 
 const tab = {
   menu: [
@@ -222,7 +223,7 @@ export default function Home() {
       </section>
 
       {/* 메뉴 */}
-      <section className="py-40 flex flex-col justify-center items-center space-y-6 lg:space-y-12">
+      <section className="py-16 lg:py-40 flex flex-col justify-center items-center space-y-6 lg:space-y-12">
         <div className="flex flex-col space-y-4 lg:space-y-8 text-center">
           <h3 className="font-extrabold lg:text-2xl">ENJOY with mitaly 😎</h3>
           <h2 className="text-2xl lg:text-5xl leading-8 lg:leading-[68px]">
@@ -234,20 +235,22 @@ export default function Home() {
           </h2>
         </div>
 
-        <div className="flex flex-col justify-center items-center space-y-10">
-          <ul className="flex justify-center items-center">
+        <div className="w-full px-6 flex flex-col justify-center items-center space-y-10">
+          <ul className="flex justify-between lg:justify-center items-center">
             {tab.menu.map(({ name, text }) => (
               <li key={name}>
-                <button
+                <ChipButton
                   onClick={() => setMenuTab(name)}
-                  className={`py-2 px-6 font-bold rounded-full ${menuTab === name ? "bg-primary" : "bg-white"}`}
+                  isSelected={menuTab === name}
+                  className="w-full"
                 >
                   {text}
-                </button>
+                </ChipButton>
               </li>
             ))}
           </ul>
 
+          {/* 슬라이드 */}
           <Slider className="hidden lg:block">
             {[
               ...data.menu[menuTab],
@@ -262,29 +265,50 @@ export default function Home() {
             ))}
           </Slider>
 
+          <ul className="w-full grid grid-cols-2 gap-4 text-center lg:hidden">
+            {[
+              ...data.menu[menuTab],
+              ...data.menu[menuTab],
+              ...data.menu[menuTab],
+              ...data.menu[menuTab],
+            ]
+              .slice(0, 4)
+              .map(({ name, subTitle }, idx) => (
+                <li key={name + idx}>
+                  <div className="bg-bg-gray aspect-video rounded-2xl"></div>
+                  <p className="text-sm lg:text-xl mt-4 mb-1 lg:mb-2">{name}</p>
+                  <p className="text-[13px] lg:text-base text-[#999]">
+                    {subTitle}
+                  </p>
+                </li>
+              ))}
+          </ul>
+
           <ShowMoreLinkButton href="#">메뉴 더보기</ShowMoreLinkButton>
         </div>
       </section>
 
       {/* 인테리어 */}
-      <section className="py-40">
-        <div className="flex flex-col justify-center items-center space-y-12 text-center">
-          <div className="flex flex-col space-y-8">
-            <h3 className="font-extrabold text-2xl">HEALING with mitaly 😎</h3>
-            <h2 className="text-5xl leading-[68px]">
+      <section className="py-16 lg:py-40 px-6 lg:px-0">
+        <div className="flex flex-col justify-center items-center space-y-6 lg:sspace-y-12 text-center">
+          <div className="flex flex-col space-y-4 lg:space-y-8">
+            <h3 className="font-extrabold lg:text-2xl">
+              HEALING with mitaly 😎
+            </h3>
+            <h2 className="text-2xl lg:text-5xl leading-8 lg:leading-[68px]">
               <p className="font-extralight">미태리 디자인 연구소</p>
               <p className="font-black">매일매일 또 오고 싶은 인테리어</p>
             </h2>
           </div>
-          <div className="text-xl">
-            <p>
-              친근하고 심플한 디자인의 오리지널 스토어, 고급스럽고 화려한
-              디자인의 다이닝 스토어
-            </p>
-            <p>
-              두 가지 종류의 인테리어로 고객들이 편안하고 만족스럽게 식사를 즐길
-              수 있는 미태리의 공간을 소개합니다.
-            </p>
+          <div className="text-sm lg:text-xl">
+            <div className="flex flex-col lg:flex-row lg:space-x-1">
+              <p>친근하고 심플한 디자인의 오리지널 스토어, </p>
+              <p>고급스럽고 화려한 디자인의 다이닝 스토어</p>
+            </div>
+            <div className="flex flex-col lg:flex-row lg:space-x-1 ">
+              <p>두 가지 종류의 인테리어로 고객들이 편안하고 만족스럽게</p>
+              <p>식사를 즐길 수 있는 미태리의 공간을 소개합니다.</p>
+            </div>
           </div>
         </div>
 
@@ -292,12 +316,12 @@ export default function Home() {
           <ul className="flex justify-center items-center">
             {tab.interior.map(({ name, text }) => (
               <li key={name}>
-                <button
+                <ChipButton
                   onClick={() => setInteriorTab(name)}
-                  className={`py-2 px-6 font-bold rounded-full ${interiorTab === name ? "bg-primary" : "bg-white"}`}
+                  isSelected={interiorTab === name}
                 >
                   {text}
-                </button>
+                </ChipButton>
               </li>
             ))}
           </ul>
