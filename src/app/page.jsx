@@ -108,14 +108,14 @@ const data = {
       description: "우리 동네 미태리 매장은 어디 있을까?",
       linkText: "가까운 매장 찾기",
       href: "#",
-      className: "pl-60 border-r border-light-gray",
+      className: "lg:pl-60 border-b lg:border-b-0 lg:border-r border-light-gray",
     },
     {
       title: "제휴문의",
       description: "제휴와 관련된 문의를 남겨주세요.",
       linkText: "제휴문의 바로가기",
       href: "#",
-      className: "pr-60",
+      className: "lg:pr-60",
     },
   ],
 }
@@ -459,24 +459,18 @@ export default function Home() {
 
       {/* 매장찾기, 제휴문의 */}
       <section>
-        <ul className="flex justify-center items-center border-t border-light-gray">
+        <ul className="flex flex-col lg:flex-row lg:justify-center lg:items-center border-t border-light-gray">
           {data.banner.map(
             ({ title, description, linkText, href, className }) => (
               <li
                 key={title}
-                className={`w-1/2 text-xl flex flex-col justify-center items-center space-y-12 py-20 ${className}`}
+                className={`lg:w-1/2 text-xl flex flex-col justify-center items-center space-y-6 lg:space-y-12 px-6 py-10 lg:py-20 ${className}`}
               >
-                <div className="flex flex-col justify-center items-center space-y-8">
-                  <h3 className="font-black text-[32px]">{title}</h3>
-                  <p>{description}</p>
+                <div className="flex flex-col justify-center items-center space-y-4 lg:space-y-8">
+                  <h3 className="font-black text-xl lg:text-[32px]">{title}</h3>
+                  <p className="text-sm lg:text-base">{description}</p>
                 </div>
-                <Link
-                  href={href}
-                  className="py-2 px-5 flex justify-center items-center border border-light-gray rounded-full font-bold bg-white"
-                >
-                  <p>{linkText}</p>
-                  <SvgIcon name="arrow-right" />
-                </Link>
+                <ShowMoreLinkButton href="#">{linkText}</ShowMoreLinkButton>
               </li>
             ),
           )}

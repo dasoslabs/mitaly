@@ -3,7 +3,7 @@ import SvgIcon from "../SvgIcon"
 
 export default function ShowMoreLinkButton({
   children,
-  href,
+  href = "#",
   className = "",
   ...props
 }) {
