@@ -2,7 +2,7 @@ import { useEffect, useCallback, useState } from "react"
 import useEmblaCarousel from "embla-carousel-react"
 // import Autoplay from 'embla-carousel-autoplay'
 
-export default function Slider({ children }) {
+export default function Slider({ children, className = "" }) {
   const [emblaRef, emblaApi] = useEmblaCarousel(
     { align: "start", loop: true } /** [Autoplay()] */,
   )
@@ -27,7 +27,7 @@ export default function Slider({ children }) {
   } = usePrevNextButtons(emblaApi, onNavButtonClick)
 
   return (
-    <div className="relative">
+    <div className={`relative ${className}`}>
       <div className="overflow-hidden max-w-pc m-auto" ref={emblaRef}>
         <div className="flex">{children}</div>
       </div>

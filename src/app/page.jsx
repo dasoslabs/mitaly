@@ -7,6 +7,7 @@ import Link from "next/link"
 import SvgIcon from "@/components/common/SvgIcon"
 import Slider, { SliderCard } from "@/components/common/Slider"
 import SliderFull, { SliderFullCard } from "@/components/common/SliderFull"
+import ShowMoreLinkButton from "@/components/common/Button/ShowMoreLinkButton"
 
 const tab = {
   menu: [
@@ -152,18 +153,26 @@ export default function Home() {
           </div>
         </div>
         <div className="absolute top-0 left-0 w-full h-full bg-black opacity-40"></div>
-        <div className="absolute top-1/2 transform -translate-y-1/2 left-60">
-          <h2 className="text-[80px] font-extrabold">
-            <p className="text-white">파스타가 생각날 땐</p>
-            <p className="text-primary">맛있는 이태리, 미태리!</p>
-          </h2>
+        <div className="absolute top-1/2 transform -translate-y-1/2 left-6 lg:left-60">
+          <div className="text-[40px] lg:text-[80px] font-extrabold">
+            <h2 className="text-white flex flex-col lg:flex-row lg:space-x-1">
+              <p>파스타가</p>
+              <p>생각날 땐</p>
+            </h2>
+            <h2 className="text-primary flex flex-col lg:flex-row lg:space-x-1">
+              <p>맛있는 이태리,</p>
+              <p>미태리!</p>
+            </h2>
+          </div>
         </div>
         <button
           onClick={toggleMute}
-          className="absolute bottom-12 left-40 text-white flex justify-center items-center space-x-2 border border-white rounded-full py-2 px-4"
+          className="absolute bottom-20 left-6 lg:left-40 text-white flex justify-center items-center space-x-2 border border-white rounded-full py-2 px-4"
         >
           <SvgIcon name="volume" />
-          <p>{isMuted ? "SOUND ON" : "SOUND OFF"}</p>
+          <p className="text-xs lg:text-base">
+            {isMuted ? "SOUND ON" : "SOUND OFF"}
+          </p>
         </button>
       </section>
 
@@ -175,37 +184,53 @@ export default function Home() {
           src="/home/background.png"
           alt="배경 사진"
           quality={100}
+          className="hidden lg:block"
         />
-        <div className="absolute top-0 left-0 w-full h-full flex flex-col space-y-12 items-center justify-center text-center">
-          <div className="flex flex-col space-y-8">
-            <h3 className="font-extrabold text-2xl">SMILE with mitaly 😄</h3>
-            <h2 className="text-5xl leading-[68px]">
+
+        {/* TODO 사이즈 큰 이미지 적용 */}
+        <Image
+          width="1080"
+          height="1800"
+          src="/home/background-mobile.png"
+          alt="배경 사진"
+          quality={100}
+          className="lg:hidden"
+        />
+
+        <div className="absolute top-0 left-0 w-full h-full flex flex-col space-y-6 lg:space-y-12 items-center justify-center text-center">
+          <div className="flex flex-col space-y-4 lg:space-y-8">
+            <h3 className="font-extrabold lg:text-2xl">SMILE with mitaly 😄</h3>
+            <h2 className="text-2xl lg:text-5xl leading-8 lg:leading-[68px]">
               <p className="font-extralight">4년 이상 연구한 맛과 가격</p>
-              <p className="font-black">
-                누구나 부담 없이, 더 맛있는 이태리를 즐길 수 있도록!
-              </p>
+              <div className="flex flex-col lg:flex-row lg:space-x-1 font-black">
+                <p>누구나 부담 없이, 더 맛있는</p>
+                <p>이태리를 즐길 수 있도록!</p>
+              </div>
             </h2>
           </div>
-          <div className="text-xl">
-            <p>
-              미태리는 100% 이탈리아산 면과 최고급 엑스트라 버진 올리브오일만을
-              사용합니다.
-            </p>
-            <p>
-              언제, 어디서, 누구와 함께 즐겨도 항상 만족스러운 한끼를 완성시켜
-              드리겠습니다.
-            </p>
+          <div className="text-sm lg:text-xl">
+            <div className="flex flex-col lg:flex-row lg:space-x-1">
+              <p>미태리는 100% 이탈리아산 면과</p>
+              <p>최고급 엑스트라 버진 올리브오일만을 사용합니다.</p>
+            </div>
+            <div className="flex flex-col lg:flex-row lg:space-x-1">
+              <p>언제, 어디서, 누구와 함께 즐겨도</p>
+              <p>항상 만족스러운 한끼를 완성시켜 드리겠습니다.</p>
+            </div>
           </div>
         </div>
       </section>
 
       {/* 메뉴 */}
-      <section className="py-40 flex flex-col justify-center items-center space-y-12">
-        <div className="flex flex-col space-y-8 text-center">
-          <h3 className="font-extrabold text-2xl">ENJOY with mitaly 😎</h3>
-          <h2 className="text-5xl leading-[68px]">
+      <section className="py-40 flex flex-col justify-center items-center space-y-6 lg:space-y-12">
+        <div className="flex flex-col space-y-4 lg:space-y-8 text-center">
+          <h3 className="font-extrabold lg:text-2xl">ENJOY with mitaly 😎</h3>
+          <h2 className="text-2xl lg:text-5xl leading-8 lg:leading-[68px]">
             <p className="font-extralight">남녀노소 좋아하는</p>
-            <p className="font-black">미태리만의 시그니처 메뉴를 소개합니다.</p>
+            <div className="flex flex-col lg:flex-row lg:space-x-1 font-black">
+              <p>미태리만의 시그니처 메뉴를</p>
+              <p>소개합니다.</p>
+            </div>
           </h2>
         </div>
 
@@ -223,7 +248,7 @@ export default function Home() {
             ))}
           </ul>
 
-          <Slider>
+          <Slider className="hidden lg:block">
             {[
               ...data.menu[menuTab],
               ...data.menu[menuTab],
@@ -237,13 +262,7 @@ export default function Home() {
             ))}
           </Slider>
 
-          <Link
-            href="#"
-            className="py-2 px-7 flex justify-center items-center border border-light-gray rounded-full font-bold"
-          >
-            <p>메뉴 더보기</p>
-            <SvgIcon name="arrow-right" />
-          </Link>
+          <ShowMoreLinkButton href="#">메뉴 더보기</ShowMoreLinkButton>
         </div>
       </section>
 
@@ -430,7 +449,8 @@ export default function Home() {
         </ul>
       </section>
 
-      <article className="fixed right-10 bottom-10 flex flex-col space-y-6">
+      {/* 플로팅 버튼 */}
+      <article className="hidden lg:block fixed right-10 bottom-10 flex flex-col space-y-6">
         <Link
           href="#"
           className="w-20 h-20 rounded-full bg-white flex flex-col justify-center items-center text-xs font-bold space-y-1 shadow-lg"

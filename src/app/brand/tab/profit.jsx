@@ -1,7 +1,6 @@
-import Link from "next/link"
 import Image from "next/image"
-import SvgIcon from "@/components/common/SvgIcon"
 
+import ShowMoreLinkButton from "@/components/common/Button/ShowMoreLinkButton"
 import { profitCards } from "../data"
 
 export default function ProfitTab() {
@@ -135,13 +134,7 @@ export default function ProfitTab() {
           <p className="text-sm lg:text-lg">
             하단에 버튼을 눌러서 자세한 내용을 확인해 보세요!
           </p>
-          <Link
-            href="#"
-            className="w-full lg:w-auto mt-10 py-3 px-6 lg:py-2 lg:px-7 text-sm lg:text-base flex justify-center items-center bg-white rounded-full font-bold"
-          >
-            <p>지금 확인하러 가기</p>
-            <SvgIcon name="arrow-right" />
-          </Link>
+          <ShowMoreLinkButton href="#">지금 확인하러 가기</ShowMoreLinkButton>
         </div>
       </div>
     </>
