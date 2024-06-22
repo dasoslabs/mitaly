@@ -1,7 +1,12 @@
 import Link from "next/link"
 import SvgIcon from "../SvgIcon"
 
-export default function ShowMoreLinkButton({ children, href, className = "", ...props }) {
+export default function ShowMoreLinkButton({
+  children,
+  href,
+  className = "",
+  ...props
+}) {
   return (
     <Link
       href={href}

@@ -357,55 +357,55 @@ export default function Home() {
             <div className="flex flex-col lg:flex-row lg:space-x-1">
               <p>미태리는 4년 이상 끊임없는</p>
               <p>연구개발을 통해 독보적인 맛과 퀄리티,</p>
-              
             </div>
             <div className="flex flex-col lg:flex-row lg:space-x-1">
               <p>효율적인 운영 시스템을 구축했습니다.</p>
               <p>탄탄한 경쟁력으로 안정적인 창업을 시작해 보세요.</p>
-              </div>
+            </div>
           </div>
         </div>
 
         <div className="px-6 flex flex-col items-center space-y-12">
-          <ShowMoreLinkButton href="#" className="order-2 lg:order-1">가맹문의 바로가기</ShowMoreLinkButton>
+          <ShowMoreLinkButton href="#" className="order-2 lg:order-1">
+            가맹문의 바로가기
+          </ShowMoreLinkButton>
           <ul className="w-full lg:px-0 max-w-pc m-auto grid grid-cols-2 gap-4 lg:flex lg:justify-between lg:items-center lg:space-x-6 order-1 lg:order-2">
-          {data.startup.map(({ text, imgUrl, imgAlt }) => (
-            <li
-              key={text}
-              className="bg-white rounded-2xl py-4 px-3 lg:py-10 lg:px-6 flex flex-col items-center justify-between space-y-4 lg:space-y-8"
-            >
-              <Image
-                width="294"
-                height="240"
-                src={imgUrl}
-                alt={imgAlt}
-                quality={100}
-                className="hidden lg:block"
-              />
-              <Image
-                width="120"
-                height="120"
-                src={imgUrl}
-                alt={imgAlt}
-                quality={100}
-                className="lg:hidden"
-              />
-              <p className="flex flex-col lg:flex-row lg:space-x-1 text-sm lg:text-2xl text-center lg:text-left">
-                {text.split("\n").map((word, idx) => (
-                  <span key={word}>
-                    {text.split("\n").length - 1 === idx ? (
-                      <b>{word}</b>
-                    ) : (
-                      <span>{word}</span>
-                    )}
-                  </span>
-                ))}
-              </p>
-            </li>
-          ))}
-        </ul>
+            {data.startup.map(({ text, imgUrl, imgAlt }) => (
+              <li
+                key={text}
+                className="bg-white rounded-2xl py-4 px-3 lg:py-10 lg:px-6 flex flex-col items-center justify-between space-y-4 lg:space-y-8"
+              >
+                <Image
+                  width="294"
+                  height="240"
+                  src={imgUrl}
+                  alt={imgAlt}
+                  quality={100}
+                  className="hidden lg:block"
+                />
+                <Image
+                  width="120"
+                  height="120"
+                  src={imgUrl}
+                  alt={imgAlt}
+                  quality={100}
+                  className="lg:hidden"
+                />
+                <p className="flex flex-col lg:flex-row lg:space-x-1 text-sm lg:text-2xl text-center lg:text-left">
+                  {text.split("\n").map((word, idx) => (
+                    <span key={word}>
+                      {text.split("\n").length - 1 === idx ? (
+                        <b>{word}</b>
+                      ) : (
+                        <span>{word}</span>
+                      )}
+                    </span>
+                  ))}
+                </p>
+              </li>
+            ))}
+          </ul>
         </div>
-        
       </section>
 
       {/* 리뷰 */}
