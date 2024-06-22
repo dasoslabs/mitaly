@@ -28,7 +28,7 @@ export default function ContactInfo({
     <div className={`flex flex-col space-y-16 ${className}`}>
       <div className="flex flex-col space-y-10 text-center lg:text-left">
         <div className="flex flex-col space-y-5">
-          <h2 className="text-xl lg:text-5xl font-extralight">{title}</h2>
+          <h2 className="text-2xl lg:text-5xl font-extralight">{title}</h2>
           <div className="text-sm lg:text-base">
             <p>문의하실 부분이 있으시면 내용을 남겨주세요.</p>
             <p>빠른 시일 내에 연락드리겠습니다.</p>

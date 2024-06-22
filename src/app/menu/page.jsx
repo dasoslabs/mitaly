@@ -81,7 +81,7 @@ export default function MenuPage() {
 
   return (
     <section className="mt-16 lg:mt-24 py-10 lg:py-20 bg-white flex flex-col items-center justify-between space-y-6 text-center">
-      <h2 className="font-extralight text-xl lg:text-5xl">미태리 메뉴</h2>
+      <h2 className="font-extralight text-2xl lg:text-5xl">미태리 메뉴</h2>
       <div className="font-normal lg:font-extralight text-sm lg:text-base flex flex-col lg:flex-row lg:space-x-1">
         <p>유명 호텔 셰프, 패밀리레스토랑 셰프 출신의</p>
         <p>전문가들과 함께 개발한 메뉴를 소개합니다.</p>

@@ -22,7 +22,7 @@ module.exports = {
       },
       aspectRatio: {
         vertical: "16 / 9",
-      }
+      },
     },
   },
   plugins: [],

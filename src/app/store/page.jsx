@@ -16,7 +16,7 @@ export default function StorePage() {
         return (
           <>
             <div className="max-w-pc m-auto flex flex-col lg:flex-row justify-between items-center lg:mt-20 lg:mb-10">
-              <h2 className="text-xl lg:text-5xl font-extralight py-10 px-6">
+              <h2 className="text-2xl lg:text-5xl font-extralight py-10 px-6">
                 미태리 인테리어
               </h2>
               <ul className="flex mb-6 lg:mb-0 w-full text-center lg:w-auto">

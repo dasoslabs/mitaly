@@ -13,7 +13,7 @@ export default function SuccessTab() {
           <div
             className={`lg:w-1/2 order-2 p-8 ${idx % 2 === 0 ? "lg:order-1 text-left" : "lg:order-2 text-right"}`}
           >
-            <h3 className="text-xl lg:text-5xl font-extralight mb-4 lg:mb-12 leading-8 lg:leading-[68px]">
+            <h3 className="text-2xl lg:text-5xl font-extralight mb-4 lg:mb-12 leading-8 lg:leading-[68px]">
               {title.split("\n").map((word) => (
                 <span key={word} className="block">
                   {word}
