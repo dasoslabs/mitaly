@@ -21,28 +21,28 @@ const menu = {
       name: "매장안내",
       href: "/store",
       children: [
-        { query: "interior", name: "인테리어" },
-        { query: "location", name: "매장찾기" },
+        { childHref: "interior", name: "인테리어" },
+        { childHref: "location", name: "매장찾기" },
       ],
     },
     {
       name: "미태리 경쟁력",
       href: "/brand",
       children: [
-        { query: "profit", name: "수익구조" },
-        { query: "success", name: "성공경쟁력" },
-        { query: "support", name: "본사지원" },
-        { query: "faq", name: "가맹FAQ" },
-        { query: "contact", name: "가맹상담" },
+        { childHref: "profit", name: "수익구조" },
+        { childHref: "success", name: "성공경쟁력" },
+        { childHref: "support", name: "본사지원" },
+        { childHref: "faq", name: "가맹FAQ" },
+        { childHref: "contact", name: "가맹상담" },
       ],
     },
     {
       name: "커뮤니티",
       href: "/community",
       children: [
-        { query: "notice", name: "공지사항" },
-        { query: "news", name: "뉴스룸" },
-        { query: "contact", name: "제휴문의" },
+        { childHref: "notice", name: "공지사항" },
+        { childHref: "news", name: "뉴스룸" },
+        { childHref: "contact", name: "제휴문의" },
       ],
     },
   ],
@@ -166,11 +166,11 @@ export default function AppHeader() {
             {menu.self.map(({ name, href, children }) =>
               children ? (
                 <li key={name}>
-                  <Dropdown href={href} text={name} items={children} />
+                  <Dropdown href={href} text={name} items={children} onClick={() => setIsMobileMenuOpen(false)} />
                 </li>
               ) : (
                 <li key={name} className="font-bold">
-                  <Link href={href}>{name}</Link>
+                  <Link href={href} onClick={() => setIsMobileMenuOpen(false)}>{name}</Link>
                 </li>
               ),
             )}

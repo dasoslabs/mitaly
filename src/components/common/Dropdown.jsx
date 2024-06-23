@@ -4,7 +4,7 @@ import { useState } from "react"
 import Link from "next/link"
 import SvgIcon from "./SvgIcon"
 
-export default function Dropdown({ text, items, href }) {
+export default function Dropdown({ text, items, href, onClick }) {
   const [isOpen, setIsOpen] = useState(false)
 
   return (
@@ -21,9 +21,9 @@ export default function Dropdown({ text, items, href }) {
 
       {isOpen && (
         <ul className="">
-          {items?.map(({ name, param }, idx) => (
-            <li key={`${name}-${idx}`} className="font-normal text-sm mt-4">
-              <Link href={href} className="">
+          {items?.map(({ name, childHref }, idx) => (
+            <li key={`${name}-${idx}`} className="font-normal text-sm mt-4" >
+              <Link onClick={onClick} href={`${href}/${childHref}`}>
                 {name}
               </Link>
             </li>
