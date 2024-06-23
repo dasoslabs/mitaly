@@ -421,14 +421,14 @@ export default function Home() {
           <p className="text-sm lg:text-xl">맛과 가격, 분위기까지 모든 게 맛집 그 자체!</p>
         </div>
 
-      {/* 슬라이드 */}
+        {/* PC 슬라이드 */}
         <div className="lg:flex flex-col justify-center items-center hidden">
           <Slider>
             {[...data.review, ...data.review].map(
               ({ imgUrl, imgAlt, like, id, text }, idx) => (
                 <SliderCard
                   key={text.slice(0, 3) + idx}
-                  className="max-w-[464px] bg-white rounded-2xl flex flex-col justify-between border border-light-gray basis-1/3 ml-6"
+                  className="max-w-[464px] bg-white rounded-2xl flex flex-col justify-between border border-light-gray basis-1/2 ml-6"
                 >
                   <Image
                     width="464"
@@ -457,6 +457,7 @@ export default function Home() {
           </Slider>
         </div>
 
+        {/* 모바일 슬라이드 */}
         <div className="overflow-hidden flex flex-col justify-center items-center lg:hidden">
           <Slider align="center">
             {[...data.review, ...data.review].map(
