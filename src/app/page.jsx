@@ -108,7 +108,8 @@ const data = {
       description: "우리 동네 미태리 매장은 어디 있을까?",
       linkText: "가까운 매장 찾기",
       href: "#",
-      className: "lg:pl-60 border-b lg:border-b-0 lg:border-r border-light-gray",
+      className:
+        "lg:pl-60 border-b lg:border-b-0 lg:border-r border-light-gray",
     },
     {
       title: "제휴문의",
@@ -418,7 +419,9 @@ export default function Home() {
               <p className="font-black">Shall We MITALY?</p>
             </h2>
           </div>
-          <p className="text-sm lg:text-xl">맛과 가격, 분위기까지 모든 게 맛집 그 자체!</p>
+          <p className="text-sm lg:text-xl">
+            맛과 가격, 분위기까지 모든 게 맛집 그 자체!
+          </p>
         </div>
 
         {/* PC 슬라이드 */}
