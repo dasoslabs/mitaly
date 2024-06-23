@@ -1,7 +1,7 @@
 export const menu = [
-  { name: "notice", text: "공지사항" },
-  { name: "news", text: "뉴스룸" },
-  { name: "contact", text: "제휴문의" },
+  { href: "/community/notice", text: "공지사항" },
+  { href: "/community/news", text: "뉴스룸" },
+  { href: "/community/contact", text: "제휴문의" },
 ]
 
 export const form = [

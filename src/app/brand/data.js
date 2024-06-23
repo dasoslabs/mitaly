@@ -1,9 +1,9 @@
 export const menu = [
-  { name: "profit", text: "수익구조" },
-  { name: "success", text: "성공경쟁력" },
-  { name: "support", text: "본사지원" },
-  { name: "faq", text: "가맹FAQ" },
-  { name: "contact", text: "가맹상담" },
+  { href: "/brand/profit", text: "수익구조" },
+  { href: "/brand/success", text: "성공경쟁력" },
+  { href: "/brand/support", text: "본사지원" },
+  { href: "/brand/faq", text: "가맹FAQ" },
+  { href: "/brand/contact", text: "가맹상담" },
 ]
 
 export const profitCards = [

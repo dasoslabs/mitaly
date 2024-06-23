@@ -1,11 +1,13 @@
 import Image from "next/image"
 
+import BrandPageLayout from "@/components/layout/BrandPageLayout"
 import ShowMoreLinkButton from "@/components/common/Button/ShowMoreLinkButton"
+
 import { profitCards } from "../data"
 
-export default function ProfitTab() {
+export default function ProfitPage() {
   return (
-    <>
+    <BrandPageLayout>
       <div className="mt-10 lg:mt-40 flex flex-col space-y-20 lg:space-y-32">
         <div className="max-w-pc m-auto text-center flex flex-col space-y-10 lg:space-y-20 lg:text-xl">
           <div className="flex flex-col space-y-2 lg:space-y-5">
@@ -137,6 +139,6 @@ export default function ProfitTab() {
           <ShowMoreLinkButton href="#">지금 확인하러 가기</ShowMoreLinkButton>
         </div>
       </div>
-    </>
+    </BrandPageLayout>
   )
 }

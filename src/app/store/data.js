@@ -1,6 +1,6 @@
 export const menu = [
-  { name: "interior", text: "인테리어" },
-  { name: "location", text: "매장찾기" },
+  { href: "/store/interior", text: "인테리어" },
+  { href: "/store/location", text: "매장찾기" },
 ]
 
 export const interior = [
