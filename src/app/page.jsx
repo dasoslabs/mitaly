@@ -421,7 +421,8 @@ export default function Home() {
           <p className="text-sm lg:text-xl">맛과 가격, 분위기까지 모든 게 맛집 그 자체!</p>
         </div>
 
-        <div className="flex flex-col justify-center items-center">
+      {/* 슬라이드 */}
+        <div className="lg:flex flex-col justify-center items-center hidden">
           <Slider>
             {[...data.review, ...data.review].map(
               ({ imgUrl, imgAlt, like, id, text }, idx) => (
@@ -443,6 +444,41 @@ export default function Home() {
                       <SvgIcon name="send" />
                     </div>
                     <div>
+                      <p className="font-bold">좋아요 {like}개</p>
+                      <p>
+                        <span className="font-bold mr-1">{id}</span>
+                        <span>{text}</span>
+                      </p>
+                    </div>
+                  </div>
+                </SliderCard>
+              ),
+            )}
+          </Slider>
+        </div>
+
+        <div className="overflow-hidden flex flex-col justify-center items-center lg:hidden">
+          <Slider align="center">
+            {[...data.review, ...data.review].map(
+              ({ imgUrl, imgAlt, like, id, text }, idx) => (
+                <SliderCard
+                  key={text.slice(0, 3) + idx}
+                  className="basis-80 bg-white rounded-2xl flex flex-col ml-4 justify-between border border-light-gray"
+                >
+                  <Image
+                    width="464"
+                    height="320"
+                    src={imgUrl}
+                    alt={imgAlt}
+                    quality={100}
+                  />
+                  <div className="p-4 lg:p-6">
+                    <div className="flex space-x-4 mb-2 lg:mb-5">
+                      <SvgIcon name="heart" />
+                      <SvgIcon name="chat" />
+                      <SvgIcon name="send" />
+                    </div>
+                    <div className="text-[13px] lg:text-base">
                       <p className="font-bold">좋아요 {like}개</p>
                       <p>
                         <span className="font-bold mr-1">{id}</span>

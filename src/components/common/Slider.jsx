@@ -2,9 +2,9 @@ import { useEffect, useCallback, useState } from "react"
 import useEmblaCarousel from "embla-carousel-react"
 // import Autoplay from 'embla-carousel-autoplay'
 
-export default function Slider({ children, className = "" }) {
+export default function Slider({ align = "start", children, className = "" }) {
   const [emblaRef, emblaApi] = useEmblaCarousel(
-    { align: "start", loop: true } /** [Autoplay()] */,
+    { align, loop: true } /** [Autoplay()] */,
   )
 
   const onNavButtonClick = useCallback((emblaApi) => {

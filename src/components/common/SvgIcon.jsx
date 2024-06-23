@@ -36,8 +36,7 @@ export default function SvgIcon({ name = "", color = "", size = 48 }) {
     case "heart":
       return (
         <svg
-          width="32"
-          height="32"
+          className="w-6 h-6 lg:w-8 lg:h-8"
           viewBox="0 0 32 32"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
@@ -55,8 +54,7 @@ export default function SvgIcon({ name = "", color = "", size = 48 }) {
     case "chat":
       return (
         <svg
-          width="32"
-          height="32"
+          className="w-6 h-6 lg:w-8 lg:h-8"
           viewBox="0 0 32 32"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
@@ -73,8 +71,7 @@ export default function SvgIcon({ name = "", color = "", size = 48 }) {
     case "send":
       return (
         <svg
-          width="32"
-          height="32"
+          className="w-6 h-6 lg:w-8 lg:h-8"
           viewBox="0 0 32 32"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
