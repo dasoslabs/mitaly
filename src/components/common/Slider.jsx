@@ -34,12 +34,12 @@ export default function Slider({ children, className = "" }) {
       <PrevButton
         onClick={onPrevButtonClick}
         disabled={prevBtnDisabled}
-        className="absolute -left-16 top-1/2 transform -translate-y-1/2"
+        className="absolute -left-16 top-1/2 transform -translate-y-1/2 hidden lg:block"
       />
       <NextButton
         onClick={onNextButtonClick}
         disabled={nextBtnDisabled}
-        className="absolute -right-16 top-1/2 transform -translate-y-1/2"
+        className="absolute -right-16 top-1/2 transform -translate-y-1/2 hidden lg:block"
       />
     </div>
   )
