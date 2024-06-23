@@ -155,7 +155,7 @@ export default function AppHeader() {
         <nav className="w-full h-full bg-white fixed top-0 left-0 lg:hidden z-50 overflow-y-auto">
           {/* 모바일 메뉴 헤더 */}
           <div className="flex justify-between items-center w-full px-6 h-16">
-            <Logo color={logoColor} size="sm" />
+            <Logo color="black" size="sm" />
             <button onClick={() => setIsMobileMenuOpen(false)}>
               <SvgIcon name="close" />
             </button>
