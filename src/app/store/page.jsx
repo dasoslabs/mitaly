@@ -23,12 +23,12 @@ export default function StorePage() {
               <ul className="flex mb-6 lg:mb-0 w-full text-center lg:w-auto">
                 {interior.map(({ name, text }) => (
                   <li key={name} className="w-1/2 lg:w-auto">
-                    <button
+                    <ChipButton
                       onClick={() => setInteriorTab(name)}
-                      className={`text-sm lg:text-base py-2 px-6 font-bold rounded-full ${interiorTab === name ? "bg-primary text-black" : "bg-white text-[#999]"}`}
+                      isSelected={interiorTab === name}
                     >
                       {text}
-                    </button>
+                    </ChipButton>
                   </li>
                 ))}
               </ul>
@@ -68,12 +68,12 @@ export default function StorePage() {
       <ul className="h-14 bg-bg-gray flex justify-center items-center space-x-16">
         {menu.map(({ name, text }) => (
           <li key={name}>
-            <ChipButton
+            <button
               onClick={() => setCurrentTab(name)}
-              isSelected={currentTab === name}
+              className={`text-sm ${currentTab === name ? "font-bold text-black" : "font-normal text-[#999999]"}`}
             >
               {text}
-            </ChipButton>
+            </button>
           </li>
         ))}
       </ul>
