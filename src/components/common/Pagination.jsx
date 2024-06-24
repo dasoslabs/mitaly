@@ -65,7 +65,7 @@ export default function Pagination({
           <button
             key={number}
             onClick={() => handlePageChange(number)}
-            className={`w-10 h-10 rounded-full ${currentPage === number ? "bg-black text-white" : "bg-white text-[#999]"}`}
+            className={`w-8 h-8 lg:w-10 lg:h-10 rounded-full ${currentPage === number ? "bg-black text-white" : "bg-white text-[#999]"}`}
           >
             {number}
           </button>
