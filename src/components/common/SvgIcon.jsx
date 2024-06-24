@@ -361,5 +361,59 @@ export default function SvgIcon({ name = "", color = "", size = 48 }) {
           </defs>
         </svg>
       )
+    case "arrow-start":
+      return (
+        <svg
+          width="16"
+          height="16"
+          viewBox="0 0 16 16"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M11.5 4L7.5 8L11.5 12"
+            stroke="#999999"
+            strokeLinecap="square"
+          />
+          <line x1="5" y1="3" x2="5" y2="13" stroke="#999999" />
+        </svg>
+      )
+    case "arrow-prev":
+      return (
+        <svg
+          width="16"
+          height="16"
+          viewBox="0 0 16 16"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path d="M10 4L6 8L10 12" stroke="#999999" strokeLinecap="square" />
+        </svg>
+      )
+    case "arrow-next":
+      return (
+        <svg
+          width="16"
+          height="16"
+          viewBox="0 0 16 16"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path d="M6 4L10 8L6 12" stroke="#999999" />
+        </svg>
+      )
+    case "arrow-end":
+      return (
+        <svg
+          width="16"
+          height="16"
+          viewBox="0 0 16 16"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path d="M4.5 4L8.5 8L4.5 12" stroke="#999999" />
+          <line x1="12" y1="3" x2="12" y2="13" stroke="#999999" />
+        </svg>
+      )
   }
 }

@@ -4,11 +4,12 @@ import { useState } from "react"
 
 import BrandPageLayout from "@/components/layout/BrandPageLayout"
 import SvgIcon from "@/components/common/SvgIcon"
+import Pagination from "@/components/common/Pagination"
 
-import { menu } from "./data"
+import { category, faqList } from "./data"
 
 export default function FaqPage() {
-  const [currentCategory, setCurrentCategory] = useState(menu[0].name)
+  const [currentCategory, setCurrentCategory] = useState(category[0].name)
 
   return (
     <BrandPageLayout>
@@ -26,10 +27,10 @@ export default function FaqPage() {
         </div>
       </div>
 
-      <div className="max-w-screen-lg m-auto">
+      <div className="max-w-screen-lg m-auto px-6 mb-36">
         {/* 카테고리 탭 */}
         <ul className="flex py-5 border-b-2 border-black">
-          {menu.map(({ name, text }, idx) => (
+          {category.map(({ name, text }, idx) => (
             <li key={name} className="text-[#999]">
               <button
                 className={`${currentCategory === name ? "text-black font-bold" : ""}`}
@@ -37,7 +38,7 @@ export default function FaqPage() {
               >
                 {text}
               </button>
-              {menu.length - 1 !== idx && (
+              {category.length - 1 !== idx && (
                 <span className="inline-block mx-4 text-light-gray">|</span>
               )}
             </li>
@@ -45,8 +46,42 @@ export default function FaqPage() {
         </ul>
 
         {/* 목록 */}
-        <ul></ul>
+        <Pagination items={faqList} ListItem={Dropdown} />
       </div>
     </BrandPageLayout>
+  )
+}
+
+function Dropdown({ categoryText, question, answer = "" }) {
+  const [isOpen, setIsOpen] = useState(false)
+
+  return (
+    <div className={`relative py-6 border-b border-light-gray ${isOpen ? "pb-0" : ""}`}>
+      <button
+        onClick={() => setIsOpen(!isOpen)}
+        className="w-full flex justify-between items-center"
+      >
+        <h4 className="flex w-full justify-between items-center">
+          <p className="font-bg w-2/12 font-bold">{categoryText}</p>
+          <p className={`text-start w-10/12 ${isOpen ? "font-bold" : ""}`}>{question}</p>
+        </h4>
+        <div>
+          <SvgIcon name={isOpen ? "minus" : "plus"} />
+        </div>
+      </button>
+
+      {isOpen && (
+        <div className="flex w-full justify-between mt-6 py-6 bg-bg-gray">
+          <p className="w-2/12 text-center font-bold">답변</p>
+          <div className="w-10/12">
+            {
+              answer.split("\n").map((sentence) => (
+                <p key={sentence}>{sentence}</p>
+              ))
+            }
+          </div>
+        </div>
+      )}
+    </div>
   )
 }
