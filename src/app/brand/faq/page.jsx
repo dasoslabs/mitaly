@@ -56,7 +56,7 @@ function Dropdown({ categoryText, question, answer = "" }) {
   const [isOpen, setIsOpen] = useState(false)
 
   return (
-    <div className={`relative py-6 border-b border-light-gray ${isOpen ? "pb-0" : ""}`}>
+    <div className={`relative py-6 border-t border-light-gray ${isOpen ? "pb-0" : ""}`}>
       <button
         onClick={() => setIsOpen(!isOpen)}
         className="w-full flex justify-between items-center"
