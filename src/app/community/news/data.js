@@ -27,7 +27,8 @@ export const newsList = [
   {
     category: "news",
     categoryText: "보도자료",
-    title: "‘먹술단’ 덱스 수줍게 한 감성 맛집···파스타 전문점 미태리 원픽 메뉴는?",
+    title:
+      "‘먹술단’ 덱스 수줍게 한 감성 맛집···파스타 전문점 미태리 원픽 메뉴는?",
     date: "2023.11.14",
   },
   {

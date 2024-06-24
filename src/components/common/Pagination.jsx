@@ -46,20 +46,20 @@ export default function Pagination({
       </ul>
       <div className="flex justify-center items-center space-x-1 mt-10 text-sm">
         <div>
-        <button
-          onClick={() => handlePageChange(1)}
-          disabled={currentPage === 1}
-          className="w-6 h-6 bg-gray-200 text-gray-700 rounded disabled:opacity-50"
-        >
-          <SvgIcon name="arrow-start" />
-        </button>
-        <button
-          onClick={() => handlePageChange(currentPage - 1)}
-          disabled={currentPage === 1}
-          className="w-6 h-6 bg-gray-200 text-gray-700 rounded disabled:opacity-50"
-        >
-          <SvgIcon name="arrow-prev" />
-        </button>
+          <button
+            onClick={() => handlePageChange(1)}
+            disabled={currentPage === 1}
+            className="w-6 h-6 bg-gray-200 text-gray-700 rounded disabled:opacity-50"
+          >
+            <SvgIcon name="arrow-start" />
+          </button>
+          <button
+            onClick={() => handlePageChange(currentPage - 1)}
+            disabled={currentPage === 1}
+            className="w-6 h-6 bg-gray-200 text-gray-700 rounded disabled:opacity-50"
+          >
+            <SvgIcon name="arrow-prev" />
+          </button>
         </div>
         {pageNumbers.map((number) => (
           <button
@@ -71,20 +71,20 @@ export default function Pagination({
           </button>
         ))}
         <div>
-        <button
-          onClick={() => handlePageChange(currentPage + 1)}
-          disabled={currentPage === totalPages}
-          className="w-6 h-6 bg-gray-200 text-gray-700 rounded disabled:opacity-50"
-        >
-          <SvgIcon name="arrow-next" />
-        </button>
-        <button
-          onClick={() => handlePageChange(totalPages)}
-          disabled={currentPage === totalPages}
-          className="w-6 h-6 bg-gray-200 text-gray-700 rounded disabled:opacity-50"
-        >
-          <SvgIcon name="arrow-end" />
-        </button>
+          <button
+            onClick={() => handlePageChange(currentPage + 1)}
+            disabled={currentPage === totalPages}
+            className="w-6 h-6 bg-gray-200 text-gray-700 rounded disabled:opacity-50"
+          >
+            <SvgIcon name="arrow-next" />
+          </button>
+          <button
+            onClick={() => handlePageChange(totalPages)}
+            disabled={currentPage === totalPages}
+            className="w-6 h-6 bg-gray-200 text-gray-700 rounded disabled:opacity-50"
+          >
+            <SvgIcon name="arrow-end" />
+          </button>
         </div>
       </div>
     </>

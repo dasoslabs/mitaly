@@ -415,18 +415,29 @@ export default function SvgIcon({ name = "", color = "", size = 48 }) {
           <line x1="12" y1="3" x2="12" y2="13" stroke="#999999" />
         </svg>
       )
-      case "arrow-up":
-        return (
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-<path d="M6 15L12 9L18 15" stroke="black" strokeWidth="2"/>
-</svg>
-
-        )
-      case "arrow-down":
-        return (
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-<path d="M18 9L12 15L6 9" stroke="black" strokeWidth="2"/>
-</svg>
-        )
+    case "arrow-up":
+      return (
+        <svg
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path d="M6 15L12 9L18 15" stroke="black" strokeWidth="2" />
+        </svg>
+      )
+    case "arrow-down":
+      return (
+        <svg
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path d="M18 9L12 15L6 9" stroke="black" strokeWidth="2" />
+        </svg>
+      )
   }
 }

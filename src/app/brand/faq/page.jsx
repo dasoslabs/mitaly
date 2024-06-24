@@ -39,7 +39,9 @@ export default function FaqPage() {
                 {text}
               </button>
               {category.length - 1 !== idx && (
-                <span className="inline-block mx-3 lg:mx-4 text-light-gray">|</span>
+                <span className="inline-block mx-3 lg:mx-4 text-light-gray">
+                  |
+                </span>
               )}
             </li>
           ))}
@@ -56,18 +58,23 @@ function Dropdown({ categoryText, question, answer = "" }) {
   const [isOpen, setIsOpen] = useState(false)
 
   return (
-    <div className={`relative py-6 border-t border-light-gray ${isOpen ? "pb-0" : ""}`}>
+    <div
+      className={`relative py-6 border-t border-light-gray ${isOpen ? "pb-0" : ""}`}
+    >
       <button
         onClick={() => setIsOpen(!isOpen)}
         className="w-full flex justify-between items-center"
       >
         <div className="flex w-full justify-between">
-          
-        <p className="font-bg w-16 lg:w-2/12 font-bold">{categoryText}</p>
-          <h4 className={`text-start w-10/12 lg:w-9/12 ${isOpen ? "font-bold" : ""}`}>{question}</h4>
-        <div className="hidden lg:block w-1/12">
-          <SvgIcon name={isOpen ? "arrow-up" : "arrow-down"} />
-        </div>
+          <p className="font-bg w-16 lg:w-2/12 font-bold">{categoryText}</p>
+          <h4
+            className={`text-start w-10/12 lg:w-9/12 ${isOpen ? "font-bold" : ""}`}
+          >
+            {question}
+          </h4>
+          <div className="hidden lg:block w-1/12">
+            <SvgIcon name={isOpen ? "arrow-up" : "arrow-down"} />
+          </div>
         </div>
       </button>
 
@@ -75,11 +82,9 @@ function Dropdown({ categoryText, question, answer = "" }) {
         <div className="flex w-full justify-between mt-4 lg:mt-6 py-4 lg:py-6 bg-bg-gray">
           <p className="w-16 lg:w-2/12 text-center font-bold">답변</p>
           <div className="w-10/12 pr-6">
-            {
-              answer.split("\n").map((sentence) => (
-                <p key={sentence}>{sentence}</p>
-              ))
-            }
+            {answer.split("\n").map((sentence) => (
+              <p key={sentence}>{sentence}</p>
+            ))}
           </div>
         </div>
       )}
