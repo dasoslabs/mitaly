@@ -40,8 +40,8 @@ export default function Pagination({
   return (
     <>
       <ul>
-        {currentItems.map((item) => (
-          <ListItem key={item} className="border p-4" {...item} />
+        {currentItems.map((item, idx) => (
+          <ListItem key={idx} className="border p-4" {...item} />
         ))}
       </ul>
       <div className="flex justify-center items-center space-x-1 mt-10 text-sm">
