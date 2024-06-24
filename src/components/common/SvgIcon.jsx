@@ -330,5 +330,36 @@ export default function SvgIcon({ name = "", color = "", size = 48 }) {
           <path d="M14 8L2 8" stroke="black" strokeLinejoin="round" />
         </svg>
       )
+    case "search":
+      return (
+        <svg
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <g clipPath="url(#clip0_1527_3296)">
+            <path
+              d="M10.5 19C15.1944 19 19 15.1944 19 10.5C19 5.8056 15.1944 2 10.5 2C5.8056 2 2 5.8056 2 10.5C2 15.1944 5.8056 19 10.5 19Z"
+              stroke="#1A1A1A"
+              strokeWidth="2"
+              strokeLinejoin="round"
+            />
+            <path
+              d="M16.6094 16.6094L20.852 20.852"
+              stroke="#1A1A1A"
+              strokeWidth="2"
+              strokeLinecap="square"
+              strokeLinejoin="round"
+            />
+          </g>
+          <defs>
+            <clipPath id="clip0_1527_3296">
+              <rect width="24" height="24" fill="white" />
+            </clipPath>
+          </defs>
+        </svg>
+      )
   }
 }

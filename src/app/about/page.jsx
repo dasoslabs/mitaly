@@ -5,7 +5,9 @@ export default function AboutPage() {
     <section className="mt-16 lg:mt-24 relative">
       <div className="relative flex justify-end">
         <div className="flex flex-col space-y-6 absolute p-6 -bottom-20 lg:bottom-20 left-0 lg:left-32 z-20">
-          <h2 className="font-extrabold text-primary lg:text-2xl">About MITALY</h2>
+          <h2 className="font-extrabold text-primary lg:text-2xl">
+            About MITALY
+          </h2>
           <div className="font-extralight text-2xl lg:text-[64px]">
             <p className="lg:mb-10">맛 미(味) + 이태리</p>
             <p>
@@ -48,9 +50,7 @@ export default function AboutPage() {
 
           {/* 모바일 */}
           <div className="text-sm lg:hidden">
-          <p>
-              미태리는 누구나 부담 없이 즐길 수 있는 
-            </p>
+            <p>미태리는 누구나 부담 없이 즐길 수 있는</p>
             <p>이태리 정통 파스타를 위해 유명 호텔 셰프,</p>
             <p> 패밀리레스토랑 셰프 출신의 전문가들과</p>
             <p>함께 4년 이상, 연구개발에 매진했습니다.</p>
@@ -84,7 +84,7 @@ export default function AboutPage() {
             </p>
           </div>
         </div>
-        
+
         <Image
           width="826"
           height="551"

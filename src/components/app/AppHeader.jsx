@@ -166,11 +166,18 @@ export default function AppHeader() {
             {menu.self.map(({ name, href, children }) =>
               children ? (
                 <li key={name}>
-                  <Dropdown href={href} text={name} items={children} onClick={() => setIsMobileMenuOpen(false)} />
+                  <Dropdown
+                    href={href}
+                    text={name}
+                    items={children}
+                    onClick={() => setIsMobileMenuOpen(false)}
+                  />
                 </li>
               ) : (
                 <li key={name} className="font-bold">
-                  <Link href={href} onClick={() => setIsMobileMenuOpen(false)}>{name}</Link>
+                  <Link href={href} onClick={() => setIsMobileMenuOpen(false)}>
+                    {name}
+                  </Link>
                 </li>
               ),
             )}
