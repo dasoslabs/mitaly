@@ -13,23 +13,23 @@ export default function FaqPage() {
 
   return (
     <BrandPageLayout>
-      <div className="text-center mt-36 mb-16">
+      <div className="text-center my-10 lg:mt-36 lg:mb-16">
         <h2 className="font-extralight text-2xl lg:text-5xl mb-10">가맹FAQ</h2>
-        <div className="relative w-[464px] m-auto">
+        <div className="relative w-full lg:max-w-[464px] m-auto px-6 lg:px-0">
           <input
             type="text"
             placeholder="궁금한 점을 검색해보세요."
-            className="border-b border-black p-2 pr-10 w-full placeholder-[#999] outline-none"
+            className="text-sm lg:text-base border-b border-black p-2 pr-10 w-full placeholder-[#999] outline-none"
           />
-          <button className="absolute right-2 top-1/2 transform -translate-y-1/2">
+          <button className="absolute right-6 lg:right-2 top-1/2 transform -translate-y-1/2">
             <SvgIcon name="search" />
           </button>
         </div>
       </div>
 
-      <div className="max-w-screen-lg m-auto px-6 mb-36">
+      <div className="max-w-screen-lg m-auto px-6 mb-10 lg:mb-36 text-sm lg:text-base">
         {/* 카테고리 탭 */}
-        <ul className="flex py-5 border-b-2 border-black">
+        <ul className="flex py-4 lg:py-5 border-b-2 border-black">
           {category.map(({ name, text }, idx) => (
             <li key={name} className="text-[#999]">
               <button
@@ -39,7 +39,7 @@ export default function FaqPage() {
                 {text}
               </button>
               {category.length - 1 !== idx && (
-                <span className="inline-block mx-4 text-light-gray">|</span>
+                <span className="inline-block mx-3 lg:mx-4 text-light-gray">|</span>
               )}
             </li>
           ))}
@@ -61,19 +61,20 @@ function Dropdown({ categoryText, question, answer = "" }) {
         onClick={() => setIsOpen(!isOpen)}
         className="w-full flex justify-between items-center"
       >
-        <h4 className="flex w-full justify-between items-center">
-          <p className="font-bg w-2/12 font-bold">{categoryText}</p>
-          <p className={`text-start w-10/12 ${isOpen ? "font-bold" : ""}`}>{question}</p>
-        </h4>
-        <div>
-          <SvgIcon name={isOpen ? "minus" : "plus"} />
+        <div className="flex w-full justify-between">
+          
+        <p className="font-bg w-16 lg:w-2/12 font-bold">{categoryText}</p>
+          <h4 className={`text-start w-10/12 lg:w-9/12 ${isOpen ? "font-bold" : ""}`}>{question}</h4>
+        <div className="hidden lg:block w-1/12">
+          <SvgIcon name={isOpen ? "arrow-up" : "arrow-down"} />
+        </div>
         </div>
       </button>
 
       {isOpen && (
-        <div className="flex w-full justify-between mt-6 py-6 bg-bg-gray">
-          <p className="w-2/12 text-center font-bold">답변</p>
-          <div className="w-10/12">
+        <div className="flex w-full justify-between mt-4 lg:mt-6 py-4 lg:py-6 bg-bg-gray">
+          <p className="w-16 lg:w-2/12 text-center font-bold">답변</p>
+          <div className="w-10/12 pr-6">
             {
               answer.split("\n").map((sentence) => (
                 <p key={sentence}>{sentence}</p>
