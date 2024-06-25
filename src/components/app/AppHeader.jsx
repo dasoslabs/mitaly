@@ -63,7 +63,7 @@ export default function AppHeader() {
   const [headerStyle, setHeaderStyle] = useState(
     pathname === "/" ? "bg-opacity-0 text-white" : "bg-opacity-100 text-black",
   )
-  const [logoColor, setLogoColor] = useState(
+  const [headerColor, setHeaderColor] = useState(
     pathname === "/" ? "white" : "black",
   )
 
@@ -73,15 +73,17 @@ export default function AppHeader() {
       const sectionHeight = section.offsetHeight
       if (sectionHeight - 60 < window.scrollY) {
         setHeaderStyle("bg-opacity-100 text-black")
-        setLogoColor("black")
+        setHeaderColor("black")
       } else {
         setHeaderStyle("bg-opacity-0 text-white")
-        setLogoColor("white")
+        setHeaderColor("white")
       }
     }
   }
 
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
+
+  // 모바일 메뉴 열렸을 때, body 스크롤 제거
   useEffect(() => {
     if (isMobileMenuOpen) {
       document.body.classList.add("overflow-hidden")
@@ -94,15 +96,25 @@ export default function AppHeader() {
     }
   }, [isMobileMenuOpen])
 
+  // 메인페이지에 헤더 스크롤 이벤트 적용
   useEffect(() => {
-    const section = document.getElementById("main_banner")
-    if (section) {
+    if (pathname === "/") {
       window.addEventListener("scroll", handleScroll)
-      return () => {
-        window.removeEventListener("scroll", handleScroll)
-      }
+    } else {
+      window.removeEventListener("scroll", handleScroll)
     }
-  }, [])
+
+    setHeaderStyle(
+      pathname === "/"
+        ? "bg-opacity-0 text-white"
+        : "bg-opacity-100 text-black",
+    )
+    setHeaderColor(pathname === "/" ? "white" : "black")
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll)
+    }
+  }, [pathname])
 
   return (
     <>
@@ -112,10 +124,10 @@ export default function AppHeader() {
         <div className="max-w-pc h-full m-auto flex justify-between items-center">
           <h1>
             <Link href="/" className="hidden lg:block">
-              <Logo color={logoColor} />
+              <Logo color={headerColor} />
             </Link>
             <Link href="/" className="lg:hidden">
-              <Logo color={logoColor} size="sm" />
+              <Logo color={headerColor} size="sm" />
             </Link>
           </h1>
 
@@ -145,7 +157,7 @@ export default function AppHeader() {
             className="lg:hidden"
             onClick={() => setIsMobileMenuOpen(true)}
           >
-            <SvgIcon name="menu" color={logoColor} />
+            <SvgIcon name="menu" color={headerColor} />
           </button>
         </div>
       </header>
