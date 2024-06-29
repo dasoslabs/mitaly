@@ -12,6 +12,7 @@ import StorePageLayout from "@/components/layout/StorePageLayout"
 
 export default function InteriorPage() {
   const [interiorTab, setInteriorTab] = useState(interior[0].name)
+  const currentTabInfo = interior.find(({ name }) => name === interiorTab)
 
   return (
     <StorePageLayout>
@@ -33,15 +34,15 @@ export default function InteriorPage() {
         </ul>
       </div>
       <SliderFull width="w-full">
-        {Array(17)
+        {Array(currentTabInfo.imgAmount)
           .fill(0)
           .map((_, idx) => (
-            <SliderFullCard key={"image" + idx}>
+            <SliderFullCard key={currentTabInfo.name + "image" + idx}>
               <Image
                 width="1920"
                 height="1080"
-                src="/store/interior01.png"
-                alt="인테리어 이미지"
+                src={`/store/${currentTabInfo.name}/${idx + 1}.jpg`}
+                alt={`${currentTabInfo.name} image`}
               />
             </SliderFullCard>
           ))}

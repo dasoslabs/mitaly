@@ -4,6 +4,6 @@ export const menu = [
 ]
 
 export const interior = [
-  { name: "original", text: "오리지널" },
-  { name: "dining", text: "다이닝" },
+  { name: "original", text: "오리지널", imgAmount: 11 },
+  { name: "dining", text: "다이닝", imgAmount: 8 },
 ]
