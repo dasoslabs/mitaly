@@ -1,6 +1,6 @@
 export default function ComingSoon() {
   return (
-    <div className="text-[#999] text-center py-40 flex flex-col justify-center items-center space-y-5">
+    <div className="text-[#999] text-center py-40 lg:py-80 flex flex-col justify-center items-center space-y-5">
       <div className="border border-2 lg:border-4 border-primary rounded-full w-10 h-10 lg:w-20 lg:h-20 flex justify-center items-center text-2xl lg:text-5xl text-primary">
         !
       </div>
