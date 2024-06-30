@@ -49,11 +49,11 @@ export default function ProfitPage() {
                   quality={100}
                   className="hidden lg:block"
                 />
-                <div className="aspect-video lg:hidden">
+                <div className="relative aspect-video lg:hidden">
                   <Image
                     src={imgUrl}
                     alt={imgAlt}
-                    layout="fill"
+                    fill
                     quality={100}
                     className="object-cover object-center"
                   />
