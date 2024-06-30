@@ -17,7 +17,9 @@ export default function Home() {
   const [isMuted, setIsMuted] = useState(true)
   const [menuTab, setMenuTab] = useState(tab.menu[0].name)
   const [interiorTab, setInteriorTab] = useState(tab.interior[0].name)
-  const currentInteriorTabInfo = tab.interior.find(({ name }) => name === interiorTab)
+  const currentInteriorTabInfo = tab.interior.find(
+    ({ name }) => name === interiorTab,
+  )
 
   const toggleMute = () => {
     if (videoRef.current) {
@@ -148,7 +150,7 @@ export default function Home() {
             {data.menu[menuTab].map(({ name, subTitle, imgUrl }, idx) => (
               <SliderCard key={name + idx} className="text-center">
                 <div className="bg-bg-gray w-[342px] h-64 rounded-2xl relative aspect-video">
-                  <Image 
+                  <Image
                     fill
                     src={imgUrl}
                     alt={`${name} 이미지`}
@@ -227,7 +229,9 @@ export default function Home() {
             {Array(currentInteriorTabInfo.imgAmount)
               .fill(0)
               .map((_, idx) => (
-                <SliderFullCard key={currentInteriorTabInfo.name + "image" + idx}>
+                <SliderFullCard
+                  key={currentInteriorTabInfo.name + "image" + idx}
+                >
                   <Image
                     width="1440"
                     height="810"
@@ -263,7 +267,10 @@ export default function Home() {
         </div>
 
         <div className="px-6 flex flex-col items-center space-y-12">
-          <ShowMoreLinkButton href="/brand/contact" className="order-2 lg:order-1">
+          <ShowMoreLinkButton
+            href="/brand/contact"
+            className="order-2 lg:order-1"
+          >
             가맹문의 바로가기
           </ShowMoreLinkButton>
           <ul className="w-full lg:px-0 max-w-pc m-auto grid grid-cols-2 gap-4 lg:flex lg:justify-between lg:items-center lg:space-x-6 order-1 lg:order-2">
@@ -323,72 +330,82 @@ export default function Home() {
         {/* PC 슬라이드 */}
         <div className="lg:flex flex-col justify-center items-center hidden">
           <Slider>
-            {[...data.review, ...data.review].map(
-              ({ imgUrl, imgAlt, like, id, text }, idx) => (
-                <SliderCard
-                  key={text.slice(0, 3) + idx}
-                  className="max-w-[464px] bg-white rounded-2xl flex flex-col justify-between border border-light-gray basis-1/2 ml-6"
-                >
-                  <Image
-                    width="464"
-                    height="320"
-                    src={imgUrl}
-                    alt={imgAlt}
-                    quality={100}
-                  />
-                  <div className="p-6">
-                    <div className="flex space-x-4 mb-5">
-                      <SvgIcon name="heart" />
-                      <SvgIcon name="chat" />
-                      <SvgIcon name="send" />
-                    </div>
-                    <div>
-                      <p className="font-bold">좋아요 {like}개</p>
-                      <p>
-                        <span className="font-bold mr-1">{id}</span>
-                        <span>{text}</span>
-                      </p>
-                    </div>
+            {data.review.map(({ like, id, text, hashtag }, idx) => (
+              <SliderCard
+                key={text.slice(0, 3) + idx}
+                className="max-w-[464px] bg-white rounded-2xl flex flex-col border border-light-gray basis-1/2 ml-6 overflow-hidden"
+              >
+                <Image
+                  width="464"
+                  height="320"
+                  src={`/review/${idx + 1}.jpg`}
+                  alt="리뷰 이미지"
+                  quality={100}
+                />
+                <div className="p-6">
+                  <div className="flex space-x-4 mb-5">
+                    <SvgIcon name="heart" />
+                    <SvgIcon name="chat" />
+                    <SvgIcon name="send" />
                   </div>
-                </SliderCard>
-              ),
-            )}
+                  <div>
+                    <p className="font-bold">좋아요 {like}개</p>
+                    <p>
+                      <span className="font-bold mr-1">{id}</span>
+                      <span>{text}</span>
+                    </p>
+                    <ul className="mt-3 flex flex-wrap">
+                      {hashtag.map((tag, idx) => (
+                        <li key={tag + idx} className="text-[#00376B] mr-1">
+                          <p>#{tag}</p>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </div>
+              </SliderCard>
+            ))}
           </Slider>
         </div>
 
         {/* 모바일 슬라이드 */}
         <div className="overflow-hidden flex flex-col justify-center items-center lg:hidden">
           <Slider align="center">
-            {[...data.review, ...data.review].map(
-              ({ imgUrl, imgAlt, like, id, text }, idx) => (
-                <SliderCard
-                  key={text.slice(0, 3) + idx}
-                  className="basis-80 bg-white rounded-2xl flex flex-col ml-4 justify-between border border-light-gray"
-                >
-                  <Image
-                    width="464"
-                    height="320"
-                    src={imgUrl}
-                    alt={imgAlt}
-                    quality={100}
-                  />
-                  <div className="p-4 lg:p-6">
-                    <div className="flex space-x-4 mb-2 lg:mb-5">
-                      <SvgIcon name="heart" />
-                      <SvgIcon name="chat" />
-                      <SvgIcon name="send" />
-                    </div>
-                    <div className="text-[13px] lg:text-base">
-                      <p className="font-bold">좋아요 {like}개</p>
-                      <p>
-                        <span className="font-bold mr-1">{id}</span>
-                        <span>{text}</span>
-                      </p>
-                    </div>
+            {data.review.map(({ like, id, text, hashtag }, idx) => (
+              <SliderCard
+                key={text.slice(0, 3) + idx}
+                className="basis-80 bg-white rounded-2xl flex flex-col ml-4 justify-between border border-light-gray"
+              >
+                <Image
+                  width="464"
+                  height="320"
+                  src={`/review/${idx + 1}.jpg`}
+                  alt="리뷰 이미지"
+                  quality={100}
+                />
+                <div className="p-4 lg:p-6">
+                  <div className="flex space-x-4 mb-2 lg:mb-5">
+                    <SvgIcon name="heart" />
+                    <SvgIcon name="chat" />
+                    <SvgIcon name="send" />
                   </div>
-                </SliderCard>
-              ),
-            )}
+                  <div className="text-[13px] lg:text-base">
+                    <p className="font-bold">좋아요 {like}개</p>
+                    <p>
+                      <span className="font-bold mr-1">{id}</span>
+                      <span>{text}</span>
+                    </p>
+                    <ul className="mt-3 flex flex-wrap">
+                      {hashtag.map((tag, idx) => (
+                        <li key={tag + idx} className="text-[#00376B] mr-1">
+                          <p>#{tag}</p>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </div>
+              </SliderCard>
+            ))}
           </Slider>
         </div>
       </section>

@@ -10,7 +10,7 @@ import { category, faqList } from "./data"
 
 export default function FaqPage() {
   const [currentCategory, setCurrentCategory] = useState(category[0].name)
-  
+
   return (
     <BrandPageLayout>
       <div className="text-center my-10 lg:mt-36 lg:mb-16">
@@ -48,7 +48,14 @@ export default function FaqPage() {
         </ul>
 
         {/* 목록 */}
-        <Pagination items={currentCategory === "all" ? faqList : faqList.filter(({ category }) => category === currentCategory )} ListItem={Dropdown} />
+        <Pagination
+          items={
+            currentCategory === "all"
+              ? faqList
+              : faqList.filter(({ category }) => category === currentCategory)
+          }
+          ListItem={Dropdown}
+        />
       </div>
     </BrandPageLayout>
   )

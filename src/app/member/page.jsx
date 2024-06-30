@@ -1,5 +1,5 @@
-import ComingSoon from "@/components/common/ComingSoon";
+import ComingSoon from "@/components/common/ComingSoon"
 
 export default function MemberPage() {
-  return <ComingSoon />;
+  return <ComingSoon />
 }

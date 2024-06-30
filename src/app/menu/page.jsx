@@ -36,7 +36,7 @@ export default function MenuPage() {
           {food[menuTab].map(({ name, subTitle, imgUrl }, idx) => (
             <li key={name + idx}>
               <div className="relative bg-bg-gray aspect-video rounded-2xl">
-                <Image 
+                <Image
                   fill
                   src={imgUrl}
                   alt={`${name} 이미지`}
@@ -44,7 +44,7 @@ export default function MenuPage() {
                   className="w-full h-auto"
                 />
               </div>
-              
+
               <p className="text-sm lg:text-xl mt-4 mb-1 lg:mb-2">{name}</p>
               <p className="text-[13px] lg:text-base text-[#999]">{subTitle}</p>
             </li>
