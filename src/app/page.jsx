@@ -165,16 +165,19 @@ export default function Home() {
           </Slider>
 
           <ul className="w-full grid grid-cols-2 gap-4 text-center lg:hidden">
-            {[
-              ...data.menu[menuTab],
-              ...data.menu[menuTab],
-              ...data.menu[menuTab],
-              ...data.menu[menuTab],
-            ]
+            {data.menu[menuTab]
               .slice(0, 4)
-              .map(({ name, subTitle }, idx) => (
+              .map(({ name, subTitle, imgUrl }, idx) => (
                 <li key={name + idx}>
-                  <div className="bg-bg-gray aspect-video rounded-2xl"></div>
+                  <div className="bg-bg-gray relative aspect-video rounded-2xl">
+                    <Image
+                      fill
+                      src={imgUrl}
+                      alt={`${name} 이미지`}
+                      sizes="100%"
+                      className="w-full h-auto"
+                    />
+                  </div>
                   <p className="text-sm lg:text-xl mt-4 mb-1 lg:mb-2">{name}</p>
                   <p className="text-[13px] lg:text-base text-[#999]">
                     {subTitle}
@@ -334,6 +337,7 @@ export default function Home() {
               <SliderCard
                 key={text.slice(0, 3) + idx}
                 className="max-w-[464px] bg-white rounded-2xl flex flex-col border border-light-gray basis-1/2 ml-6 overflow-hidden"
+                basis="basis-1/3"
               >
                 <Image
                   width="464"

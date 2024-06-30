@@ -115,10 +115,10 @@ function NextButton({ children, ...restProps }) {
   )
 }
 
-export function SliderCard({ children, className, ...props }) {
+export function SliderCard({ children, basis = "basis-1/4", className, ...props }) {
   return (
     <div
-      className={`min-w-0 flex-grow-0 flex-shrink-0 basis-1/4 ${className}`}
+      className={`min-w-0 flex-grow-0 flex-shrink-0 ${basis} ${className}`}
       {...props}
     >
       {children}
