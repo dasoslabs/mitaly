@@ -1,80 +1,8 @@
 "use client"
 
 import { useState } from "react"
-
-const food = {
-  pasta: [
-    {
-      name: "베이컨 토마토 파스터",
-      subTitle: "Bacon Tomato Pasta",
-      imgUrl: "",
-      imgAlt: "",
-    },
-    {
-      name: "로제맵제 파스타",
-      subTitle: "Spicy Rose pasta",
-      imgUrl: "",
-      imgAlt: "",
-    },
-    {
-      name: "감바스 파스타",
-      subTitle: "Gambas Pasta",
-      imgUrl: "",
-      imgAlt: "",
-    },
-    {
-      name: "베이컨 크림 파스타",
-      subTitle: "Bacon Cream Pasta",
-      imgUrl: "",
-      imgAlt: "",
-    },
-  ],
-  pizza: [],
-  steak: [],
-  rice: [],
-  side: [],
-  drink: [],
-}
-
-food.all = [
-  ...food.pasta,
-  ...food.pizza,
-  ...food.steak,
-  ...food.rice,
-  ...food.side,
-  ...food.drink,
-]
-
-const menu = [
-  {
-    name: "all",
-    text: "전체메뉴",
-  },
-  {
-    name: "pasta",
-    text: "파스타",
-  },
-  {
-    name: "pizza",
-    text: "피자",
-  },
-  {
-    name: "steak",
-    text: "스테이크",
-  },
-  {
-    name: "rice",
-    text: "라이스",
-  },
-  {
-    name: "side",
-    text: "사이드",
-  },
-  {
-    name: "drink",
-    text: "드링크",
-  },
-]
+import Image from "next/image"
+import { food, menu } from "./data"
 
 export default function MenuPage() {
   const [menuTab, setMenuTab] = useState(menu[0].name)
@@ -105,14 +33,18 @@ export default function MenuPage() {
         </ul>
 
         <ul className="grid grid-cols-2 lg:grid-cols-4 gap-6 mt-8 lg:mt-10 px-6 lg:px-0">
-          {[
-            ...food[menuTab],
-            ...food[menuTab],
-            ...food[menuTab],
-            ...food[menuTab],
-          ].map(({ name, subTitle }, idx) => (
+          {food[menuTab].map(({ name, subTitle, imgUrl }, idx) => (
             <li key={name + idx}>
-              <div className="bg-bg-gray aspect-video rounded-2xl"></div>
+              <div className="relative bg-bg-gray aspect-video rounded-2xl">
+              <Image 
+                  fill
+                  src={imgUrl}
+                  alt={`${name} 이미지`}
+                  sizes="100%"
+                  className="w-full h-auto"
+                />
+              </div>
+              
               <p className="text-sm lg:text-xl mt-4 mb-1 lg:mb-2">{name}</p>
               <p className="text-[13px] lg:text-base text-[#999]">{subTitle}</p>
             </li>
