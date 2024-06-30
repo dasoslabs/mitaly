@@ -10,122 +10,14 @@ import SliderFull, { SliderFullCard } from "@/components/common/SliderFull"
 import ShowMoreLinkButton from "@/components/common/Button/ShowMoreLinkButton"
 import ChipButton from "@/components/common/Button/ChipButton"
 
-const tab = {
-  menu: [
-    { name: "original", text: "오리지널" },
-    { name: "dining", text: "다이닝" },
-    { name: "drink-side", text: "음료&사이드" },
-  ],
-  interior: [
-    { name: "original", text: "오리지널" },
-    { name: "dining", text: "다이닝" },
-  ],
-}
-
-const data = {
-  menu: {
-    original: [
-      {
-        name: "베이컨 토마토 파스터",
-        subTitle: "Bacon Tomato Pasta",
-        imgUrl: "",
-        imgAlt: "",
-      },
-      {
-        name: "로제맵제 파스타",
-        subTitle: "Spicy Rose pasta",
-        imgUrl: "",
-        imgAlt: "",
-      },
-      {
-        name: "감바스 파스타",
-        subTitle: "Gambas Pasta",
-        imgUrl: "",
-        imgAlt: "",
-      },
-      {
-        name: "베이컨 크림 파스타",
-        subTitle: "Bacon Cream Pasta",
-        imgUrl: "",
-        imgAlt: "",
-      },
-    ],
-    dining: [],
-    "drink-side": [],
-  },
-  interior: {
-    original: [],
-    dining: [],
-  },
-  startup: [
-    {
-      text: "가장 완벽한\n소자본 창업",
-      imgUrl: "/home/wallet.png",
-      imgAlt: "지갑 이미지",
-    },
-    {
-      text: "365일\n매일매일이 성수기!",
-      imgUrl: "/home/notice.png",
-      imgAlt: "알림 이미지",
-    },
-    {
-      text: "누구나 할 수 있는\n쉬운 창업",
-      imgUrl: "/home/user.png",
-      imgAlt: "사람 이미지",
-    },
-    {
-      text: "앞으로가\n더 기대되는 창업!",
-      imgUrl: "/home/analytics.png",
-      imgAlt: "그래프 이미지",
-    },
-  ],
-  review: [
-    {
-      imgUrl: "/home/review01.png",
-      imgAlt: "리뷰 이미지",
-      like: 299,
-      id: "mitaly_delicious",
-      text: "맛있어요 맛있어요 맛있어요 맛있어요 맛있어요 맛있어요 맛있어요 맛있어요 맛있어요 맛있어요 맛있어요 맛있어요 맛있어요 맛있어요 맛있어요 맛있어요 맛있어요 맛있어요 맛있어요 맛있어요 맛있어요 맛있어요 맛있어요 맛있어요 맛있어요...",
-    },
-    {
-      imgUrl: "/home/review02.png",
-      imgAlt: "리뷰 이미지",
-      like: 299,
-      id: "mitaly_delicious",
-      text: "맛있어요 맛있어요 맛있어요 맛있어요 맛있어요 맛있어요 맛있어요 맛있어요 맛있어요 맛있어요 맛있어요 맛있어요 맛있어요 맛있어요 맛있어요 맛있어요 맛있어요 맛있어요 맛있어요 맛있어요 맛있어요 맛있어요 맛있어요 맛있어요 맛있어요...",
-    },
-    {
-      imgUrl: "/home/review03.png",
-      imgAlt: "리뷰 이미지",
-      like: 299,
-      id: "mitaly_delicious",
-      text: "맛있어요 맛있어요 맛있어요 맛있어요 맛있어요 맛있어요 맛있어요 맛있어요 맛있어요 맛있어요 맛있어요 맛있어요 맛있어요 맛있어요 맛있어요 맛있어요 맛있어요 맛있어요 맛있어요 맛있어요 맛있어요 맛있어요 맛있어요 맛있어요 맛있어요...",
-    },
-  ],
-  banner: [
-    {
-      title: "매장찾기",
-      description: "우리 동네 미태리 매장은 어디 있을까?",
-      linkText: "가까운 매장 찾기",
-      href: "#",
-      className:
-        "lg:pl-60 border-b lg:border-b-0 lg:border-r border-light-gray",
-    },
-    {
-      title: "제휴문의",
-      description: "제휴와 관련된 문의를 남겨주세요.",
-      linkText: "제휴문의 바로가기",
-      href: "#",
-      className: "lg:pr-60",
-    },
-  ],
-}
+import { tab, data } from "./data"
 
 export default function Home() {
   const videoRef = useRef(null)
   const [isMuted, setIsMuted] = useState(true)
   const [menuTab, setMenuTab] = useState(tab.menu[0].name)
   const [interiorTab, setInteriorTab] = useState(tab.interior[0].name)
+  const currentInteriorTabInfo = tab.interior.find(({ name }) => name === interiorTab)
 
   const toggleMute = () => {
     if (videoRef.current) {
@@ -253,13 +145,17 @@ export default function Home() {
 
           {/* 슬라이드 */}
           <Slider className="hidden lg:block">
-            {[
-              ...data.menu[menuTab],
-              ...data.menu[menuTab],
-              ...data.menu[menuTab],
-            ].map(({ name, subTitle, imgUrl, imgAlt }, idx) => (
+            {data.menu[menuTab].map(({ name, subTitle, imgUrl }, idx) => (
               <SliderCard key={name + idx} className="text-center">
-                <div className="bg-bg-gray w-[342px] h-64 rounded-2xl"></div>
+                <div className="bg-bg-gray w-[342px] h-64 rounded-2xl relative aspect-video">
+                  <Image 
+                    fill
+                    src={imgUrl}
+                    alt={`${name} 이미지`}
+                    sizes="100%"
+                    className="w-full h-auto"
+                  />
+                </div>
                 <p className="text-xl mt-4 mb-2">{name}</p>
                 <p className="text-[#999]">{subTitle}</p>
               </SliderCard>
@@ -285,7 +181,7 @@ export default function Home() {
               ))}
           </ul>
 
-          <ShowMoreLinkButton href="#">메뉴 더보기</ShowMoreLinkButton>
+          <ShowMoreLinkButton href="/menu">메뉴 더보기</ShowMoreLinkButton>
         </div>
       </section>
 
@@ -327,16 +223,16 @@ export default function Home() {
             ))}
           </ul>
 
-          <SliderFull>
-            {Array(17)
+          <SliderFull className="rounded-[60px]">
+            {Array(currentInteriorTabInfo.imgAmount)
               .fill(0)
               .map((_, idx) => (
-                <SliderFullCard key={"image" + idx}>
+                <SliderFullCard key={currentInteriorTabInfo.name + "image" + idx}>
                   <Image
                     width="1440"
                     height="810"
-                    src="/home/interior01.png"
-                    alt="인테리어 이미지"
+                    src={`/store/${currentInteriorTabInfo.name}/${idx + 1}.jpg`}
+                    alt={`${currentInteriorTabInfo.name} image`}
                   />
                 </SliderFullCard>
               ))}
@@ -367,7 +263,7 @@ export default function Home() {
         </div>
 
         <div className="px-6 flex flex-col items-center space-y-12">
-          <ShowMoreLinkButton href="#" className="order-2 lg:order-1">
+          <ShowMoreLinkButton href="/brand/contact" className="order-2 lg:order-1">
             가맹문의 바로가기
           </ShowMoreLinkButton>
           <ul className="w-full lg:px-0 max-w-pc m-auto grid grid-cols-2 gap-4 lg:flex lg:justify-between lg:items-center lg:space-x-6 order-1 lg:order-2">
@@ -510,7 +406,7 @@ export default function Home() {
                   <h3 className="font-black text-xl lg:text-[32px]">{title}</h3>
                   <p className="text-sm lg:text-base">{description}</p>
                 </div>
-                <ShowMoreLinkButton href="#">{linkText}</ShowMoreLinkButton>
+                <ShowMoreLinkButton href={href}>{linkText}</ShowMoreLinkButton>
               </li>
             ),
           )}
