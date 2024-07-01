@@ -1,6 +1,6 @@
 <h1 style="text-align: center">Welcome to Mitaly</h1>
 
-![waving](https://capsule-render.vercel.app/api?type=waving&height=200&text=customer&fontAlign=80&fontAlignY=40&color=gradient)
+![waving](https://capsule-render.vercel.app/api?type=waving&height=200&text=Mitaly&fontAlign=80&fontAlignY=40&color=gradient)
 
 <h2>소개</h2>
 
