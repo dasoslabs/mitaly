@@ -5,11 +5,11 @@ import Image from "next/image"
 import { menu, foodList } from "./data"
 
 export default function MenuPage() {
-  const [currentMenu, setCurrentMenu] = useState(menu[0].name)
+  const [currentMenuTab, setCurrentMenuTab] = useState(menu[0].name)
   const filteredFoodList =
-    currentMenu === "all"
+    currentMenuTab === "all"
       ? foodList
-      : foodList.filter((item) => item.foodType === currentMenu)
+      : foodList.filter((item) => item.foodType === currentMenuTab)
 
   return (
     <section className="mt-16 lg:mt-24 py-10 lg:py-20 bg-white flex flex-col items-center justify-between space-y-6 text-center">
@@ -29,8 +29,8 @@ export default function MenuPage() {
               className="w-2/12 flex-shrink-0 lg:flex-shrink lg:w-full"
             >
               <button
-                onClick={() => setCurrentMenu(name)}
-                className={`w-full py-3 font-bold border-b-2 text-sm lg:text-base ${currentMenu === name ? "text-primary border-primary" : "text-[#666666] lg:text-light-gray border-white font-normal lg:font-bold"}`}
+                onClick={() => setCurrentMenuTab(name)}
+                className={`w-full py-3 font-bold border-b-2 text-sm lg:text-base ${currentMenuTab === name ? "text-primary border-primary" : "text-[#666666] lg:text-light-gray border-white font-normal lg:font-bold"}`}
               >
                 {text}
               </button>

@@ -8,7 +8,7 @@ import Pagination from "@/components/common/Pagination"
 import { category, newsList } from "./data"
 
 export default function NewsPage() {
-  const [currentCategory, setCurrentCategory] = useState(category[0].name)
+  const [currentCategoryTab, setCurrentCategoryTab] = useState(category[0].name)
 
   return (
     <CommunityPageLayout>
@@ -21,8 +21,8 @@ export default function NewsPage() {
           {category.map(({ name, text }, idx) => (
             <li key={name} className="text-[#999]">
               <button
-                className={`${currentCategory === name ? "text-black font-bold" : ""}`}
-                onClick={() => setCurrentCategory(name)}
+                className={`${currentCategoryTab === name ? "text-black font-bold" : ""}`}
+                onClick={() => setCurrentCategoryTab(name)}
               >
                 {text}
               </button>

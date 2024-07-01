@@ -26,6 +26,7 @@ export default function LocationPage() {
             </button>
           </div>
 
+          {/* 매장 목록 */}
           <ul className="lg:overflow-y-auto lg:max-h-[976px] text-sm lg:text-base">
             {storeList.map(({ name, address, business_hours }, idx) => (
               <li
@@ -43,6 +44,7 @@ export default function LocationPage() {
           </ul>
         </div>
 
+        {/* 임시 지도 이미지 */}
         <Image
           width="1360"
           height="976"

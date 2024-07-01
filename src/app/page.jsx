@@ -15,10 +15,10 @@ import { tab, data } from "./data"
 export default function Home() {
   const videoRef = useRef(null)
   const [isMuted, setIsMuted] = useState(true)
-  const [menuTab, setMenuTab] = useState(tab.menu[0].name)
-  const [interiorTab, setInteriorTab] = useState(tab.interior[0].name)
+  const [currentMenuTab, setCurrentMenuTab] = useState(tab.menu[0].name)
+  const [currentInteriorTab, setCurrentInteriorTab] = useState(tab.interior[0].name)
   const currentInteriorTabInfo = tab.interior.find(
-    ({ name }) => name === interiorTab,
+    ({ name }) => name === currentInteriorTab,
   )
 
   const toggleMute = () => {
@@ -135,8 +135,8 @@ export default function Home() {
             {tab.menu.map(({ name, text }) => (
               <li key={name}>
                 <ChipButton
-                  onClick={() => setMenuTab(name)}
-                  isSelected={menuTab === name}
+                  onClick={() => setCurrentMenuTab(name)}
+                  isSelected={currentMenuTab === name}
                   className="w-full"
                 >
                   {text}
@@ -145,9 +145,9 @@ export default function Home() {
             ))}
           </ul>
 
-          {/* 슬라이드 */}
+          {/* PC (슬라이드) */}
           <Slider className="hidden lg:block">
-            {data.menu[menuTab].map(({ name, subTitle, imgUrl }, idx) => (
+            {data.menu[currentMenuTab].map(({ name, subTitle, imgUrl }, idx) => (
               <SliderCard key={name + idx} className="text-center">
                 <div className="bg-bg-gray w-[342px] h-64 rounded-2xl relative aspect-video">
                   <Image
@@ -164,8 +164,9 @@ export default function Home() {
             ))}
           </Slider>
 
+          {/* 모바일 (목록) */}
           <ul className="w-full grid grid-cols-2 gap-4 text-center lg:hidden">
-            {data.menu[menuTab]
+            {data.menu[currentMenuTab]
               .slice(0, 4)
               .map(({ name, subTitle, imgUrl }, idx) => (
                 <li key={name + idx}>
@@ -219,8 +220,8 @@ export default function Home() {
             {tab.interior.map(({ name, text }) => (
               <li key={name}>
                 <ChipButton
-                  onClick={() => setInteriorTab(name)}
-                  isSelected={interiorTab === name}
+                  onClick={() => setCurrentInteriorTab(name)}
+                  isSelected={currentInteriorTab === name}
                 >
                   {text}
                 </ChipButton>

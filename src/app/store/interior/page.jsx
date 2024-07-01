@@ -11,8 +11,8 @@ import { interior } from "../data"
 import StorePageLayout from "@/components/layout/StorePageLayout"
 
 export default function InteriorPage() {
-  const [interiorTab, setInteriorTab] = useState(interior[0].name)
-  const currentTabInfo = interior.find(({ name }) => name === interiorTab)
+  const [currentInterior, setCurrentInterior] = useState(interior[0].name)
+  const currentInteriorInfo = interior.find(({ name }) => name === currentInterior)
 
   return (
     <StorePageLayout>
@@ -24,8 +24,8 @@ export default function InteriorPage() {
           {interior.map(({ name, text }) => (
             <li key={name} className="w-1/2 lg:w-auto">
               <ChipButton
-                onClick={() => setInteriorTab(name)}
-                isSelected={interiorTab === name}
+                onClick={() => setCurrentInterior(name)}
+                isSelected={currentInterior === name}
               >
                 {text}
               </ChipButton>
@@ -34,15 +34,15 @@ export default function InteriorPage() {
         </ul>
       </div>
       <SliderFull width="w-full">
-        {Array(currentTabInfo.imgAmount)
+        {Array(currentInteriorInfo.imgAmount)
           .fill(0)
           .map((_, idx) => (
-            <SliderFullCard key={currentTabInfo.name + "image" + idx}>
+            <SliderFullCard key={currentInteriorInfo.name + "image" + idx}>
               <Image
                 width="1920"
                 height="1080"
-                src={`/store/${currentTabInfo.name}/${idx + 1}.jpg`}
-                alt={`${currentTabInfo.name} image`}
+                src={`/store/${currentInteriorInfo.name}/${idx + 1}.jpg`}
+                alt={`${currentInteriorInfo.name} image`}
               />
             </SliderFullCard>
           ))}

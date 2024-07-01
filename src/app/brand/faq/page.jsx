@@ -9,7 +9,7 @@ import Pagination from "@/components/common/Pagination"
 import { category, faqList } from "./data"
 
 export default function FaqPage() {
-  const [currentCategory, setCurrentCategory] = useState(category[0].name)
+  const [currentCategoryTab, setCurrentCategoryTab] = useState(category[0].name)
 
   return (
     <BrandPageLayout>
@@ -33,8 +33,8 @@ export default function FaqPage() {
           {category.map(({ name, text }, idx) => (
             <li key={name} className="text-[#999]">
               <button
-                className={`${currentCategory === name ? "text-black font-bold" : ""}`}
-                onClick={() => setCurrentCategory(name)}
+                className={`${currentCategoryTab === name ? "text-black font-bold" : ""}`}
+                onClick={() => setCurrentCategoryTab(name)}
               >
                 {text}
               </button>
@@ -50,9 +50,9 @@ export default function FaqPage() {
         {/* 목록 */}
         <Pagination
           items={
-            currentCategory === "all"
+            currentCategoryTab === "all"
               ? faqList
-              : faqList.filter(({ category }) => category === currentCategory)
+              : faqList.filter(({ category }) => category === currentCategoryTab)
           }
           ListItem={Dropdown}
         />
