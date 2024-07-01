@@ -12,7 +12,9 @@ import StorePageLayout from "@/components/layout/StorePageLayout"
 
 export default function InteriorPage() {
   const [currentInterior, setCurrentInterior] = useState(interior[0].name)
-  const currentInteriorInfo = interior.find(({ name }) => name === currentInterior)
+  const currentInteriorInfo = interior.find(
+    ({ name }) => name === currentInterior,
+  )
 
   return (
     <StorePageLayout>

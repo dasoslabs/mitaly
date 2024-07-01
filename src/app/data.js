@@ -11,104 +11,118 @@ export const tab = {
 }
 
 export const data = {
-  menu: {
-    original: [
-      {
-        name: "시그니처 큐브 스테이크",
-        subTitle: "Signature Cube Steak",
-        imgUrl: "/menu/steak/1.png",
-      },
-      {
-        name: "로제 맵제 파스타",
-        subTitle: "Spicy Rosé Pasta",
-        imgUrl: "/menu/pasta/14.png",
-      },
-      {
-        name: "감바스 파스타",
-        subTitle: "Gambas Pasta",
-        imgUrl: "/menu/pasta/1.png",
-      },
-      {
-        name: "미태리 갈릭 포테이토 피자",
-        subTitle: "Mitaly Garlic Potato Pizza",
-        imgUrl: "/menu/pizza/4.png",
-      },
-      {
-        name: "해물 짬뽕 파스타",
-        subTitle: "Seafood Jjamppong Pasta",
-        imgUrl: "/menu/pasta/9.png",
-      },
-      {
-        name: "킹소시지 김치볶음밥",
-        subTitle: "King Sausage Kimchi Fried Rice",
-        imgUrl: "/menu/rice/3.png",
-      },
-    ],
-    dining: [
-      {
-        name: "블랙페퍼 목살 스테이크",
-        subTitle: "Black Pepper Pork Steak",
-        imgUrl: "/menu/steak/3.png",
-      },
-      {
-        name: "쉬림프 바질 크림 파스타",
-        subTitle: "Shrimp Basil Cream Pasta",
-        imgUrl: "/menu/pasta/18.png",
-      },
-      {
-        name: "스테이크 크림 리조또",
-        subTitle: "Steak Cream Risotto",
-        imgUrl: "/menu/rice/5.png",
-      },
-      {
-        name: "쉬림프 로제 리조또",
-        subTitle: "Shrimp Rosé Risotto",
-        imgUrl: "/menu/rice/6.png",
-      },
-      {
-        name: "비프 바질 크림 파스타",
-        subTitle: "Beef Basil Cream Pasta",
-        imgUrl: "/menu/pasta/19.png",
-      },
-      {
-        name: "치킨텐더 샐러드",
-        subTitle: "Chicken Tender Salad",
-        imgUrl: "/menu/side/2.png",
-      },
-    ],
-    "drink-side": [
-      {
-        name: "미태리 가든 샐러드",
-        subTitle: "Mitaly Garden Salad",
-        imgUrl: "/menu/side/1.png",
-      },
-      {
-        name: "양념감자",
-        subTitle: "Seasoned Potatoes",
-        imgUrl: "/menu/side/7.png",
-      },
-      {
-        name: "멘보샤",
-        subTitle: "Menbosha",
-        imgUrl: "/menu/side/8.png",
-      },
-      {
-        name: "치킨 윙&봉",
-        subTitle: "Chicken Wing and Stick",
-        imgUrl: "/menu/side/9.png",
-      },
-      {
-        name: "샹그리아 하이볼",
-        subTitle: "Sangria Highball",
-        imgUrl: "/menu/drink/6.png",
-      },
-      {
-        name: "샴페인 하이볼",
-        subTitle: "Champagne Highball",
-        imgUrl: "/menu/drink/7.png",
-      },
-    ],
-  },
+  foodList: [
+    {
+      foodType: "original",
+      name: "시그니처 큐브 스테이크",
+      subTitle: "Signature Cube Steak",
+      imgUrl: "/menu/steak/1.png",
+    },
+    {
+      foodType: "original",
+      name: "로제 맵제 파스타",
+      subTitle: "Spicy Rosé Pasta",
+      imgUrl: "/menu/pasta/14.png",
+    },
+    {
+      foodType: "original",
+      name: "감바스 파스타",
+      subTitle: "Gambas Pasta",
+      imgUrl: "/menu/pasta/1.png",
+    },
+    {
+      foodType: "original",
+      name: "미태리 갈릭 포테이토 피자",
+      subTitle: "Mitaly Garlic Potato Pizza",
+      imgUrl: "/menu/pizza/4.png",
+    },
+    {
+      foodType: "original",
+      name: "해물 짬뽕 파스타",
+      subTitle: "Seafood Jjamppong Pasta",
+      imgUrl: "/menu/pasta/9.png",
+    },
+    {
+      foodType: "original",
+      name: "킹소시지 김치볶음밥",
+      subTitle: "King Sausage Kimchi Fried Rice",
+      imgUrl: "/menu/rice/3.png",
+    },
+
+    {
+      foodType: "dining",
+      name: "블랙페퍼 목살 스테이크",
+      subTitle: "Black Pepper Pork Steak",
+      imgUrl: "/menu/steak/3.png",
+    },
+    {
+      foodType: "dining",
+      name: "쉬림프 바질 크림 파스타",
+      subTitle: "Shrimp Basil Cream Pasta",
+      imgUrl: "/menu/pasta/18.png",
+    },
+    {
+      foodType: "dining",
+      name: "스테이크 크림 리조또",
+      subTitle: "Steak Cream Risotto",
+      imgUrl: "/menu/rice/5.png",
+    },
+    {
+      foodType: "dining",
+      name: "쉬림프 로제 리조또",
+      subTitle: "Shrimp Rosé Risotto",
+      imgUrl: "/menu/rice/6.png",
+    },
+    {
+      foodType: "dining",
+      name: "비프 바질 크림 파스타",
+      subTitle: "Beef Basil Cream Pasta",
+      imgUrl: "/menu/pasta/19.png",
+    },
+    {
+      foodType: "dining",
+      name: "치킨텐더 샐러드",
+      subTitle: "Chicken Tender Salad",
+      imgUrl: "/menu/side/2.png",
+    },
+
+    {
+      foodType: "drink-side",
+      name: "미태리 가든 샐러드",
+      subTitle: "Mitaly Garden Salad",
+      imgUrl: "/menu/side/1.png",
+    },
+    {
+      foodType: "drink-side",
+      name: "양념감자",
+      subTitle: "Seasoned Potatoes",
+      imgUrl: "/menu/side/7.png",
+    },
+    {
+      foodType: "drink-side",
+      name: "멘보샤",
+      subTitle: "Menbosha",
+      imgUrl: "/menu/side/8.png",
+    },
+    {
+      foodType: "drink-side",
+      name: "치킨 윙&봉",
+      subTitle: "Chicken Wing and Stick",
+      imgUrl: "/menu/side/9.png",
+    },
+    {
+      foodType: "drink-side",
+      name: "샹그리아 하이볼",
+      subTitle: "Sangria Highball",
+      imgUrl: "/menu/drink/6.png",
+    },
+    {
+      foodType: "drink-side",
+      name: "샴페인 하이볼",
+      subTitle: "Champagne Highball",
+      imgUrl: "/menu/drink/7.png",
+    },
+  ],
   startup: [
     {
       text: "가장 완벽한\n소자본 창업",

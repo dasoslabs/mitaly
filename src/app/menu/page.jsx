@@ -20,7 +20,6 @@ export default function MenuPage() {
       </div>
 
       <div className="max-w-pc w-full m-auto">
-
         {/* 메뉴 탭 */}
         <ul className="pl-6 lg:pl-0 flex lg:justify-center lg:items-center overflow-x-auto lg:overflow-x-hidden scrollbar-hide">
           {menu.map(({ name, text }) => (

@@ -52,7 +52,9 @@ export default function FaqPage() {
           items={
             currentCategoryTab === "all"
               ? faqList
-              : faqList.filter(({ category }) => category === currentCategoryTab)
+              : faqList.filter(
+                  ({ category }) => category === currentCategoryTab,
+                )
           }
           ListItem={Dropdown}
         />

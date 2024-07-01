@@ -15,8 +15,16 @@ import { tab, data } from "./data"
 export default function Home() {
   const videoRef = useRef(null)
   const [isMuted, setIsMuted] = useState(true)
+
   const [currentMenuTab, setCurrentMenuTab] = useState(tab.menu[0].name)
-  const [currentInteriorTab, setCurrentInteriorTab] = useState(tab.interior[0].name)
+  const filteredFoodList =
+    currentMenuTab === "all"
+      ? data.foodList
+      : data.foodList.filter((item) => item.foodType === currentMenuTab)
+
+  const [currentInteriorTab, setCurrentInteriorTab] = useState(
+    tab.interior[0].name,
+  )
   const currentInteriorTabInfo = tab.interior.find(
     ({ name }) => name === currentInteriorTab,
   )
@@ -147,7 +155,7 @@ export default function Home() {
 
           {/* PC (슬라이드) */}
           <Slider className="hidden lg:block">
-            {data.menu[currentMenuTab].map(({ name, subTitle, imgUrl }, idx) => (
+            {filteredFoodList.map(({ name, subTitle, imgUrl }, idx) => (
               <SliderCard key={name + idx} className="text-center">
                 <div className="bg-bg-gray w-[342px] h-64 rounded-2xl relative aspect-video">
                   <Image
@@ -166,7 +174,7 @@ export default function Home() {
 
           {/* 모바일 (목록) */}
           <ul className="w-full grid grid-cols-2 gap-4 text-center lg:hidden">
-            {data.menu[currentMenuTab]
+            {filteredFoodList
               .slice(0, 4)
               .map(({ name, subTitle, imgUrl }, idx) => (
                 <li key={name + idx}>
