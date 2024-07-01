@@ -2,10 +2,14 @@
 
 import { useState } from "react"
 import Image from "next/image"
-import { food, menu } from "./data"
+import { menu, foodList } from "./data"
 
 export default function MenuPage() {
-  const [menuTab, setMenuTab] = useState(menu[0].name)
+  const [currentMenu, setCurrentMenu] = useState(menu[0].name)
+  const filteredFoodList =
+    currentMenu === "all"
+      ? foodList
+      : foodList.filter((item) => item.foodType === currentMenu)
 
   return (
     <section className="mt-16 lg:mt-24 py-10 lg:py-20 bg-white flex flex-col items-center justify-between space-y-6 text-center">
@@ -16,6 +20,8 @@ export default function MenuPage() {
       </div>
 
       <div className="max-w-pc w-full m-auto">
+
+        {/* 메뉴 탭 */}
         <ul className="pl-6 lg:pl-0 flex lg:justify-center lg:items-center overflow-x-auto lg:overflow-x-hidden scrollbar-hide">
           {menu.map(({ name, text }) => (
             <li
@@ -23,8 +29,8 @@ export default function MenuPage() {
               className="w-2/12 flex-shrink-0 lg:flex-shrink lg:w-full"
             >
               <button
-                onClick={() => setMenuTab(name)}
-                className={`w-full py-3 font-bold border-b-2 text-sm lg:text-base ${menuTab === name ? "text-primary border-primary" : "text-[#666666] lg:text-light-gray border-white font-normal lg:font-bold"}`}
+                onClick={() => setCurrentMenu(name)}
+                className={`w-full py-3 font-bold border-b-2 text-sm lg:text-base ${currentMenu === name ? "text-primary border-primary" : "text-[#666666] lg:text-light-gray border-white font-normal lg:font-bold"}`}
               >
                 {text}
               </button>
@@ -32,8 +38,9 @@ export default function MenuPage() {
           ))}
         </ul>
 
+        {/* 메뉴 아이템 */}
         <ul className="grid grid-cols-2 lg:grid-cols-4 gap-6 mt-8 lg:mt-10 px-6 lg:px-0">
-          {food[menuTab].map(({ name, subTitle, imgUrl }, idx) => (
+          {filteredFoodList.map(({ name, subTitle, imgUrl }, idx) => (
             <li key={name + idx}>
               <div className="relative bg-bg-gray aspect-video rounded-2xl">
                 <Image
