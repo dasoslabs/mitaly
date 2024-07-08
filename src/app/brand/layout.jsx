@@ -3,7 +3,7 @@ export default function BrandLayout({ children }) {
     <section className="mt-16 lg:mt-24">
       {/* 배너 */}
       <div className="relative">
-        <div className="w-full h-[174px] lg:h-[400px] bg-[url('/brand/banner.png')] bg-cover bg-center" />
+        <div className="w-full h-[174px] lg:h-[400px] bg-[url('/brand/banner.webp')] bg-cover bg-center" />
         <div className="absolute top-0 left-0 w-full h-full flex flex-col justify-center items-center space-y-4 lg:space-y-10">
           <h2 className="text-2xl lg:text-5xl font-extralight">
             미태리 경쟁력

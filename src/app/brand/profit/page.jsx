@@ -22,7 +22,7 @@ export default function ProfitPage() {
           <Image
             width="1440"
             height="540"
-            src="/brand/profit01.png"
+            src="/brand/profit01.webp"
             alt="메인 이미지"
             quality={100}
           />
@@ -93,7 +93,7 @@ export default function ProfitPage() {
           <Image
             width="1920"
             height="640"
-            src="/brand/profit02.png"
+            src="/brand/profit02.webp"
             alt="배너 이미지"
             quality={100}
           />

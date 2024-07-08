@@ -43,7 +43,7 @@ export default function InteriorPage() {
               <Image
                 width="1920"
                 height="1080"
-                src={`/store/${currentInteriorInfo.name}/${idx + 1}.jpg`}
+                src={`/store/${currentInteriorInfo.name}/${idx + 1}.webp`}
                 alt={`${currentInteriorInfo.name} image`}
               />
             </SliderFullCard>

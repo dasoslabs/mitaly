@@ -1,6 +1,6 @@
 "use client"
 
-import { useRef, useState } from "react"
+import { useState } from "react"
 import Image from "next/image"
 import Link from "next/link"
 
@@ -70,7 +70,7 @@ export default function Home() {
         <Image
           width="1920"
           height="1151"
-          src="/home/background.png"
+          src="/home/background.webp"
           alt="배경 사진"
           quality={100}
           className="hidden lg:block"
@@ -80,7 +80,7 @@ export default function Home() {
         <Image
           width="1080"
           height="1800"
-          src="/home/background-mobile.png"
+          src="/home/background-mobile.webp"
           alt="배경 사진"
           quality={100}
           className="lg:hidden"
@@ -234,7 +234,7 @@ export default function Home() {
                   <Image
                     width="1440"
                     height="810"
-                    src={`/store/${currentInteriorTabInfo.name}/${idx + 1}.jpg`}
+                    src={`/store/${currentInteriorTabInfo.name}/${idx + 1}.webp`}
                     alt={`${currentInteriorTabInfo.name} image`}
                   />
                 </SliderFullCard>
@@ -338,7 +338,7 @@ export default function Home() {
                 <Image
                   width="464"
                   height="320"
-                  src={`/review/${idx + 1}.jpg`}
+                  src={`/review/${idx + 1}.webp`}
                   alt="리뷰 이미지"
                   quality={100}
                 />
@@ -379,7 +379,7 @@ export default function Home() {
                 <Image
                   width="464"
                   height="320"
-                  src={`/review/${idx + 1}.jpg`}
+                  src={`/review/${idx + 1}.webp`}
                   alt="리뷰 이미지"
                   quality={100}
                 />

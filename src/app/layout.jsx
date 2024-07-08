@@ -19,20 +19,20 @@ export const metadata = {
   icons: [
     {
       rel: "icon",
-      type: "image/png",
+      type: "image/webp",
       sizes: "32x32",
-      url: "/favicon/favicon-32x32.png",
+      url: "/favicon/favicon-32x32.webp",
     },
     {
       rel: "icon",
-      type: "image/png",
+      type: "image/webp",
       sizes: "16x16",
-      url: "/favicon/favicon-16x16.png",
+      url: "/favicon/favicon-16x16.webp",
     },
     {
       rel: "apple-touch-icon",
       sizes: "180x180",
-      url: "/favicon/apple-touch-icon.png",
+      url: "/favicon/apple-touch-icon.webp",
     },
   ],
   openGraph: {

@@ -18,7 +18,7 @@ export default function AboutPage() {
         <Image
           width="1192"
           height="800"
-          src="/about/img01.png"
+          src="/about/img01.webp"
           alt="음식 이미지"
           quality={100}
           className="w-2/3"
@@ -29,7 +29,7 @@ export default function AboutPage() {
         <Image
           width="582"
           height="720"
-          src="/about/img02.png"
+          src="/about/img02.webp"
           alt="음식 이미지"
           quality={100}
           className="w-1/2 lg:w-auto"
@@ -88,7 +88,7 @@ export default function AboutPage() {
         <Image
           width="826"
           height="551"
-          src="/about/img03.png"
+          src="/about/img03.webp"
           alt="음식 이미지"
           quality={100}
         />
