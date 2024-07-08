@@ -157,14 +157,16 @@ export default function Home() {
           <Slider className="hidden lg:block">
             {filteredFoodList.map(({ name, subTitle, imgUrl }, idx) => (
               <SliderCard key={name + idx} className="text-center">
-                <div className="bg-bg-gray w-[342px] h-64 rounded-2xl relative aspect-video">
-                  <Image
-                    fill
-                    src={imgUrl}
-                    alt={`${name} 이미지`}
-                    sizes="100%"
-                    className="w-full h-auto"
-                  />
+                <div className="bg-bg-gray w-[342px] h-[256px] rounded-2xl flex justify-center items-center">
+                  <div className="w-[280px] h-[200px] relative aspect-square">
+                    <Image
+                      fill
+                      src={imgUrl}
+                      alt={`${name} 이미지`}
+                      sizes="100%"
+                      className="w-full h-auto"
+                    />
+                  </div>
                 </div>
                 <p className="text-xl mt-4 mb-2">{name}</p>
                 <p className="text-[#999]">{subTitle}</p>
