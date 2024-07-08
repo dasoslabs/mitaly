@@ -4,6 +4,7 @@ import { useRef, useState } from "react"
 import Image from "next/image"
 import Link from "next/link"
 
+import VideoPlayer from "@/components/common/VideoPlayer"
 import SvgIcon from "@/components/common/SvgIcon"
 import Slider, { SliderCard } from "@/components/common/Slider"
 import SliderFull, { SliderFullCard } from "@/components/common/SliderFull"
@@ -13,8 +14,10 @@ import ChipButton from "@/components/common/Button/ChipButton"
 import { tab, data } from "./data"
 
 export default function Home() {
-  const videoRef = useRef(null)
   const [isMuted, setIsMuted] = useState(true)
+  const toggleMute = () => {
+    setIsMuted(!isMuted)
+  }
 
   const [currentMenuTab, setCurrentMenuTab] = useState(tab.menu[0].name)
   const filteredFoodList =
@@ -29,12 +32,6 @@ export default function Home() {
     ({ name }) => name === currentInteriorTab,
   )
 
-  const toggleMute = () => {
-    if (videoRef.current) {
-      videoRef.current.muted = !videoRef.current.muted
-      setIsMuted(videoRef.current.muted)
-    }
-  }
 
   return (
     <>
@@ -42,18 +39,7 @@ export default function Home() {
       <section className="relative" id="main_banner">
         <div className="flex items-center justify-center h-screen">
           <div className="relative w-full h-screen">
-            <video
-              ref={videoRef}
-              muted={isMuted}
-              src="/home/banner.mp4"
-              autoPlay={true}
-              loop
-              playsInline
-              controls={false}
-              width="100%"
-              height="100%"
-              className="absolute top-0 left-0 w-full h-full object-cover"
-            />
+            <VideoPlayer  />
           </div>
         </div>
         <div className="absolute top-0 left-0 w-full h-full bg-black opacity-40"></div>
