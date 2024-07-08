@@ -43,9 +43,7 @@ export default function Home() {
         onMouseEnter={() => setIsHoveredOnVideo(true)}
         onMouseLeave={() => setIsHoveredOnVideo(false)}
       >
-        <div className="flex items-center justify-center h-screen">
-          <VideoPlayer muted={isMuted} />
-        </div>
+        <VideoPlayer muted={isMuted} />
         <div
           className={`absolute top-0 left-0 w-full h-full bg-black ${isHoveredOnVideo ? "opacity-0" : "opacity-40"}`}
         />
