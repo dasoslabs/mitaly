@@ -8,7 +8,7 @@ export default function SuccessPage() {
   return (
     <BrandPageLayout>
       <ul className="max-w-pc m-auto">
-        {successCards.map(({ title, description, imgUrl, imgAlt }, idx) => (
+        {successCards.map(({ title, description, imgUrl, imgAlt, descriptionMobile }, idx) => (
           <li
             key={title}
             className="flex flex-col lg:flex-row justify-between items-center"
@@ -23,8 +23,17 @@ export default function SuccessPage() {
                   </span>
                 ))}
               </h3>
-              <div className="text-sm lg:text-base leading-7">
+
+              {/* PC 설명 */}
+              <div className="hidden lg:block leading-7">
                 {description.split("\n").map((sentence) => (
+                  <p key={sentence}>{renderTextWithBold(sentence)}</p>
+                ))}
+              </div>
+
+              {/* 모바일 설명 */}
+              <div className="text-sm lg:hidden leading-7">
+                {descriptionMobile.split("\n").map((sentence) => (
                   <p key={sentence}>{renderTextWithBold(sentence)}</p>
                 ))}
               </div>
