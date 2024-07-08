@@ -237,7 +237,7 @@ export default function Home() {
             ))}
           </ul>
 
-          <SliderFull className="rounded-[60px]">
+          <SliderFull className="rounded-[20px] lg:rounded-[60px]">
             {Array(currentInteriorTabInfo.imgAmount)
               .fill(0)
               .map((_, idx) => (
