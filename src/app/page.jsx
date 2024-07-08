@@ -37,11 +37,18 @@ export default function Home() {
   return (
     <>
       {/* 배너 */}
-      <section className="relative" id="main_banner" onMouseEnter={() => setIsHoveredOnVideo(true)} onMouseLeave={() => setIsHoveredOnVideo(false)}>
+      <section
+        className="relative"
+        id="main_banner"
+        onMouseEnter={() => setIsHoveredOnVideo(true)}
+        onMouseLeave={() => setIsHoveredOnVideo(false)}
+      >
         <div className="flex items-center justify-center h-screen">
           <VideoPlayer muted={isMuted} />
         </div>
-        <div className={`absolute top-0 left-0 w-full h-full bg-black ${isHoveredOnVideo ? "opacity-0" : "opacity-40"}`} />
+        <div
+          className={`absolute top-0 left-0 w-full h-full bg-black ${isHoveredOnVideo ? "opacity-0" : "opacity-40"}`}
+        />
         <div className="absolute top-1/2 transform -translate-y-1/2 left-6 lg:left-60">
           <div className="text-[40px] lg:text-[80px] font-extrabold">
             <h2 className="text-white flex flex-col lg:flex-row lg:space-x-1">
