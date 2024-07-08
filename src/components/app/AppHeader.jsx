@@ -49,11 +49,11 @@ const menu = {
   blank: [
     {
       name: "창업페이지",
-      href: "/startup",
+      href: "http://mitaly.co.kr/",
     },
     {
       name: "점주 공간",
-      href: "/member",
+      href: "https://mitalyshop.com/intro/member.html?returnUrl=%2Findex.html",
     },
   ],
 }
@@ -144,6 +144,7 @@ export default function AppHeader() {
               <li key={name}>
                 <Link
                   href={href}
+                  target="blank"
                   className="py-1 px-4 flex justify-center items-center border border-light-gray rounded-full"
                 >
                   {name}
@@ -203,7 +204,7 @@ export default function AppHeader() {
           <ul className="px-6 flex flex-col space-y-6 pb-10">
             {menu.blank.map(({ name, href }) => (
               <li key={name}>
-                <Link href={href} className="font-extralight">
+                <Link href={href} target="blank" className="font-extralight">
                   {name}
                 </Link>
               </li>
