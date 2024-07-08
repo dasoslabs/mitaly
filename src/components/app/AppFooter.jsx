@@ -42,10 +42,16 @@ export default function AppFooter() {
           <div className="lg:hidden flex justify-between items-center mb-6">
             <Logo size="sm" />
             <div className="flex space-x-4">
-              <Link href="https://www.facebook.com/mitalyoffice/" target="_blank">
+              <Link
+                href="https://www.facebook.com/mitalyoffice/"
+                target="_blank"
+              >
                 <SvgIcon name="facebook" size={24} />
               </Link>
-              <Link href="https://www.instagram.com/mitaly_delicious/" target="_blank">
+              <Link
+                href="https://www.instagram.com/mitaly_delicious/"
+                target="_blank"
+              >
                 <SvgIcon name="instagram" size={24} />
               </Link>
             </div>
@@ -68,7 +74,10 @@ export default function AppFooter() {
             <Link href="https://www.facebook.com/mitalyoffice/" target="_blank">
               <SvgIcon name="facebook" />
             </Link>
-            <Link href="https://www.instagram.com/mitaly_delicious/" target="_blank">
+            <Link
+              href="https://www.instagram.com/mitaly_delicious/"
+              target="_blank"
+            >
               <SvgIcon name="instagram" />
             </Link>
           </div>

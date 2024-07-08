@@ -32,14 +32,13 @@ export default function Home() {
     ({ name }) => name === currentInteriorTab,
   )
 
-
   return (
     <>
       {/* 배너 */}
       <section className="relative" id="main_banner">
         <div className="flex items-center justify-center h-screen">
           <div className="relative w-full h-screen">
-            <VideoPlayer  />
+            <VideoPlayer />
           </div>
         </div>
         <div className="absolute top-0 left-0 w-full h-full bg-black opacity-40"></div>

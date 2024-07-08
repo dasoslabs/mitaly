@@ -1,11 +1,11 @@
-import { useEffect } from "react";
+import { useEffect } from "react"
 
-export default function VideoPlayer (){
+export default function VideoPlayer() {
   useEffect(() => {
-    const tag = document.createElement("script");
-    tag.src = "https://www.youtube.com/iframe_api";
-    const firstScriptTag = document.getElementsByTagName("script")[0];
-    firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+    const tag = document.createElement("script")
+    tag.src = "https://www.youtube.com/iframe_api"
+    const firstScriptTag = document.getElementsByTagName("script")[0]
+    firstScriptTag.parentNode.insertBefore(tag, firstScriptTag)
 
     window.onYouTubeIframeAPIReady = () => {
       new window.YT.Player("player", {
@@ -20,17 +20,17 @@ export default function VideoPlayer (){
         events: {
           onReady: onPlayerReady,
         },
-      });
-    };
+      })
+    }
 
     const onPlayerReady = (event) => {
-      event.target.playVideo();
-    };
+      event.target.playVideo()
+    }
 
     return () => {
-      delete window.onYouTubeIframeAPIReady;
-    };
-  }, []);
+      delete window.onYouTubeIframeAPIReady
+    }
+  }, [])
 
-  return <div id="player" />;
+  return <div id="player" />
 }
