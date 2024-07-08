@@ -113,11 +113,11 @@ export default function Home() {
             </h2>
           </div>
           <div className="text-sm lg:text-xl">
-            <div className="flex flex-col lg:flex-row lg:space-x-1">
+            <div className="flex flex-col lg:flex-row lg:space-x-1 m-auto justify-center">
               <p>미태리는 100% 이탈리아산 면과</p>
               <p>최고급 엑스트라 버진 올리브오일만을 사용합니다.</p>
             </div>
-            <div className="flex flex-col lg:flex-row lg:space-x-1">
+            <div className="flex flex-col lg:flex-row lg:space-x-1 m-auto justify-center">
               <p>언제, 어디서, 누구와 함께 즐겨도</p>
               <p>항상 만족스러운 한끼를 완성시켜 드리겠습니다.</p>
             </div>
