@@ -387,7 +387,7 @@ export default function Home() {
             {data.review.map(({ like, id, text, hashtag }, idx) => (
               <SliderCard
                 key={text.slice(0, 3) + idx}
-                className="basis-80 bg-white rounded-2xl flex flex-col ml-4 justify-between border border-light-gray"
+                className="basis-80 overflow-hidden bg-white rounded-2xl flex flex-col ml-4 justify-between border border-light-gray"
               >
                 <Image
                   width="464"
