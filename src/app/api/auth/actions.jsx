@@ -1,6 +1,6 @@
 "use server"
 
-import createSupabase from "@/libs/server/supbase"
+import createSupabase from "@/libs/supabase"
 import { redirect } from "next/navigation"
 
 export const loginWithGoogle = async () => {

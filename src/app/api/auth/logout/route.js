@@ -1,6 +1,6 @@
 import { revalidatePath } from "next/cache"
 import { NextResponse } from "next/server"
-import createSupabase from "@/libs/server/supbase"
+import createSupabase from "@/libs/supabase"
 
 export async function POST(req) {
   const supabase = createSupabase()
@@ -12,7 +12,7 @@ export async function POST(req) {
     await supabase.auth.signOut()
   }
 
-  revalidatePath("/server", "layout")
+  revalidatePath("/", "layout")
   return NextResponse.redirect(new URL("/", req.url), {
     status: 302,
   })
