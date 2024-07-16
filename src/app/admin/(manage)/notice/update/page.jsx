@@ -1,15 +1,17 @@
 "use client"
 
-import { useState } from "react"
-import { useRouter } from "next/navigation"
+import { useEffect, useState } from "react"
+import { useRouter, useSearchParams } from "next/navigation"
 
 import Editor from "@/components/admin/Editor"
 
 import axiosInstance from "@/libs/axios"
 
 export default function AdminNoticeCreatePage() {
+  const id = useSearchParams().get("id")
   const router = useRouter()
   const [title, setTitle] = useState("")
+  const [content, setContent] = useState("")
 
   const handleUpdatePost = async (content = "") => {
     if(!title) {
@@ -26,6 +28,25 @@ export default function AdminNoticeCreatePage() {
       console.log(e)
     }
   }
+
+  useEffect(() => {
+    const fetchPostDetail = async (id) => {
+      if (!id) {
+        window.alert("게시글을 읽어올 수 없습니다.")
+        return
+      }
+
+      try {
+        const { data: post } = await axiosInstance.get(`/api/notice/${id}`)
+        setTitle(post.title)
+        setContent(post.content)
+      } catch (e) {
+        console.log(e)
+      }
+    }
+
+    fetchPostDetail(id)
+  }, [id])
 
   return (
     <>
@@ -46,7 +67,7 @@ export default function AdminNoticeCreatePage() {
               required
             />
           </div>
-          <Editor onClickCreate={handleUpdatePost} cancelHref="/admin/notice" />
+          <Editor defaultValue={content} onClickCreate={handleUpdatePost} cancelHref="/admin/notice" />
         </form>
       </section>
     </>

@@ -16,7 +16,7 @@ const ReactQuill = dynamic(
   },
 )
 
-export default function Editor({ onClickCreate, cancelHref = "#" }) {
+export default function Editor({ onClickCreate, cancelHref = "#", defaultValue = "" }) {
   const quillRef = useRef(false)
 
   return (
@@ -30,6 +30,7 @@ export default function Editor({ onClickCreate, cancelHref = "#" }) {
             [{ list: "ordered" }, { list: "bullet" }],
           ],
         }}
+        defaultValue={defaultValue}
       />
       <div className="space-x-5">
         <Link

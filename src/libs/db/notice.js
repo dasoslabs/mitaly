@@ -32,6 +32,28 @@ export async function getAllPosts({ page = 1, limit = 10 } = {}) {
     : []
 }
 
+export const getPostDetailById = async (id) => {
+  const supabase = createSupabase()
+
+  const { data: post, error } = await supabase
+    .from(TABLE_NAME)
+    .select(`
+      id,
+      title,
+      content,
+      author:author_id (is_admin)
+    `)
+    .eq('id', id)
+    .single()
+
+  return {
+    id: post.id,
+    title: post.title,
+    content: post.content,
+    isAdmin: post.author.is_admin,
+  }
+}
+
 export async function createPost({ title, content }) {
   const supabase = createSupabase()
   const {

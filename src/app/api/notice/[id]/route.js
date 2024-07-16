@@ -1,5 +1,19 @@
 import { NextResponse } from "next/server"
-import { deletePost } from "@/libs/db/notice"
+import { getPostDetailById ,deletePost } from "@/libs/db/notice"
+
+export async function GET(req, { params }) {
+  const { id } = params
+
+  try {
+    const post = await getPostDetailById(id)
+    return NextResponse.json(post, { status: 200 })
+  } catch (e) {
+    return NextResponse.json(
+      { message: "서버 오류가 발생했습니다." },
+      { status: 500 },
+    )
+  }
+}
 
 export async function DELETE(req, { params }) {
   const { id } = params
