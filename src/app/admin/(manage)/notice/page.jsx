@@ -7,7 +7,7 @@ export default async function AdminNoticePage() {
   const posts = await getAllPosts()
 
   return (
-    <div className="bg-admin-bg w-full border-r border-light-gray p-5 space-y-5">
+    <>
       <div className="flex justify-between items-center">
         <h2 className="font-semibold text-2xl">공지사항</h2>
         <Link
@@ -18,6 +18,6 @@ export default async function AdminNoticePage() {
         </Link>
       </div>
       <NoticeList list={posts} />
-    </div>
+    </>
   )
 }

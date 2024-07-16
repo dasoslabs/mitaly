@@ -28,7 +28,7 @@ export default function AdminNoticeCreatePage() {
   }
 
   return (
-    <div className="bg-admin-bg w-full border-r border-light-gray p-5 space-y-5">
+    <>
       <h2 className="font-semibold text-2xl">글쓰기</h2>
 
       <section className="bg-white p-5">
@@ -49,6 +49,6 @@ export default function AdminNoticeCreatePage() {
           <Editor onClickCreate={handleCreatePost} cancelHref="/admin/notice" />
         </form>
       </section>
-    </div>
+    </>
   )
 }
