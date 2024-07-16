@@ -22,7 +22,7 @@ export default function AdminSidebar() {
   const headerPathname = headersList.get("x-pathname") || ""
 
   return (
-    <nav className="w-52 min-h-[calc(100vh-80px)]">
+    <nav className="w-52 min-h-[calc(100vh-80px)] border-r border-light-gray">
       <ul>
         {menu.map((item, idx) => (
           <MenuItem
