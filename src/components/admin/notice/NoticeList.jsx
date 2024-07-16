@@ -24,7 +24,9 @@ function NoticeItem({ id, title, created_at }) {
   const router = useRouter()
   const handleDeleteNotice = async () => {
     if (confirm("삭제하시겠습니까?")) {
-      const { data: { success, message } } = await axiosInstance.delete(`/api/notice/${id}`)
+      const {
+        data: { success, message },
+      } = await axiosInstance.delete(`/api/notice/${id}`)
       if (!success) {
         window.alert(message)
         return
@@ -41,9 +43,7 @@ function NoticeItem({ id, title, created_at }) {
         <p className="w-2/12 text-[#999] lg:text-black">{created_at}</p>
       </div>
       <div className="w-2/12 flex justify-center space-x-2">
-        <Link href={{ pathname: "/admin/notice/update", query: id }}>
-          수정
-        </Link>
+        <Link href={{ pathname: "/admin/notice/update", query: id }}>수정</Link>
         <button onClick={handleDeleteNotice}>삭제</button>
       </div>
     </li>

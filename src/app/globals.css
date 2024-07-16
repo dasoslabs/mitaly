@@ -10,3 +10,13 @@
   -ms-overflow-style: none;
   scrollbar-width: none;
 }
+
+.ql-editor {
+  min-height: 320px;
+}
+
+@media (max-width: 640px) {
+  .ql-editor {
+    min-height: 240px;
+  }
+}
