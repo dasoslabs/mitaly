@@ -11,7 +11,7 @@ export default function MenuItem({ href, name, isCurrent }) {
       <button onClick={() => router.refresh(href)}>
         <Link
           href={href}
-          className={`block p-5 ${isCurrent ? "font-bold text-primary" : ""}`}
+          className={`block p-5 pl-0 ${isCurrent ? "font-bold text-primary" : ""}`}
         >
           {name}
         </Link>
