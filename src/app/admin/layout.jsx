@@ -1,6 +1,6 @@
 "use server"
 
-import AdminLogin from "@/components/admin/Login"
+import AdminLogin from "@/components/admin/AdminLogin"
 import createSupabase from "@/libs/supabase"
 
 export default async function AdminLayout({ children }) {
