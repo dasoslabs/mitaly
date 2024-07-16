@@ -2,7 +2,7 @@
 
 import { usePathname } from "next/navigation"
 import Link from "next/link"
-import { menu } from "@/app/community/data"
+import { menu } from "@/app/(homepage)/community/data"
 
 export default function CommunityPageLayout({ children }) {
   const pathname = usePathname()

@@ -2,7 +2,7 @@
 
 import { usePathname } from "next/navigation"
 import Link from "next/link"
-import { menu } from "@/app/store/data"
+import { menu } from "@/app/(homepage)/store/data"
 
 export default function StorePageLayout({ children }) {
   const pathname = usePathname()

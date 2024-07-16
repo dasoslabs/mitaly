@@ -1,4 +1,4 @@
-import { privacyPolicy } from "@/app/brand/data"
+import { privacyPolicy } from "@/app/(homepage)/brand/data"
 
 export default function PrivatePolicy() {
   return (
