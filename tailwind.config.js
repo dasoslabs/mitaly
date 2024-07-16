@@ -13,6 +13,7 @@ module.exports = {
         "light-gray": "#E6E6E6",
         "bg-gray": "#F7F7F7",
         red: "#FF1A40",
+        "admin-bg": "#F6F6F6",
       },
       maxWidth: {
         pc: "1440px",
