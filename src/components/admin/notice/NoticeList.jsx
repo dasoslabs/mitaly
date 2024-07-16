@@ -1,7 +1,10 @@
 "use client"
 
 import Link from "next/link"
+
+import axiosInstance from "@/libs/axios"
 import Pagination from "@/components/common/Pagination"
+import { useRouter } from "next/navigation"
 
 export default function NoticeList({ list = [] }) {
   return (
@@ -18,6 +21,18 @@ export default function NoticeList({ list = [] }) {
 }
 
 function NoticeItem({ id, title, created_at }) {
+  const router = useRouter()
+  const handleDeleteNotice = async () => {
+    if (confirm("삭제하시겠습니까?")) {
+      const { data: { success, message } } = await axiosInstance.delete(`/api/notice/${id}`)
+      if (!success) {
+        window.alert(message)
+        return
+      }
+      router.refresh()
+    }
+  }
+
   return (
     <li className="text-sm lg:text-base flex justify-between py-5 text-center border-t border-[#D9D9D9]">
       <p className="w-2/12">{id}</p>
@@ -29,9 +44,7 @@ function NoticeItem({ id, title, created_at }) {
         <Link href={{ pathname: "/admin/notice/update", query: id }}>
           수정
         </Link>
-        <form action={`/api/notice/${id}`} method="DELETE">
-          <button>삭제</button>
-        </form>
+        <button onClick={handleDeleteNotice}>삭제</button>
       </div>
     </li>
   )

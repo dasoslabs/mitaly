@@ -27,3 +27,36 @@ export async function getAllPosts({ page = 1, limit = 10 } = {}) {
     author: post.author.name,
   })) : []
 }
+
+export async function createPost({ title, content }) {
+  const supabase = createSupabase()
+  const { data: { user } } = await supabase.auth.getUser()
+  const { data: userData } = 
+    await supabaseClient
+      .from('users')
+      .select('id, nickname')
+      .eq('user_id', user?.id)
+      .single()
+
+  const { data: post } = 
+    await supabase
+      .from(TABLE_NAME)
+      .insert([
+        { title, content, author_id: userData?.id }
+      ])
+      .select()
+      .single();
+  
+  return post;
+}
+
+export async function deletePost(id) {
+  const supabase = createSupabase()
+
+  await supabase
+    .from(TABLE_NAME)
+    .delete()
+    .eq('id', id)
+
+  return true
+}
