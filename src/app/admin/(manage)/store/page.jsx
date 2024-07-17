@@ -1,8 +1,8 @@
 "use server"
 
-import Link from "next/link";
-import { getAllStores } from "@/libs/db/store";
-import StoreList from "@/components/admin/store/StoreList";
+import Link from "next/link"
+import { getAllStores } from "@/libs/db/store"
+import StoreList from "@/components/admin/store/StoreList"
 
 export default async function AdminStorePage() {
   const stores = await getAllStores()

@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server"
-import { getPostDetailById ,updatePost, deletePost } from "@/libs/db/notice"
+import { getPostDetailById, updatePost, deletePost } from "@/libs/db/notice"
 
 export async function GET(req, { params }) {
   const { id } = params
@@ -21,7 +21,7 @@ export async function PUT(req, { params }) {
 
   try {
     const isSuccess = await updatePost({ id, title, content })
-    
+
     if (!isSuccess) {
       return NextResponse.json(
         { success: false, message: "서버 오류가 발생했습니다." },

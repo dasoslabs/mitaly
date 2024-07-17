@@ -14,13 +14,15 @@ export default function AdminNoticeUpdatePage() {
   const [content, setContent] = useState("")
 
   const handleUpdatePost = async (content = "") => {
-    if(!title) {
+    if (!title) {
       return
     }
-    
+
     try {
-      const { data: { success, message } } = await axiosInstance.put(`/api/notice/${id}`, { title, content })
-      
+      const {
+        data: { success, message },
+      } = await axiosInstance.put(`/api/notice/${id}`, { title, content })
+
       if (!success) {
         window.alert(message)
         return
@@ -58,21 +60,25 @@ export default function AdminNoticeUpdatePage() {
       <h2 className="font-semibold text-2xl">글 수정</h2>
 
       <section className="bg-white p-5">
-        <form className="space-y-5" onSubmit={e => e.preventDefault()}>
+        <form className="space-y-5" onSubmit={(e) => e.preventDefault()}>
           <div className="flex flex-col space-y-2">
             <label>
               제목
               <span className="text-red ml-1">*</span>
             </label>
-            <input 
+            <input
               className="border border-stone-300 p-2 outline-none focus:border-black"
-              type="text" 
-              value={title} 
-              onChange={(e) => setTitle(e.target.value)} 
+              type="text"
+              value={title}
+              onChange={(e) => setTitle(e.target.value)}
               required
             />
           </div>
-          <Editor defaultValue={content} onClickCreate={handleUpdatePost} cancelHref="/admin/notice" />
+          <Editor
+            defaultValue={content}
+            onClickCreate={handleUpdatePost}
+            cancelHref="/admin/notice"
+          />
         </form>
       </section>
     </>

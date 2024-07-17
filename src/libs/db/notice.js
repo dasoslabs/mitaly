@@ -37,13 +37,15 @@ export const getPostDetailById = async (id) => {
 
   const { data: post, error } = await supabase
     .from(TABLE_NAME)
-    .select(`
+    .select(
+      `
       id,
       title,
       content,
       author:author_id (is_admin)
-    `)
-    .eq('id', id)
+    `,
+    )
+    .eq("id", id)
     .single()
 
   return {
@@ -77,10 +79,7 @@ export async function createPost({ title, content }) {
 export async function updatePost({ id, title, content }) {
   const supabase = createSupabase()
 
-  await supabase
-    .from(TABLE_NAME)
-    .update({ title, content  })
-    .eq('id', id)
+  await supabase.from(TABLE_NAME).update({ title, content }).eq("id", id)
 
   return true
 }

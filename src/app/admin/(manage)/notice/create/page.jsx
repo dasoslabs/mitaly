@@ -12,12 +12,15 @@ export default function AdminNoticeCreatePage() {
   const [title, setTitle] = useState("")
 
   const handleCreatePost = async (content = "") => {
-    if(!title) {
+    if (!title) {
       return
     }
-    
+
     try {
-      const { data: post } = await axiosInstance.post("/api/notice", { title, content })
+      const { data: post } = await axiosInstance.post("/api/notice", {
+        title,
+        content,
+      })
 
       router.replace("/admin/notice")
       router.refresh("/admin/notice")
@@ -32,17 +35,17 @@ export default function AdminNoticeCreatePage() {
       <h2 className="font-semibold text-2xl">새로운 글쓰기</h2>
 
       <section className="bg-white p-5">
-        <form className="space-y-5" onSubmit={e => e.preventDefault()}>
+        <form className="space-y-5" onSubmit={(e) => e.preventDefault()}>
           <div className="flex flex-col space-y-2">
             <label>
               제목
               <span className="text-red ml-1">*</span>
             </label>
-            <input 
+            <input
               className="border border-stone-300 p-2 outline-none focus:border-black"
-              type="text" 
-              value={title} 
-              onChange={(e) => setTitle(e.target.value)} 
+              type="text"
+              value={title}
+              onChange={(e) => setTitle(e.target.value)}
               required
             />
           </div>

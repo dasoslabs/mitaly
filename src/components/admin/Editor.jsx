@@ -16,18 +16,22 @@ const ReactQuill = dynamic(
   },
 )
 
-export default function Editor({ onClickCreate, cancelHref = "#", defaultValue = "" }) {
+export default function Editor({
+  onClickCreate,
+  cancelHref = "#",
+  defaultValue = "",
+}) {
   const quillRef = useRef(false)
   useEffect(() => {
     if (quillRef.current) {
-      const editor = quillRef.current.getEditor();
-      const currentContent = editor.root.innerHTML;
+      const editor = quillRef.current.getEditor()
+      const currentContent = editor.root.innerHTML
 
       if (currentContent !== defaultValue) {
-        editor.root.innerHTML = defaultValue;
+        editor.root.innerHTML = defaultValue
       }
     }
-  }, [defaultValue]);
+  }, [defaultValue])
 
   return (
     <>
@@ -51,9 +55,7 @@ export default function Editor({ onClickCreate, cancelHref = "#", defaultValue =
         </Link>
         <button
           className="bg-black border border-black text-white py-2 px-5"
-          onClick={() =>
-            onClickCreate(quillRef?.current?.value ?? null)
-          }
+          onClick={() => onClickCreate(quillRef?.current?.value ?? null)}
         >
           발행
         </button>
