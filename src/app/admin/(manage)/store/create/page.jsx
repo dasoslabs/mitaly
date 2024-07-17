@@ -175,7 +175,7 @@ export default function AdminNoticeCreatePage() {
 
           <div className="flex space-x-5 justify-end">
             <Link
-              href="admin/store"
+              href="/admin/store"
               className="inline-block border border-stone-300 bg-white py-2 px-5"
             >
               취소
