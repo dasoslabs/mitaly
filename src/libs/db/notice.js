@@ -74,6 +74,17 @@ export async function createPost({ title, content }) {
   return post
 }
 
+export async function updatePost({ id, title, content }) {
+  const supabase = createSupabase()
+
+  await supabase
+    .from(TABLE_NAME)
+    .update({ title, content  })
+    .eq('id', id)
+
+  return true
+}
+
 export async function deletePost(id) {
   const supabase = createSupabase()
 

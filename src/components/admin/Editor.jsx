@@ -1,6 +1,6 @@
 import dynamic from "next/dynamic"
 import Link from "next/link"
-import { useRef } from "react"
+import { useRef, useEffect } from "react"
 import "react-quill/dist/quill.snow.css"
 
 const ReactQuill = dynamic(
@@ -18,6 +18,16 @@ const ReactQuill = dynamic(
 
 export default function Editor({ onClickCreate, cancelHref = "#", defaultValue = "" }) {
   const quillRef = useRef(false)
+  useEffect(() => {
+    if (quillRef.current) {
+      const editor = quillRef.current.getEditor();
+      const currentContent = editor.root.innerHTML;
+
+      if (currentContent !== defaultValue) {
+        editor.root.innerHTML = defaultValue;
+      }
+    }
+  }, [defaultValue]);
 
   return (
     <>

@@ -7,7 +7,7 @@ import Editor from "@/components/admin/Editor"
 
 import axiosInstance from "@/libs/axios"
 
-export default function AdminNoticeCreatePage() {
+export default function AdminNoticeUpdatePage() {
   const id = useSearchParams().get("id")
   const router = useRouter()
   const [title, setTitle] = useState("")
@@ -19,7 +19,12 @@ export default function AdminNoticeCreatePage() {
     }
     
     try {
-      const { data: post } = await axiosInstance.post("/api/notice", { title, content })
+      const { data: { success, message } } = await axiosInstance.put(`/api/notice/${id}`, { title, content })
+      
+      if (!success) {
+        window.alert(message)
+        return
+      }
 
       router.replace("/admin/notice")
       router.refresh("/admin/notice")
