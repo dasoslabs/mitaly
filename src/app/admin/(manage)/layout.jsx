@@ -7,7 +7,9 @@ export default function AdminManageLayout({ children }) {
       <AdminHeader />
       <main className="mt-20 flex max-w-screen-lg m-auto">
         <AdminSidebar />
-        {children}
+        <div className="bg-admin-bg w-full border-r border-light-gray p-5 space-y-5">
+          {children}
+        </div>
       </main>
     </>
   )
