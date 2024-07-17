@@ -31,18 +31,22 @@ export async function getAllStores({ page = 1, limit = 10 } = {}) {
     : []
 }
 
-/**
- * 
-    region TEXT NOT NULL, -- 지역
-    name TEXT NOT NULL, -- 매장명
-    address TEXT NOT NULL, -- 도로명주소 (카카오맵 표시)
-    address_detail TEXT NOT NULL, -- 동호수 등 상세 주소
-    contact TEXT, -- 전화
-    business_hours TEXT NOT NULL, -- 영업 시간
-    break_time TEXT, -- 브레이크 타임
-    holidays TEXT, -- 휴일
-    options store_options[] DEFAULT '{}', -- 옵션
-    image_url TEXT, -- 매장 이미지 URL
-    image_name TEXT, --매장 이미지 이름
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL
- */
+export async function createStore({ region = "", name = "", address = "", address_detail = "", contact = "", business_hours = "", break_time = null, holidays = null, options = [], image_file = "" } = {}) {
+  const supabase = createSupabase()
+  const {
+    data: { user },
+  } = await supabase.auth.getUser()
+  const { data: userData } = await supabase
+    .from("users")
+    .select("id, nickname")
+    .eq("user_id", user?.id)
+    .single()
+
+  const { data: store, error } = await supabase
+    .from(TABLE_NAME)
+    .insert([ { region, name, address, address_detail, contact, business_hours, break_time, holidays, options, author_id: userData?.id }])
+    .select()
+    .single()
+
+  return store
+}

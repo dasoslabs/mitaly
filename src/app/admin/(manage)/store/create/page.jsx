@@ -9,26 +9,21 @@ import Link from "next/link"
 
 const options = [
   { value: "wifi", name: "와이파이" },
-  { value: "takeout", name: "테이크아웃" },
+  { value: "takeout", name: "포장" },
   { value: "delivery", name: "배달" },
   { value: "event", name: "이벤트" },
   { value: "parking", name: "주차" },
 ]
 
-export default function AdminNoticeCreatePage() {
+export default function AdminStoreCreatePage() {
   const router = useRouter()
   const [state, dispatch] = useReducer(reducer, initialState)
 
-  const handleCreatePost = async (content = "") => {
-    if (!title) {
-      return
-    }
+  const handleSubmitCreateStore = async (e) => {
+    e.preventDefault()
 
     try {
-      const { data: post } = await axiosInstance.post("/api/store", {
-        title,
-        content,
-      })
+      const { data } = await axiosInstance.post("/api/store", state)
 
       router.replace("/admin/store")
       router.refresh("/admin/store")
@@ -43,7 +38,23 @@ export default function AdminNoticeCreatePage() {
       <h2 className="font-semibold text-2xl">매장 신규 등록</h2>
 
       <section className="bg-white p-5">
-        <form className="space-y-5" onSubmit={(e) => e.preventDefault()}>
+        <form className="space-y-5" onSubmit={handleSubmitCreateStore}>
+          <div className="flex flex-col space-y-2">
+            <label>
+              지역
+              <span className="text-red ml-1">*</span>
+            </label>
+            <input
+              className="border border-stone-300 p-2 outline-none focus:border-black"
+              required
+              type="text"
+              value={state.region}
+              onChange={(e) =>
+                dispatch({ type: "SET_REGION", payload: e.target.value })
+              }
+            />
+          </div>
+
           <div className="flex flex-col space-y-2">
             <label>
               매장명
@@ -51,14 +62,15 @@ export default function AdminNoticeCreatePage() {
             </label>
             <input
               className="border border-stone-300 p-2 outline-none focus:border-black"
+              required
               type="text"
               value={state.name}
               onChange={(e) =>
                 dispatch({ type: "SET_NAME", payload: e.target.value })
               }
-              required
             />
           </div>
+
 
           <div className="flex flex-col space-y-2">
             <label>
@@ -66,6 +78,7 @@ export default function AdminNoticeCreatePage() {
             </label>
             <input
               className="border border-stone-300 p-2 outline-none focus:border-black"
+              required
               type="text"
               value={state.address}
               onChange={(e) =>
@@ -80,6 +93,7 @@ export default function AdminNoticeCreatePage() {
             </label>
             <input
               className="border border-stone-300 p-2 outline-none focus:border-black"
+              required
               type="text"
               value={state.addressDetail}
               onChange={(e) =>
@@ -97,6 +111,7 @@ export default function AdminNoticeCreatePage() {
             </label>
             <input
               className="border border-stone-300 p-2 outline-none focus:border-black"
+              required
               type="text"
               value={state.contact}
               onChange={(e) =>
@@ -111,6 +126,7 @@ export default function AdminNoticeCreatePage() {
             </label>
             <input
               className="border border-stone-300 p-2 outline-none focus:border-black"
+              required
               type="text"
               value={state.businessHours}
               onChange={(e) =>
@@ -147,19 +163,21 @@ export default function AdminNoticeCreatePage() {
           </div>
 
           <div className="flex flex-col space-y-2">
-            <label>옵션</label>
-            {options.map(({ name, value }) => (
-              <label key={value}>
-                <input
-                  type="checkbox"
-                  checked={state.options.includes(value)}
-                  onChange={() =>
-                    dispatch({ type: "TOGGLE_OPTION", payload: value })
-                  }
-                />
-                {name}
-              </label>
-            ))}
+            <p>옵션</p>
+            <div className="flex space-x-5">
+              {options.map(({ name, value }) => (
+                <label key={value} className="space-x-1">
+                  <input
+                    type="checkbox"
+                    checked={state.options.includes(value)}
+                    onChange={() =>
+                      dispatch({ type: "TOGGLE_OPTION", payload: value })
+                    }
+                  />
+                  <span>{name}</span>
+                </label>
+              ))}
+            </div>
           </div>
 
           <div className="flex flex-col space-y-2">
@@ -182,7 +200,6 @@ export default function AdminNoticeCreatePage() {
             </Link>
             <button
               className="bg-black border border-black text-white py-2 px-5"
-              // onClick={() => onClickCreate(quillRef?.current?.value ?? null)}
             >
               발행
             </button>

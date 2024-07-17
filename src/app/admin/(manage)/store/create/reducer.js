@@ -1,27 +1,30 @@
 export const initialState = {
+  region: "",
   name: "",
   address: "",
-  addressDetail: "",
+  address_detail: "",
   contact: "",
-  businessHours: "",
+  business_hours: "",
   breakTime: "",
   holidays: "",
   options: [],
-  imageFile: "",
+  image_file: "",
 }
 
 export const reducer = (state, action) => {
   switch (action.type) {
+    case "SET_REGION":
+      return { ...state, region: action.payload }
     case "SET_NAME":
       return { ...state, name: action.payload }
     case "SET_ADDRESS":
       return { ...state, address: action.payload }
     case "SET_ADDRESS_DETAIL":
-      return { ...state, addressDetail: action.payload }
+      return { ...state, address_detail: action.payload }
     case "SET_CONTACT":
       return { ...state, contact: action.payload }
     case "SET_BUSINESS_HOURS":
-      return { ...state, businessHours: action.payload }
+      return { ...state, business_hours: action.payload }
     case "SET_BREAK_TIME":
       return { ...state, breakTime: action.payload }
     case "SET_HOLIDAYS":
@@ -32,7 +35,7 @@ export const reducer = (state, action) => {
         : [...state.options, action.payload]
       return { ...state, options }
     case "SET_IMAGE_FILE":
-      return { ...state, imageFile: action.payload }
+      return { ...state, image_file: action.payload }
     default:
       return state
   }
