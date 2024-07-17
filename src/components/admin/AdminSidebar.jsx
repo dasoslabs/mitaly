@@ -27,7 +27,7 @@ export default function AdminSidebar() {
         {menu.map((item, idx) => (
           <MenuItem
             key={item.name + idx}
-            isCurrent={headerPathname === item.href}
+            isCurrent={headerPathname.includes(item.href)}
             {...item}
           />
         ))}
