@@ -23,7 +23,17 @@ export default function AdminStoreCreatePage() {
     e.preventDefault()
 
     try {
-      const { data } = await axiosInstance.post("/api/store", state)
+      const form = new FormData()
+      for (let key in state) {
+        if (state[key]) {
+          form.append(key, state[key])
+        }
+      }
+      const { data } = await axiosInstance.post("/api/store", state, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      })
 
       router.replace("/admin/store")
       router.refresh("/admin/store")
@@ -180,7 +190,7 @@ export default function AdminStoreCreatePage() {
           </div>
 
           <div className="flex flex-col space-y-2">
-            <label>이미지 파일</label>
+            <label>매장 사진</label>
             <input
               className="border border-stone-300 p-2 outline-none focus:border-black"
               type="file"

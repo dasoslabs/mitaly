@@ -2,10 +2,10 @@ import { NextResponse } from "next/server"
 import { createStore } from "@/libs/db/store"
 
 export async function POST(req) {
-  const body = await req.json()
+  const formData = await req.formData()
 
   try {
-    const store = await createStore(body)
+    const store = await createStore(formData)
 
     return NextResponse.json(store, { status: 201 })
   } catch (e) {
