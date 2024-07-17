@@ -31,7 +31,18 @@ export async function getAllStores({ page = 1, limit = 10 } = {}) {
     : []
 }
 
-export async function createStore({ region = "", name = "", address = "", address_detail = "", contact = "", business_hours = "", break_time = null, holidays = null, options = [], image_file = "" } = {}) {
+export async function createStore({
+  region = "",
+  name = "",
+  address = "",
+  address_detail = "",
+  contact = "",
+  business_hours = "",
+  break_time = null,
+  holidays = null,
+  options = [],
+  image_file = "",
+} = {}) {
   const supabase = createSupabase()
   const {
     data: { user },
@@ -44,7 +55,20 @@ export async function createStore({ region = "", name = "", address = "", addres
 
   const { data: store, error } = await supabase
     .from(TABLE_NAME)
-    .insert([ { region, name, address, address_detail, contact, business_hours, break_time, holidays, options, author_id: userData?.id }])
+    .insert([
+      {
+        region,
+        name,
+        address,
+        address_detail,
+        contact,
+        business_hours,
+        break_time,
+        holidays,
+        options,
+        author_id: userData?.id,
+      },
+    ])
     .select()
     .single()
 

@@ -71,7 +71,6 @@ export default function AdminStoreCreatePage() {
             />
           </div>
 
-
           <div className="flex flex-col space-y-2">
             <label>
               주소<span className="text-red ml-1">*</span>
@@ -198,9 +197,7 @@ export default function AdminStoreCreatePage() {
             >
               취소
             </Link>
-            <button
-              className="bg-black border border-black text-white py-2 px-5"
-            >
+            <button className="bg-black border border-black text-white py-2 px-5">
               발행
             </button>
           </div>
