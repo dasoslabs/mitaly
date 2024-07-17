@@ -46,7 +46,7 @@ export default function Editor({
         }}
         defaultValue={defaultValue}
       />
-      <div className="space-x-5">
+      <div className="flex space-x-5 justify-end">
         <Link
           href={cancelHref}
           className="inline-block border border-stone-300 bg-white py-2 px-5"
