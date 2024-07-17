@@ -74,3 +74,11 @@ export async function createStore({
 
   return store
 }
+
+export async function deleteStore(id) {
+  const supabase = createSupabase()
+
+  await supabase.from(TABLE_NAME).delete().eq("id", id)
+
+  return true
+}
