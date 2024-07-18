@@ -6,21 +6,25 @@ import axiosInstance from "@/libs/axios"
 import Pagination from "@/components/common/Pagination"
 import { useRouter } from "next/navigation"
 
-export default function StoreList({ list = [] }) {
+export default function StoreList({ list = [], isAdmin = false }) {
   return (
     <section className="bg-white p-5">
       <div className="flex justify-between items-center pb-5 font-bold text-center">
         <p className="w-2/12">ID</p>
         <p className="w-8/12">매장명</p>
         <p className="w-2/12">등록일</p>
-        <p className="w-2/12">관리</p>
+        {
+          isAdmin && (
+            <p className="w-2/12">관리</p>
+          )
+        }
       </div>
-      <Pagination items={list} ListItem={StoreItem} />
+      <Pagination items={list} ListItem={({...props}) => <StoreItem isAdmin={isAdmin} {...props} />} />
     </section>
   )
 }
 
-function StoreItem({ id, name, created_at }) {
+function StoreItem({ id, name, created_at, isAdmin = false }) {
   const router = useRouter()
   const handleDeleteStore = async () => {
     if (confirm("삭제하시겠습니까?")) {
@@ -42,12 +46,16 @@ function StoreItem({ id, name, created_at }) {
         <p className="w-10/12 text-start mb-1 lg:mb-0">{name}</p>
         <p className="w-2/12 text-[#999] lg:text-black">{created_at}</p>
       </div>
-      <div className="w-2/12 flex justify-center space-x-2">
-        <Link href={{ pathname: "/admin/store/update", query: { id } }}>
-          수정
-        </Link>
-        <button onClick={handleDeleteStore}>삭제</button>
-      </div>
+      {
+        isAdmin && (
+          <div className="w-2/12 flex justify-center space-x-2">
+            <Link href={{ pathname: "/admin/store/update", query: { id } }}>
+              수정
+            </Link>
+            <button onClick={handleDeleteStore}>삭제</button>
+          </div>
+        )
+      }
     </li>
   )
 }

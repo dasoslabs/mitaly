@@ -10,7 +10,7 @@ export async function createUser() {
 
   const { data: userData } = await supabase
     .from("users")
-    .select("id, nickname")
+    .select("id, name")
     .eq("user_id", user?.id)
     .single()
 
@@ -22,4 +22,19 @@ export async function createUser() {
       .select()
       .single()
   }
+}
+
+export async function getIsAdmin() {
+  const supabase = createSupabase()
+  const {
+    data: { user },
+  } = await supabase.auth.getUser()
+
+  const { data: userData } = await supabase
+    .from("users")
+    .select("id, is_admin")
+    .eq("user_id", user?.id)
+    .single()
+
+  return userData?.is_admin === true
 }

@@ -4,7 +4,7 @@ import axiosInstance from "@/libs/axios"
 import Pagination from "@/components/common/Pagination"
 import { useRouter } from "next/navigation"
 
-export default function ContactList({ list = [] }) {
+export default function ContactList({ list = [], isAdmin = false }) {
   return (
     <section className="bg-white p-5">
       <div className="flex justify-between items-center pb-5 font-bold text-center">
@@ -12,7 +12,11 @@ export default function ContactList({ list = [] }) {
         <p className="w-3/12">이름</p>
         <p className="w-3/12">연락처</p>
         <p className="w-3/12">접수일</p>
-        <p className="w-1/12">관리</p>
+        {
+          isAdmin && (
+            <p className="w-1/12">관리</p>
+          )
+        }
       </div>
       <Pagination items={list} ListItem={ContactItem} />
     </section>
