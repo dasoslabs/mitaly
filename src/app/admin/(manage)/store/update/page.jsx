@@ -1,11 +1,12 @@
 "use client"
 
-import { useEffect, useReducer } from "react"
+import { useEffect, useReducer, useState } from "react"
 import { useRouter, useSearchParams } from "next/navigation"
 
 import { initialState, reducer } from "./reducer"
 import axiosInstance from "@/libs/axios"
 import Link from "next/link"
+import Image from "next/image"
 
 const options = [
   { value: "wifi", name: "와이파이" },
@@ -19,6 +20,7 @@ export default function AdminStoreUpdatePage() {
   const id = useSearchParams().get("id")
   const router = useRouter()
   const [state, dispatch] = useReducer(reducer, initialState)
+  const [imageUrl, setImageUrl] = useState("")
 
   const handleSubmitUpdateStore = async (e) => {
     e.preventDefault()
@@ -55,8 +57,25 @@ export default function AdminStoreUpdatePage() {
 
       try {
         const { data: store } = await axiosInstance.get(`/api/store/${id}`)
-        
+        const newState = {
+          region: store.region,
+          name: store.name,
+          address: store.address,
+          address_detail: store.address_detail,
+          contact: store.contact ?? "",
+          business_hours: store.business_hours ?? "",
+          breakTime: store.breakTime ?? "",
+          holidays: store.holidays ?? "",
+          options: store.options ?? [],
+        }
 
+        console.log(store)
+
+        dispatch({ type: "SET_STATE", payload: newState })
+
+        if (store.image_url) {
+          setImageUrl(store.image_url)
+        }
       } catch (e) {
         console.log(e)
       }
@@ -126,7 +145,7 @@ export default function AdminStoreUpdatePage() {
               className="border border-stone-300 p-2 outline-none focus:border-black"
               required
               type="text"
-              value={state.addressDetail}
+              value={state.address_detail}
               onChange={(e) =>
                 dispatch({
                   type: "SET_ADDRESS_DETAIL",
@@ -137,9 +156,7 @@ export default function AdminStoreUpdatePage() {
           </div>
 
           <div className="flex flex-col space-y-2">
-            <label>
-              연락처
-            </label>
+            <label>연락처</label>
             <input
               className="border border-stone-300 p-2 outline-none focus:border-black"
               type="text"
@@ -158,7 +175,7 @@ export default function AdminStoreUpdatePage() {
               className="border border-stone-300 p-2 outline-none focus:border-black"
               required
               type="text"
-              value={state.businessHours}
+              value={state.business_hours}
               onChange={(e) =>
                 dispatch({
                   type: "SET_BUSINESS_HOURS",
@@ -212,6 +229,17 @@ export default function AdminStoreUpdatePage() {
 
           <div className="flex flex-col space-y-2">
             <label>매장 사진</label>
+            {imageUrl && (
+              <div className="relative w-80 h-52">
+                <Image
+                  src={imageUrl}
+                  alt="매장 사진"
+                  fill
+                  className="object-fit"
+                  sizes=""
+                />
+              </div>
+            )}
             <input
               className="border border-stone-300 p-2 outline-none focus:border-black"
               type="file"

@@ -36,6 +36,8 @@ export const reducer = (state, action) => {
       return { ...state, options }
     case "SET_IMAGE_FILE":
       return { ...state, image_file: action.payload }
+    case "SET_STATE":
+      return { ...state, ...action.payload }
     default:
       return state
   }

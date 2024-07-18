@@ -115,9 +115,7 @@ export default function AdminStoreCreatePage() {
           </div>
 
           <div className="flex flex-col space-y-2">
-            <label>
-              연락처
-            </label>
+            <label>연락처</label>
             <input
               className="border border-stone-300 p-2 outline-none focus:border-black"
               type="text"
