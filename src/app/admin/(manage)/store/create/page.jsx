@@ -104,7 +104,7 @@ export default function AdminStoreCreatePage() {
               className="border border-stone-300 p-2 outline-none focus:border-black"
               required
               type="text"
-              value={state.addressDetail}
+              value={state.address_detail}
               onChange={(e) =>
                 dispatch({
                   type: "SET_ADDRESS_DETAIL",
@@ -134,7 +134,7 @@ export default function AdminStoreCreatePage() {
               className="border border-stone-300 p-2 outline-none focus:border-black"
               required
               type="text"
-              value={state.businessHours}
+              value={state.business_hours}
               onChange={(e) =>
                 dispatch({
                   type: "SET_BUSINESS_HOURS",
@@ -149,7 +149,7 @@ export default function AdminStoreCreatePage() {
             <input
               className="border border-stone-300 p-2 outline-none focus:border-black"
               type="text"
-              value={state.breakTime}
+              value={state.break_time}
               onChange={(e) =>
                 dispatch({ type: "SET_BREAK_TIME", payload: e.target.value })
               }

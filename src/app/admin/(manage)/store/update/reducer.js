@@ -5,7 +5,7 @@ export const initialState = {
   address_detail: "",
   contact: "",
   business_hours: "",
-  breakTime: "",
+  break_time: "",
   holidays: "",
   options: [],
   image_file: "",
@@ -26,7 +26,7 @@ export const reducer = (state, action) => {
     case "SET_BUSINESS_HOURS":
       return { ...state, business_hours: action.payload }
     case "SET_BREAK_TIME":
-      return { ...state, breakTime: action.payload }
+      return { ...state, break_time: action.payload }
     case "SET_HOLIDAYS":
       return { ...state, holidays: action.payload }
     case "TOGGLE_OPTION":
