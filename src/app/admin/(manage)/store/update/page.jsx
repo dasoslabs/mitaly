@@ -29,16 +29,26 @@ export default function AdminStoreUpdatePage() {
       const form = new FormData()
       for (let key in state) {
         if (state[key]) {
-          form.append(key, state[key])
+          if (key === "options") {
+            state[key].forEach((option) => {
+              form.append(key, option)
+            })
+          } else {
+            form.append(key, state[key])
+          }
         }
       }
-      console.log(form)
-      return
-      const { data } = await axiosInstance.post("/api/store", state, {
+
+      const { data: { success, message } } = await axiosInstance.put(`/api/store/${id}`, form, {
         headers: {
           "Content-Type": "multipart/form-data",
         },
       })
+
+      if (!success) {
+        window.alert(message)
+        return
+      }
 
       router.replace("/admin/store")
       router.refresh("/admin/store")
