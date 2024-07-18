@@ -64,14 +64,12 @@ export default function AdminStoreUpdatePage() {
           address_detail: store.address_detail,
           contact: store.contact ?? "",
           business_hours: store.business_hours ?? "",
-          breakTime: store.breakTime ?? "",
+          break_time: store.break_time ?? "",
           holidays: store.holidays ?? "",
           options: store.options ?? [],
         }
 
-        console.log(store)
-
-        dispatch({ type: "SET_STATE", payload: newState })
+        dispatch({ type: "SET_STATE", payload: newState });
 
         if (store.image_url) {
           setImageUrl(store.image_url)
@@ -156,7 +154,9 @@ export default function AdminStoreUpdatePage() {
           </div>
 
           <div className="flex flex-col space-y-2">
-            <label>연락처</label>
+            <label>
+              연락처
+            </label>
             <input
               className="border border-stone-300 p-2 outline-none focus:border-black"
               type="text"
@@ -229,17 +229,13 @@ export default function AdminStoreUpdatePage() {
 
           <div className="flex flex-col space-y-2">
             <label>매장 사진</label>
-            {imageUrl && (
-              <div className="relative w-80 h-52">
-                <Image
-                  src={imageUrl}
-                  alt="매장 사진"
-                  fill
-                  className="object-fit"
-                  sizes=""
-                />
-              </div>
-            )}
+            {
+              imageUrl && (
+                <div className="relative w-80 h-52">
+                  <Image src={imageUrl} alt="매장 사진" fill className="object-fit" sizes="" />
+                </div>
+              )
+            }
             <input
               className="border border-stone-300 p-2 outline-none focus:border-black"
               type="file"
