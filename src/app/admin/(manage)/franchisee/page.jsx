@@ -1,10 +1,10 @@
 "use server"
 
-// import { getAllStores } from "@/libs/db/store"
-import StoreList from "@/components/admin/store/StoreList"
+import { getAllContactList } from "@/libs/db/franchisee"
+import ContactList from "@/components/admin/franchisee/ContactList"
 
 export default async function AdminFranchiseePage() {
-  // const stores = await getAllStores()
+  const list = await getAllContactList()
 
   return (
     <>
@@ -13,7 +13,7 @@ export default async function AdminFranchiseePage() {
       </section>
 
       <section>
-        {/* <StoreList list={stores} /> */}
+        <ContactList list={list} />
       </section>
     </>
   )
