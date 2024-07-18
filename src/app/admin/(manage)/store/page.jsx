@@ -10,7 +10,7 @@ export default async function AdminStorePage() {
   return (
     <>
       <section>
-        <div className="flex justify-between items-center">
+        <div className="flex justify-between items-start">
           <h2 className="font-semibold text-2xl">매장관리</h2>
           <Link
             href="/admin/store/create"
