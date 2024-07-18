@@ -26,10 +26,17 @@ export default function AdminStoreCreatePage() {
       const form = new FormData()
       for (let key in state) {
         if (state[key]) {
-          form.append(key, state[key])
+          if (key === "options") {
+            state[key].forEach((option) => {
+              form.append(key, option)
+            })
+          } else {
+            form.append(key, state[key])
+          }
         }
       }
-      const { data } = await axiosInstance.post("/api/store", state, {
+      
+      const { data } = await axiosInstance.post("/api/store", form, {
         headers: {
           "Content-Type": "multipart/form-data",
         },

@@ -83,7 +83,7 @@ export async function createStore(formData) {
   const business_hours = formData.get("business_hours")
   const break_time = formData.get("break_time") ?? null
   const holidays = formData.get("holidays") ?? null
-  const options = formData.getAll("options") ?? null
+  const options = formData.getAll("options")
   const image_file = formData.get("image_file") ?? null
 
   const {
