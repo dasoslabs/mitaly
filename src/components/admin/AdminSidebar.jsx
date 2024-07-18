@@ -12,7 +12,7 @@ const menu = [
     href: "/admin/store",
   },
   {
-    name: "가맹상담",
+    name: "가맹문의",
     href: "/admin/franchisee",
   },
 ]
