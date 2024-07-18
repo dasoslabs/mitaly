@@ -1,7 +1,7 @@
 "use client"
 
-import { useReducer } from "react"
-import { useRouter } from "next/navigation"
+import { useEffect, useReducer } from "react"
+import { useRouter, useSearchParams } from "next/navigation"
 
 import { initialState, reducer } from "./reducer"
 import axiosInstance from "@/libs/axios"
@@ -15,11 +15,12 @@ const options = [
   { value: "parking", name: "주차" },
 ]
 
-export default function AdminStoreCreatePage() {
+export default function AdminStoreUpdatePage() {
+  const id = useSearchParams().get("id")
   const router = useRouter()
   const [state, dispatch] = useReducer(reducer, initialState)
 
-  const handleSubmitCreateStore = async (e) => {
+  const handleSubmitUpdateStore = async (e) => {
     e.preventDefault()
 
     try {
@@ -29,6 +30,8 @@ export default function AdminStoreCreatePage() {
           form.append(key, state[key])
         }
       }
+      console.log(form)
+      return
       const { data } = await axiosInstance.post("/api/store", state, {
         headers: {
           "Content-Type": "multipart/form-data",
@@ -43,12 +46,31 @@ export default function AdminStoreCreatePage() {
     }
   }
 
+  useEffect(() => {
+    const fetchPostDetail = async (id) => {
+      if (!id) {
+        window.alert("게시글을 읽어올 수 없습니다.")
+        return
+      }
+
+      try {
+        const { data: store } = await axiosInstance.get(`/api/store/${id}`)
+        
+
+      } catch (e) {
+        console.log(e)
+      }
+    }
+
+    fetchPostDetail(id)
+  }, [id])
+
   return (
     <>
-      <h2 className="font-semibold text-2xl">매장 신규 등록</h2>
+      <h2 className="font-semibold text-2xl">매장 정보 수정</h2>
 
       <section className="bg-white p-5">
-        <form className="space-y-5" onSubmit={handleSubmitCreateStore}>
+        <form className="space-y-5" onSubmit={handleSubmitUpdateStore}>
           <div className="flex flex-col space-y-2">
             <label>
               지역

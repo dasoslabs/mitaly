@@ -1,4 +1,3 @@
-import { form } from "@/app/(homepage)/brand/data"
 import createSupabase from "../supabase"
 import { formatTimestampToKRDate } from "../utils/time"
 
@@ -33,6 +32,44 @@ export async function getAllStores({ page = 1, limit = 10 } = {}) {
     : []
 }
 
+export const getStoreDetailById = async (id) => {
+  const supabase = createSupabase()
+
+  const { data: store, error } = await supabase
+    .from(TABLE_NAME)
+    .select(
+      `
+      id,
+      region,
+      name,
+      address,
+      address_detail,
+      break_time,
+      holidays,
+      options,
+      image_url,
+      image_name,
+      author:author_id (is_admin)
+    `,
+    )
+    .eq("id", id)
+    .single()
+
+  return {
+    id: store.id,
+    region: store.region,
+    name: store.name,
+    address: store.address,
+    address_detail: store.address_detail,
+    break_time: store.break_time,
+    holidays: store.holidays,
+    options: store.options,
+    image_url: store.image_url,
+    image_name: store.image_name,
+    isAdmin: store.author.is_admin,
+  }
+}
+
 export async function createStore(formData) {
   const supabase = createSupabase()
 
@@ -44,7 +81,7 @@ export async function createStore(formData) {
   const business_hours = formData.get("business_hours")
   const break_time = formData.get("break_time") ?? null
   const holidays = formData.get("holidays") ?? null
-  const options = Array.from(formData.getAll("options")) ?? null
+  const options = formData.getAll("options") ?? null
   const image_file = formData.get("image_file") ?? null
 
   const {
