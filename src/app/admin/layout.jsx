@@ -1,7 +1,8 @@
 "use server"
 
-import AdminLogin from "@/components/admin/AdminLogin"
 import createSupabase from "@/libs/supabase"
+import AdminLogin from "@/components/admin/auth/AdminLogin"
+import AdminPendingRegister from "@/components/admin/auth/AdminPendingRegister"
 
 export default async function AdminLayout({ children }) {
   const supabase = createSupabase()
@@ -9,5 +10,19 @@ export default async function AdminLayout({ children }) {
     data: { user },
   } = await supabase.auth.getUser()
 
-  return user ? children : <AdminLogin>로그인이 필요합니다.</AdminLogin>
+  if (user === null) {
+    return <AdminLogin />
+  }
+
+  const { data: userData } = await supabase
+    .from("users")
+    .select("name, is_approved")
+    .eq("user_id", user?.id)
+    .single()
+  
+  if (userData.is_approved === false) {
+    return <AdminPendingRegister userName={userData.name} />
+  }
+
+  return children
 }

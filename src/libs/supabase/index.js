@@ -1,7 +1,7 @@
 import { createServerClient } from "@supabase/ssr"
 import { cookies } from "next/headers"
 
-// 서버에서 실행
+// 서버 전용
 export default function createSupabase() {
   const cookieStore = cookies()
 
