@@ -1,5 +1,6 @@
 "use client"
 
+import Link from "next/link"
 import { useEffect, useState } from "react"
 import axiosInstance from "@/libs/axios"
 import CommunityPageLayout from "@/components/layout/CommunityPageLayout"
@@ -77,12 +78,14 @@ export default function NoticePage() {
 
 function NoticeItem({ id, title, created_at }) {
   return (
-    <li className="text-sm lg:text-base flex justify-between py-4 lg:py-6 text-center border-t border-[#D9D9D9]">
-      <p className="w-2/12">{id}</p>
-      <div className="w-10/12 flex flex-col lg:flex-row lg:justify-between">
-        <p className="w-10/12 text-start mb-1 lg:mb-0">{title}</p>
-        <p className="w-2/12 text-[#999] lg:text-black">{created_at}</p>
-      </div>
+    <li>
+      <Link href={`/community/notice/${id}`} className="block text-sm lg:text-base flex justify-between py-4 lg:py-6 text-center border-t border-[#D9D9D9]">
+        <p className="w-2/12">{id}</p>
+        <div className="w-10/12 flex flex-col lg:flex-row lg:justify-between">
+          <p className="w-10/12 text-start mb-1 lg:mb-0">{title}</p>
+          <p className="w-2/12 text-[#999] lg:text-black">{created_at}</p>
+        </div>
+      </Link>
     </li>
   )
 }

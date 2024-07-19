@@ -76,6 +76,7 @@ export async function getPostDetailById(id) {
       id,
       title,
       content,
+      created_at,
       author:author_id (is_admin)
     `,
     )
@@ -86,7 +87,8 @@ export async function getPostDetailById(id) {
     id: post.id,
     title: post.title,
     content: post.content,
-    isAdmin: post.author.is_admin,
+    isAdmin: post.author?.is_admin ?? false,
+    created_at: formatTimestampToKRDate(post.created_at),
   }
 }
 
