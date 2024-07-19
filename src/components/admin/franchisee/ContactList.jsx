@@ -12,7 +12,7 @@ export default function ContactList({ list = [], isAdmin = false }) {
         <p className="w-3/12">이름</p>
         <p className="w-3/12">연락처</p>
         <p className="w-3/12">접수일</p>
-        {isAdmin && <p className="w-1/12">관리</p>}
+        <p className="w-1/12">관리</p>
       </div>
       <Pagination items={list} ListItem={ContactItem} />
     </section>
