@@ -34,7 +34,7 @@ export default function NoticePagination({
   return (
     <>
       <ul>
-        {items.map((item, idx) => (
+        {items?.map((item, idx) => (
           <ListItem key={idx} className="border p-4" {...item} />
         ))}
       </ul>
