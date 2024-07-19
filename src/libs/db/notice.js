@@ -6,8 +6,8 @@ const TABLE_NAME = "mitaly_notice_posts"
 export async function getAllPostsWithPagination({ page = 1, limit = 10 } = {}) {
   const supabase = createSupabase()
 
-  const start = (page - 1) * limit
-  const end = start + limit - 1
+  const start = (parseInt(page) - 1) * parseInt(limit)
+  const end = start + parseInt(limit) - 1
 
   const { data: posts, error } = await supabase
     .from(TABLE_NAME)
