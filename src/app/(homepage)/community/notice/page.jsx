@@ -24,7 +24,6 @@ export default function NoticePage() {
           ...posts,
           [currentPage]: data,
         })
-        console.log(posts)
       } catch (e) {
         console.log("--Axios error--")
         console.log(e)
