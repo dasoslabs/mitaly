@@ -1,18 +1,28 @@
 "use client"
 
+import { useEffect, useState } from "react"
 import CommunityPageLayout from "@/components/layout/CommunityPageLayout"
 import Pagination from "@/components/common/Pagination"
-
-const mockData = Array(100)
-  .fill(0)
-  .map((_, idx) => ({
-    idx: idx + 1,
-    title: "미태리에 새로운 소식을 알려드립니다.",
-    createdAt: "2024.01.01",
-  }))
-  .reverse()
+import axiosInstance from "@/libs/axios"
 
 export default function NoticePage() {
+  const [page, setPage] = useState(1)
+  const [posts, setPosts] = useState([])
+
+  useEffect(() => {
+    const fetchAllPosts = async () => {
+      try {
+        const { data } = await axiosInstance.get(`/api/notice?page=${page}&limit=${10}`)
+        setPosts(data)
+      } catch (e) {
+        console.log("--Axios error--")
+        console.log(e)
+      }
+    }
+
+    fetchAllPosts()
+  }, [page])
+
   return (
     <CommunityPageLayout>
       <div className="max-w-screen-lg m-auto my-10 lg:my-36 px-6 lg:px-0">
@@ -27,19 +37,19 @@ export default function NoticePage() {
         </div>
         <div className="lg:hidden w-full h-px bg-black" />
 
-        <Pagination items={mockData} ListItem={NoticeItem} />
+        <Pagination items={posts} ListItem={NoticeItem} />
       </div>
     </CommunityPageLayout>
   )
 }
 
-function NoticeItem({ idx, title, createdAt }) {
+function NoticeItem({ id, title, created_at }) {
   return (
     <li className="text-sm lg:text-base flex justify-between py-4 lg:py-6 text-center border-t border-[#D9D9D9]">
-      <p className="w-2/12">{idx}</p>
+      <p className="w-2/12">{id}</p>
       <div className="w-10/12 flex flex-col lg:flex-row lg:justify-between">
         <p className="w-10/12 text-start mb-1 lg:mb-0">{title}</p>
-        <p className="w-2/12 text-[#999] lg:text-black">{createdAt}</p>
+        <p className="w-2/12 text-[#999] lg:text-black">{created_at}</p>
       </div>
     </li>
   )
