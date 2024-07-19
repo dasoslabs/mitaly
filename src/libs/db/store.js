@@ -93,7 +93,7 @@ export async function createStore(formData) {
   } = await supabase.auth.getUser()
   const { data: userData } = await supabase
     .from("users")
-    .select("id, nickname")
+    .select("id, name")
     .eq("user_id", user?.id)
     .single()
 
@@ -158,7 +158,7 @@ export async function updateStore({ id, formData }) {
   } = await supabase.auth.getUser();
   const { data: userData } = await supabase
     .from("users")
-    .select("id, nickname")
+    .select("id, name")
     .eq("user_id", user?.id)
     .single();
 

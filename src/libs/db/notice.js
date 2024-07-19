@@ -89,11 +89,11 @@ export async function createPost({ title, content }) {
   } = await supabase.auth.getUser()
   const { data: userData } = await supabase
     .from("users")
-    .select("id, nickname")
+    .select("id, name")
     .eq("user_id", user?.id)
     .single()
 
-  const { data: post } = await supabase
+  const { data: post, error } = await supabase
     .from(TABLE_NAME)
     .insert([{ title, content, author_id: userData?.id }])
     .select()
