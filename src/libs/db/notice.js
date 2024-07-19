@@ -3,6 +3,14 @@ import { formatTimestampToKRDate } from "../utils/time"
 
 const TABLE_NAME = "mitaly_notice_posts"
 
+export async function getPostTotalCount() {
+  const supabase = createSupabase()
+  const { count } = await supabase
+    .from(TABLE_NAME)
+    .select("*", { count: "exact", head: true })
+  return count
+}
+
 export async function getAllPostsWithPagination({ page = 1, limit = 10 } = {}) {
   const supabase = createSupabase()
 
@@ -58,7 +66,7 @@ export async function getAllPosts() {
     : []
 }
 
-export const getPostDetailById = async (id) => {
+export async function getPostDetailById(id) {
   const supabase = createSupabase()
 
   const { data: post, error } = await supabase

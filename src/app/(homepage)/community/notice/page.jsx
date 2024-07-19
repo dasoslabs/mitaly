@@ -10,16 +10,18 @@ const PAGE_SIZE = 9
 export default function NoticePage() {
   const [currentPage, setCurrentPage] = useState(1)
   const [posts, setPosts] = useState({ 1: [] })
-  const [totalPages, setTotalPages] = useState(Math.ceil(24 / PAGE_SIZE)) // TODO 데이터 조회 필요
+  const [totalPages, setTotalPages] = useState() // TODO 데이터 조회 필요
 
   useEffect(() => {
-    const fetchAllPosts = async () => {
+    const fetchPagePosts = async () => {
       if (posts[currentPage] && 0 < posts[currentPage].length) {
         return
       }
 
       try {
-        const { data } = await axiosInstance.get(`/api/notice?page=${currentPage}&limit=${PAGE_SIZE}`)
+        const { data } = await axiosInstance.get(
+          `/api/notice?page=${currentPage}&limit=${PAGE_SIZE}`,
+        )
         setPosts({
           ...posts,
           [currentPage]: data,
@@ -30,8 +32,22 @@ export default function NoticePage() {
       }
     }
 
-    fetchAllPosts()
+    fetchPagePosts()
   }, [currentPage])
+
+  useEffect(() => {
+    const fetchPostTotalCount = async () => {
+      try {
+        const { data } = await axiosInstance.get("/api/notice/count")
+        setTotalPages(Math.ceil(data / PAGE_SIZE))
+      } catch (e) {
+        console.log("--Axios error--")
+        console.log(e)
+      }
+    }
+
+    fetchPostTotalCount()
+  }, [])
 
   return (
     <CommunityPageLayout>
