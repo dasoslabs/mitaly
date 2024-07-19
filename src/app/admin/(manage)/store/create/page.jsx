@@ -35,7 +35,7 @@ export default function AdminStoreCreatePage() {
           }
         }
       }
-      
+
       const { data } = await axiosInstance.post("/api/store", form, {
         headers: {
           "Content-Type": "multipart/form-data",

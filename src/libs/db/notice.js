@@ -8,7 +8,7 @@ export async function getAllPostsWithPagination({ page = 1, limit = 10 } = {}) {
 
   const start = (page - 1) * limit
   const end = start + limit - 1
-  
+
   const { data: posts, error } = await supabase
     .from(TABLE_NAME)
     .select(

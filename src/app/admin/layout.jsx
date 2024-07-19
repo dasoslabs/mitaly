@@ -19,7 +19,7 @@ export default async function AdminLayout({ children }) {
     .select("name, is_approved")
     .eq("user_id", user?.id)
     .single()
-  
+
   if (!userData?.is_approved) {
     return <AdminPendingRegister userName={user.user_metadata.full_name} />
   }

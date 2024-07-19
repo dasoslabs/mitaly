@@ -28,7 +28,9 @@ export default async function AdminSidebar() {
   const headersList = headers()
   const headerPathname = headersList.get("x-pathname") || ""
 
-  const filteredMenuByRole = menu.filter(item => isAdmin || !item.isOnlyAdminPage);
+  const filteredMenuByRole = menu.filter(
+    (item) => isAdmin || !item.isOnlyAdminPage,
+  )
 
   return (
     <nav className="w-52 min-h-[calc(100vh-80px)] border-r border-light-gray">

@@ -140,70 +140,69 @@ export async function createStore(formData) {
 
 export async function updateStore({ id, formData }) {
   const supabase = createSupabase()
-  
 
-  const region = formData.get("region");
-  const name = formData.get("name");
-  const address = formData.get("address");
-  const address_detail = formData.get("address_detail");
-  const contact = formData.get("contact");
-  const business_hours = formData.get("business_hours");
-  const break_time = formData.get("break_time") ?? null;
-  const holidays = formData.get("holidays") ?? null;
-  const options = formData.getAll("options");
-  const image_file = formData.get("image_file") ?? null;
+  const region = formData.get("region")
+  const name = formData.get("name")
+  const address = formData.get("address")
+  const address_detail = formData.get("address_detail")
+  const contact = formData.get("contact")
+  const business_hours = formData.get("business_hours")
+  const break_time = formData.get("break_time") ?? null
+  const holidays = formData.get("holidays") ?? null
+  const options = formData.getAll("options")
+  const image_file = formData.get("image_file") ?? null
 
   const {
     data: { user },
-  } = await supabase.auth.getUser();
+  } = await supabase.auth.getUser()
   const { data: userData } = await supabase
     .from("users")
     .select("id, name")
     .eq("user_id", user?.id)
-    .single();
+    .single()
 
-  let image_url = null;
-  let image_name = null;
+  let image_url = null
+  let image_name = null
 
-  const updateData = {};
+  const updateData = {}
 
-  if (region) updateData.region = region;
-  if (name) updateData.name = name;
-  if (address) updateData.address = address;
-  if (address_detail) updateData.address_detail = address_detail;
-  if (contact !== null) updateData.contact = contact;
-  if (business_hours) updateData.business_hours = business_hours;
-  if (break_time !== null) updateData.break_time = break_time;
-  if (holidays !== null) updateData.holidays = holidays;
-  if (options.length > 0) updateData.options = options;
+  if (region) updateData.region = region
+  if (name) updateData.name = name
+  if (address) updateData.address = address
+  if (address_detail) updateData.address_detail = address_detail
+  if (contact !== null) updateData.contact = contact
+  if (business_hours) updateData.business_hours = business_hours
+  if (break_time !== null) updateData.break_time = break_time
+  if (holidays !== null) updateData.holidays = holidays
+  if (options.length > 0) updateData.options = options
 
   if (image_file) {
     const { data: existingStore } = await supabase
       .from(TABLE_NAME)
       .select("image_name")
       .eq("id", id)
-      .single();
+      .single()
 
     if (existingStore?.image_name) {
       await supabase.storage
         .from(STORAGE_NAME)
-        .remove([`stores/${existingStore.image_name}`]);
+        .remove([`stores/${existingStore.image_name}`])
     }
 
-    image_name = image_file.name?.replace(/\s+/g, "_");
+    image_name = image_file.name?.replace(/\s+/g, "_")
     await supabase.storage
       .from(STORAGE_NAME)
-      .upload(`stores/${image_name}`, image_file);
+      .upload(`stores/${image_name}`, image_file)
 
     const {
       data: { signedUrl },
     } = await supabase.storage
       .from(STORAGE_NAME)
-      .createSignedUrl(`stores/${image_name}`, 100 * 365 * 24 * 60 * 60);
-    image_url = signedUrl;
+      .createSignedUrl(`stores/${image_name}`, 100 * 365 * 24 * 60 * 60)
+    image_url = signedUrl
 
-    updateData.image_url = image_url;
-    updateData.image_name = image_name;
+    updateData.image_url = image_url
+    updateData.image_name = image_name
   }
 
   const { data: store } = await supabase
@@ -212,7 +211,7 @@ export async function updateStore({ id, formData }) {
     .eq("id", id)
     .select()
     .single()
-    
+
   return true
 }
 

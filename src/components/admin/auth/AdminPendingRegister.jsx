@@ -7,7 +7,9 @@ export default function AdminPendingRegister({ userName = "" }) {
           <div className="flex justify-center items-center space-x-8">
             <p>{userName}님</p>
             <form action="/api/auth/logout" method="post">
-              <button className="bg-black text-white py-2 px-5">로그아웃</button>
+              <button className="bg-black text-white py-2 px-5">
+                로그아웃
+              </button>
             </form>
           </div>
         </div>

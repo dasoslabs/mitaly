@@ -13,13 +13,12 @@ export default function NoticeList({ list = [], isAdmin = false }) {
         <p className="w-2/12">ID</p>
         <p className="w-8/12">제목</p>
         <p className="w-2/12">작성일</p>
-        {
-          isAdmin && (
-            <p className="w-2/12">관리</p>
-          )
-        }
+        {isAdmin && <p className="w-2/12">관리</p>}
       </div>
-      <Pagination items={list} ListItem={({...props}) => <NoticeItem isAdmin={isAdmin} {...props} />} />
+      <Pagination
+        items={list}
+        ListItem={({ ...props }) => <NoticeItem isAdmin={isAdmin} {...props} />}
+      />
     </section>
   )
 }
@@ -46,16 +45,14 @@ function NoticeItem({ id, title, created_at, isAdmin = false }) {
         <p className="w-10/12 text-start mb-1 lg:mb-0">{title}</p>
         <p className="w-2/12 text-[#999] lg:text-black">{created_at}</p>
       </div>
-      {
-        isAdmin && (
-          <div className="w-2/12 flex justify-center space-x-2">
-            <Link href={{ pathname: "/admin/notice/update", query: { id } }}>
-              수정
-            </Link>
-            <button onClick={handleDeleteNotice}>삭제</button>
-          </div>
-        )
-      }
+      {isAdmin && (
+        <div className="w-2/12 flex justify-center space-x-2">
+          <Link href={{ pathname: "/admin/notice/update", query: { id } }}>
+            수정
+          </Link>
+          <button onClick={handleDeleteNotice}>삭제</button>
+        </div>
+      )}
     </li>
   )
 }

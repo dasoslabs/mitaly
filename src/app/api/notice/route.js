@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server"
-import { getAllPostsWithPagination ,createPost } from "@/libs/db/notice"
+import { getAllPostsWithPagination, createPost } from "@/libs/db/notice"
 
 export async function GET(req) {
   const page = req.nextUrl.searchParams.get("page")

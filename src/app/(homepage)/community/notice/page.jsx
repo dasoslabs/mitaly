@@ -1,19 +1,22 @@
 "use client"
 
 import { useEffect, useState } from "react"
-import CommunityPageLayout from "@/components/layout/CommunityPageLayout"
-import Pagination from "@/components/common/Pagination"
 import axiosInstance from "@/libs/axios"
+import CommunityPageLayout from "@/components/layout/CommunityPageLayout"
+import NoticePagination from "@/components/common/NoticePagination"
+
+const PAGE_SIZE = 9
 
 export default function NoticePage() {
-  const [page, setPage] = useState(1)
-  const [posts, setPosts] = useState([])
+  const [currentPage, setCurrentPage] = useState(1)
+  const [posts, setPosts] = useState({ 1: [] })
+  const [totalPages, setTotalPages] = useState(0)
 
   useEffect(() => {
     const fetchAllPosts = async () => {
       try {
-        const { data } = await axiosInstance.get(`/api/notice?page=${page}&limit=${10}`)
-        setPosts(data)
+        // const { data } = await axiosInstance.get(`/api/notice?page=${currentPage}&limit=${PAGE_SIZE}`)
+        // setPosts([...posts, ...data])
       } catch (e) {
         console.log("--Axios error--")
         console.log(e)
@@ -21,7 +24,7 @@ export default function NoticePage() {
     }
 
     fetchAllPosts()
-  }, [page])
+  }, [currentPage])
 
   return (
     <CommunityPageLayout>
@@ -37,7 +40,13 @@ export default function NoticePage() {
         </div>
         <div className="lg:hidden w-full h-px bg-black" />
 
-        <Pagination items={posts} ListItem={NoticeItem} />
+        <NoticePagination
+          totalPages={totalPages}
+          items={posts[currentPage]}
+          ListItem={NoticeItem}
+          currentPage={currentPage}
+          setCurrentPage={setCurrentPage}
+        />
       </div>
     </CommunityPageLayout>
   )

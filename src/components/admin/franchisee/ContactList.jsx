@@ -12,11 +12,7 @@ export default function ContactList({ list = [], isAdmin = false }) {
         <p className="w-3/12">이름</p>
         <p className="w-3/12">연락처</p>
         <p className="w-3/12">접수일</p>
-        {
-          isAdmin && (
-            <p className="w-1/12">관리</p>
-          )
-        }
+        {isAdmin && <p className="w-1/12">관리</p>}
       </div>
       <Pagination items={list} ListItem={ContactItem} />
     </section>
@@ -44,7 +40,9 @@ function ContactItem({ id, name, contact, region, created_at }) {
       <p className="w-3/12">{name}</p>
       <p className="w-3/12">{contact}</p>
       <p className="w-3/12">{created_at}</p>
-      <button className="w-1/12" onClick={handleDeleteContact}>삭제</button>
+      <button className="w-1/12" onClick={handleDeleteContact}>
+        삭제
+      </button>
     </li>
   )
 }
