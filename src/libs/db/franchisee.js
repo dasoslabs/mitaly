@@ -33,6 +33,20 @@ export async function getAllContactList({ page = 1, limit = 10 } = {}) {
     : []
 }
 
+export async function createContact({ name, contact, region }) {
+  const supabase = createSupabase()
+
+  const { error } = await supabase
+    .from(TABLE_NAME)
+    .insert([{ name, contact, region }])
+
+  if (error) {
+    return false
+  }
+
+  return true
+}
+
 export async function deleteContact(id) {
   const supabase = createSupabase()
 

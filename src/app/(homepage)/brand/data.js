@@ -171,21 +171,21 @@ export const supportCards = [
 
 export const form = [
   {
-    name: "Name",
+    name: "name",
     label: "이름",
     placeholder: "성함을 입력해주세요.",
     isRequired: true,
     type: "input",
   },
   {
-    name: "Phone",
+    name: "contact",
     label: "연락처",
     placeholder: "연락처를 입력해주세요.",
     isRequired: true,
     type: "input",
   },
   {
-    name: "Location",
+    name: "region",
     label: "창업희망지역",
     placeholder: "창업희망지역을 입력해주세요.",
     isRequired: true,
