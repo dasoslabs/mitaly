@@ -11,8 +11,24 @@ const PAGE_SIZE = 9
 export default function NoticePage() {
   const [currentPage, setCurrentPage] = useState(1)
   const [posts, setPosts] = useState({ 1: [] })
-  const [totalPages, setTotalPages] = useState() // TODO 데이터 조회 필요
+  const [totalPages, setTotalPages] = useState()
 
+  // 전체 게시글 수 조회
+  useEffect(() => {
+    const fetchPostTotalCount = async () => {
+      try {
+        const { data } = await axiosInstance.get("/api/notice/count")
+        setTotalPages(Math.ceil(data / PAGE_SIZE))
+      } catch (e) {
+        console.log("--Axios error--")
+        console.log(e)
+      }
+    }
+
+    fetchPostTotalCount()
+  }, [])
+
+  // 각 페이지에 해당하는 게시글 조회
   useEffect(() => {
     const fetchPagePosts = async () => {
       if (posts[currentPage] && 0 < posts[currentPage].length) {
@@ -35,20 +51,6 @@ export default function NoticePage() {
 
     fetchPagePosts()
   }, [currentPage])
-
-  useEffect(() => {
-    const fetchPostTotalCount = async () => {
-      try {
-        const { data } = await axiosInstance.get("/api/notice/count")
-        setTotalPages(Math.ceil(data / PAGE_SIZE))
-      } catch (e) {
-        console.log("--Axios error--")
-        console.log(e)
-      }
-    }
-
-    fetchPostTotalCount()
-  }, [])
 
   return (
     <CommunityPageLayout>
