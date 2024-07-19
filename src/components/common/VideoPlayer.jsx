@@ -19,7 +19,7 @@ export default function VideoPlayer({ muted = true }) {
           loop
           controls={false}
           muted={muted}
-          width="100%"
+          width="1800px"
           height="100vh"
         />
       </div>
