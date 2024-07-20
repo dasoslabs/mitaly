@@ -9,7 +9,7 @@ export default function BrandPageLayout({ children }) {
 
   return (
     <>
-      <div className="sticky top-16 lg:top-24 border-y border-light-gray z-50 bg-white">
+      <div className="sticky top-16 lg:top-24 border-y border-light-gray z-40 bg-white">
         <ul className="max-w-pc m-auto flex justify-center items-center text-xs lg:text-base">
           {menu.map(({ href, text }, idx) => (
             <li key={href} className="w-full">
