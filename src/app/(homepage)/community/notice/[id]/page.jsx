@@ -10,7 +10,8 @@ export default async function NoticeDetailPage() {
   const headerPathname = headersList.get("x-pathname") || ""
   const id = headerPathname.split("/community/notice/")[1]
   // const post = await getPostDetailById(id)
-  console.log(id)
+  console.log(headersList)
+  console.log(headerPathname)
 
   return null
 
