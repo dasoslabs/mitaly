@@ -14,7 +14,9 @@ export default async function NoticeDetailPage({ params }) {
         <h2 className="font-extralight text-2xl lg:text-[40px]">
           {post.title}
         </h2>
-        <p className="lg:text-[#666666] text-[13px] lg:text-base">{post.created_at}</p>
+        <p className="lg:text-[#666666] text-[13px] lg:text-base">
+          {post.created_at}
+        </p>
       </div>
       <div>
         <HtmlParser>{post.content}</HtmlParser>
