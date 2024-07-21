@@ -4,7 +4,34 @@ import { formatTimestampToKRDate } from "../utils/time"
 const TABLE_NAME = "mitaly_stores"
 const STORAGE_NAME = "mitaly"
 
-export async function getAllStores({ page = 1, limit = 10 } = {}) {
+export async function getAllStores() {
+  const supabase = createSupabase()
+
+  const { data: stores, error } = await supabase
+    .from(TABLE_NAME)
+    .select(
+      `
+      id,
+      name,
+      address,
+      address_detail,
+      business_hours
+    `,
+    )
+    .order("created_at", { ascending: false })
+
+  return stores
+    ? stores.map((store) => ({
+        id: store.id,
+        name: store.name,
+        address: store.address,
+        address_detail: store.address_detail,
+        business_hours: store.business_hours,
+      }))
+    : []
+}
+
+export async function getAllStoresForAdmin({ page = 1, limit = 10 } = {}) {
   const supabase = createSupabase()
   const start = (page - 1) * limit
   const end = start + limit - 1

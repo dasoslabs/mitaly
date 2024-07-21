@@ -2,11 +2,11 @@
 
 import Link from "next/link"
 import { getIsAdmin } from "@/libs/db/auth"
-import { getAllStores } from "@/libs/db/store"
+import { getAllStoresForAdmin } from "@/libs/db/store"
 import StoreList from "@/components/admin/store/StoreList"
 
 export default async function AdminStorePage() {
-  const stores = await getAllStores()
+  const stores = await getAllStoresForAdmin()
   const isAdmin = await getIsAdmin()
 
   return (

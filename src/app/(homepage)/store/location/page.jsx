@@ -1,14 +1,34 @@
-import StorePageLayout from "@/components/layout/StorePageLayout"
-import Image from "next/image"
+"use client"
 
-import { storeList } from "./data"
+import { useEffect, useState } from "react"
+import StorePageLayout from "@/components/layout/StorePageLayout"
+
+import axiosInstance from "@/libs/axios"
 import SvgIcon from "@/components/common/SvgIcon"
+import KakaoMap from "@/components/common/Map/KakaoMap"
 
 export default function LocationPage() {
+  const [storeList, setStoreList] = useState([])
+
+  // 전체 매장 조회
+  useEffect(() => {
+    const fetchAllStore = async () => {
+      try {
+        const { data } = await axiosInstance.get("/api/store")
+        setStoreList(data)
+      } catch (e) {
+        console.log("--Axios error--")
+        console.log(e)
+      }
+    }
+
+    fetchAllStore()
+  }, [])
+
   return (
     <StorePageLayout>
       <div className="flex justify-between">
-        <div className="w-full lg:w-4/12">
+        <section className="w-full lg:w-4/12 lg:h-[calc(100vh-152px)] overflow-hidden">
           <div className="p-6 pt-10 lg:p-10 lg:pt-12">
             <h2 className="font-extralight text-2xl lg:text-5xl text-center lg:text-left">
               매장찾기
@@ -28,7 +48,7 @@ export default function LocationPage() {
 
           {/* 매장 목록 */}
           <ul className="lg:overflow-y-auto lg:max-h-[976px] text-sm lg:text-base">
-            {storeList.map(({ name, address, business_hours }, idx) => (
+            {storeList.map(({ name, address, address_detail, business_hours }, idx) => (
               <li
                 key={name + idx}
                 className="flex flex-col justify-center space-y-3 p-6 border-t border-light-gray"
@@ -37,21 +57,16 @@ export default function LocationPage() {
                   <p className="font-bold">{name}</p>
                   <SvgIcon name="map" />
                 </div>
-                <p>{address}</p>
+                <p>{address}, {address_detail}</p>
                 <p className="text-[#999]">{business_hours}</p>
               </li>
             ))}
           </ul>
-        </div>
+        </section>
 
-        {/* 임시 지도 이미지 */}
-        <Image
-          width="1360"
-          height="976"
-          src="/store/map.png"
-          alt="지도 이미지"
-          className="w-8/12 hidden lg:block"
-        />
+        <section className="w-8/12 h-[calc(100vh-152px)] hidden lg:block">
+          <KakaoMap list={storeList} />
+        </section>
       </div>
     </StorePageLayout>
   )
