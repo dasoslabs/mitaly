@@ -120,7 +120,7 @@ export default function LocationPage() {
         </section>
 
         <section className="w-8/12 h-[calc(100vh-152px)] hidden lg:block">
-          {/* <KakaoMap list={storeList} /> */}
+          <KakaoMap list={storeList} />
         </section>
       </div>
     </StorePageLayout>
