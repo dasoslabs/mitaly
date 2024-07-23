@@ -26,13 +26,6 @@ export const form = [
     placeholder: "연락처를 입력해주세요.",
     isRequired: true,
     type: "input",
-  },
-  {
-    name: "Location",
-    label: "창업희망지역",
-    placeholder: "창업희망지역을 입력해주세요.",
-    isRequired: true,
-    type: "input",
     labelClass: "lg:pb-10",
   },
   {
