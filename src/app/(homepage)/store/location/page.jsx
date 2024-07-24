@@ -7,6 +7,30 @@ import axiosInstance from "@/libs/axios"
 import SvgIcon from "@/components/common/SvgIcon"
 import KakaoMap from "@/components/common/Map/KakaoMap"
 import { regions } from "./data"
+import Modal from "@/components/common/Modal"
+
+const OPTIONS = [
+  {
+    name: "와이파이",
+    option: "wifi",
+  },
+  {
+    name: "포장",
+    option: "takeout",
+  },
+  {
+    name: "배달",
+    option: "delivery",
+  },
+  {
+    name: "이벤트",
+    option: "event",
+  },
+  {
+    name: "주차",
+    option: "parking",
+  },
+]
 
 export default function LocationPage() {
   const storeRef = useRef()
@@ -99,23 +123,9 @@ export default function LocationPage() {
 
           {/* 매장 목록 */}
           <ul className="lg:max-h-[976px] text-sm lg:text-base">
-            {storeList.map(
-              ({ name, address, address_detail, business_hours }, idx) => (
-                <li
-                  key={name + idx}
-                  className="flex flex-col justify-center space-y-3 p-6 border-t border-light-gray"
-                >
-                  <div className="flex justify-between items-center">
-                    <p className="font-bold">{name}</p>
-                    <SvgIcon name="map" />
-                  </div>
-                  <p>
-                    {address}, {address_detail}
-                  </p>
-                  <p className="text-[#999]">{business_hours}</p>
-                </li>
-              ),
-            )}
+            {storeList.map((store, idx) => (
+              <StoreItem key={store.name + idx} {...store} />
+            ))}
           </ul>
         </section>
 
@@ -124,5 +134,142 @@ export default function LocationPage() {
         </section>
       </div>
     </StorePageLayout>
+  )
+}
+
+function StoreItem({ id, name, address, address_detail, business_hours }) {
+  const [modalOpen, setModalOpen] = useState(false)
+  const [storeDetail, setStoreDetail] = useState()
+  const closeModal = (e) => {
+    e.stopPropagation()
+    setModalOpen(false)
+  }
+
+  useEffect(() => {
+    if (modalOpen === true) {
+      const fetchStoreDetail = async () => {
+        try {
+          const { data } = await axiosInstance.get(`/api/store/${id}`)
+          setStoreDetail(data)
+        } catch (e) {
+          console.log("--Axios error--")
+          console.log(e)
+        }
+      }
+      fetchStoreDetail()
+    }
+  }, [modalOpen])
+
+  return (
+    <li onClick={() => setModalOpen(true)}>
+      <div className="flex flex-col justify-center space-y-3 p-6 border-t border-light-gray">
+        <div className="flex justify-between items-center">
+          <p className="font-bold">{name}</p>
+          <SvgIcon name="map" />
+        </div>
+        <p>
+          {address}, {address_detail}
+        </p>
+        <p className="text-[#999]">{business_hours}</p>
+      </div>
+
+      <Modal open={modalOpen} className="text-start rounded-lg">
+        <div className="border-b border-stone-200 py-5">
+          <h3 className="font-semibold text-xl px-5 text-stone-500">
+            <span className="text-black">매장정보</span>
+          </h3>
+        </div>
+
+        <ul>
+          <li className="border-b border-stone-200">
+            <div className="flex items-center space-x-5">
+              <p className="w-40 bg-orange-100 text-center font-semibold py-5 px-5">
+                지역
+              </p>
+              <p>{storeDetail?.region}</p>
+            </div>
+          </li>
+          <li className="border-b border-stone-200">
+            <div className="flex items-center space-x-5">
+              <p className="w-40 bg-orange-100 text-center font-semibold py-5 px-5">
+                매장명
+              </p>
+              <p>{storeDetail?.name}</p>
+            </div>
+          </li>
+          <li className="border-b border-stone-200">
+            <div className="flex items-center space-x-5">
+              <p className="w-40 bg-orange-100 text-center font-semibold py-5 px-5">
+                주소
+              </p>
+              <p>
+                {storeDetail?.address}, {storeDetail?.address_detail}
+              </p>
+            </div>
+          </li>
+          <li className="border-b border-stone-200">
+            <div className="flex items-center space-x-5">
+              <p className="w-40 bg-orange-100 text-center font-semibold py-5 px-5">
+                전화
+              </p>
+              <p>{storeDetail?.address}</p>
+            </div>
+          </li>
+          <li className="border-b border-stone-200">
+            <div className="flex items-center space-x-5">
+              <p className="w-40 bg-orange-100 text-center font-semibold py-10 px-5">
+                영업시간
+              </p>
+              <div className="flex flex-col space-y-2">
+                <p>{storeDetail?.business_hours}</p>
+                <div className="flex space-x-2">
+                  <div className="uppercase bg-primary text-white rounded-full w-32 text-center">
+                    Break Time
+                  </div>
+                  <p>{storeDetail?.break_time ?? "없음"}</p>
+                </div>
+                <div className="flex space-x-2">
+                  <div className="uppercase bg-primary text-white rounded-full w-32 text-center">
+                    휴일
+                  </div>
+                  <p>{storeDetail?.holidays ?? "없음"}</p>
+                </div>
+              </div>
+            </div>
+          </li>
+          <li>
+            <div className="flex items-center space-x-5">
+              <p className="w-40 bg-orange-100 text-center font-semibold py-8 px-5">
+                옵션
+              </p>
+              <ul className="flex space-x-5">
+                {OPTIONS.map(({ name, option }, idx) => (
+                  <li
+                    key={storeDetail?.name + option + idx}
+                    className="flex flex-col items-center space-y-1"
+                  >
+                    <div
+                      className={`p-3 rounded-full ${storeDetail?.options.includes(option) ? "bg-primary" : "bg-stone-300"}`}
+                    >
+                      <SvgIcon name={option} />
+                    </div>
+                    <p className="text-sm">{name}</p>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </li>
+        </ul>
+
+        <div className="border-t border-stone-200 py-3 text-end">
+          <button
+            onClick={closeModal}
+            className="bg-black text-white py-2 px-5 mr-5"
+          >
+            닫기
+          </button>
+        </div>
+      </Modal>
+    </li>
   )
 }
