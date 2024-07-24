@@ -162,7 +162,7 @@ function StoreItem({ id, name, address, address_detail, business_hours }) {
 
   return (
     <li onClick={() => setModalOpen(true)}>
-      <div className="flex flex-col justify-center space-y-3 p-6 border-t border-light-gray">
+      <div className="cursor-pointer flex flex-col justify-center space-y-3 p-6 border-t border-light-gray">
         <div className="flex justify-between items-center">
           <p className="font-bold">{name}</p>
           <SvgIcon name="map" />
@@ -212,7 +212,7 @@ function StoreItem({ id, name, address, address_detail, business_hours }) {
               <p className="w-40 bg-orange-100 text-center font-semibold py-5 px-5">
                 전화
               </p>
-              <p>{storeDetail?.address}</p>
+              <p>{storeDetail?.contact}</p>
             </div>
           </li>
           <li className="border-b border-stone-200">
