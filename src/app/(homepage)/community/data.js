@@ -6,7 +6,7 @@ export const menu = [
 
 export const form = [
   {
-    name: "Type",
+    name: "type",
     label: "문의유형",
     placeholder: "문의유형을 입력해주세요.",
     isRequired: true,
@@ -14,14 +14,14 @@ export const form = [
     labelClass: "lg:pb-10",
   },
   {
-    name: "Name",
+    name: "name",
     label: "이름",
     placeholder: "성함을 입력해주세요.",
     isRequired: true,
     type: "input",
   },
   {
-    name: "Phone",
+    name: "contact",
     label: "연락처",
     placeholder: "연락처를 입력해주세요.",
     isRequired: true,
@@ -29,14 +29,14 @@ export const form = [
     labelClass: "lg:pb-10",
   },
   {
-    name: "Title",
+    name: "title",
     label: "제목",
     placeholder: "제목을 입력해주세요.",
     isRequired: true,
     type: "input",
   },
   {
-    name: "Content",
+    name: "content",
     label: "내용",
     placeholder: "문의 내용을 입력해주세요.",
     isRequired: true,

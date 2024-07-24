@@ -21,6 +21,11 @@ const menu = [
     href: "/admin/franchisee",
     isOnlyAdminPage: true,
   },
+  {
+    name: "제휴문의",
+    href: "/admin/associate",
+    isOnlyAdminPage: true,
+  },
 ]
 
 export default async function AdminSidebar() {
