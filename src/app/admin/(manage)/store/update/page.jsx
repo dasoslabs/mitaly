@@ -103,7 +103,7 @@ export default function AdminStoreUpdatePage() {
           <div className="flex flex-col space-y-2">
             <label>
               지역
-              <span className="text-red ml-1">*</span>
+              <span className="text-error ml-1">*</span>
             </label>
             <input
               className="border border-stone-300 p-2 outline-none focus:border-black"
@@ -119,7 +119,7 @@ export default function AdminStoreUpdatePage() {
           <div className="flex flex-col space-y-2">
             <label>
               매장명
-              <span className="text-red ml-1">*</span>
+              <span className="text-error ml-1">*</span>
             </label>
             <input
               className="border border-stone-300 p-2 outline-none focus:border-black"
@@ -134,7 +134,7 @@ export default function AdminStoreUpdatePage() {
 
           <div className="flex flex-col space-y-2">
             <label>
-              주소<span className="text-red ml-1">*</span>
+              주소<span className="text-error ml-1">*</span>
             </label>
             <input
               className="border border-stone-300 p-2 outline-none focus:border-black"
@@ -149,7 +149,7 @@ export default function AdminStoreUpdatePage() {
 
           <div className="flex flex-col space-y-2">
             <label>
-              상세 주소<span className="text-red ml-1">*</span>
+              상세 주소<span className="text-error ml-1">*</span>
             </label>
             <input
               className="border border-stone-300 p-2 outline-none focus:border-black"
@@ -179,7 +179,7 @@ export default function AdminStoreUpdatePage() {
 
           <div className="flex flex-col space-y-2">
             <label>
-              영업 시간<span className="text-red ml-1">*</span>
+              영업 시간<span className="text-error ml-1">*</span>
             </label>
             <input
               className="border border-stone-300 p-2 outline-none focus:border-black"

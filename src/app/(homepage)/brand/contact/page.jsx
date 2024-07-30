@@ -73,7 +73,7 @@ export default function ContactPage() {
               >
                 <p className="font-bold lg:w-3/12">
                   {label}
-                  {isRequired && <span className="text-red"> *</span>}
+                  {isRequired && <span className="text-error"> *</span>}
                 </p>
                 <input
                   value={formData[name]}

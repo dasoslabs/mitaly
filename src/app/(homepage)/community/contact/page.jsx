@@ -86,7 +86,7 @@ export default function ContactPage() {
                     className={`font-bold w-3/12 ${type === "textarea" && "pt-2"}`}
                   >
                     {label}
-                    {isRequired && <span className="text-red"> *</span>}
+                    {isRequired && <span className="text-error"> *</span>}
                   </p>
                   {type === "input" ? (
                     <input

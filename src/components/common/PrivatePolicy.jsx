@@ -4,7 +4,7 @@ export default function PrivatePolicy() {
   return (
     <>
       <p className="font-bold">
-        개인정보 수집 및 이용 안내 <span className="text-red">(필수)</span>
+        개인정보 수집 및 이용 안내 <span className="text-error">(필수)</span>
       </p>
       <div className="text-xs text-[#999] border border-light-gray bg-bg-gray p-4 max-h-32 overflow-y-scroll leading-5">
         <p>

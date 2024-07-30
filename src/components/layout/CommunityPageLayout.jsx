@@ -14,7 +14,7 @@ export default function CommunityPageLayout({ children }) {
           <li key={href}>
             <Link
               href={href}
-              className={`text-sm ${pathname === href ? "font-bold text-black" : "font-normal text-[#999999]"}`}
+              className={`text-sm ${pathname === href ? "font-bold text-black" : "font-normal text-grey"}`}
             >
               {text}
             </Link>

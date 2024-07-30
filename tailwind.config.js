@@ -9,10 +9,10 @@ module.exports = {
     extend: {
       colors: {
         primary: "#FFCC33",
-        gray: "#99999",
+        error: "#FF1A40",
+        grey: "#99999",
         "light-gray": "#E6E6E6",
         "bg-gray": "#F7F7F7",
-        red: "#FF1A40",
         "admin-bg": "#F6F6F6",
       },
       maxWidth: {

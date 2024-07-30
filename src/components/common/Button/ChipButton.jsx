@@ -6,7 +6,7 @@ export default function ChipButton({
 }) {
   return (
     <button
-      className={`text-sm py-2 px-6 font-bold rounded-full ${isSelected ? "font-bold text-black bg-primary" : "font-normal text-[#999999] bg-white"} ${className}`}
+      className={`text-sm py-2 px-6 font-bold rounded-full ${isSelected ? "font-bold text-black bg-primary" : "font-normal text-grey bg-white"} ${className}`}
       {...props}
     >
       {children}

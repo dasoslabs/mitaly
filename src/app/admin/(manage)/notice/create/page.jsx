@@ -39,7 +39,7 @@ export default function AdminNoticeCreatePage() {
           <div className="flex flex-col space-y-2">
             <label>
               제목
-              <span className="text-red ml-1">*</span>
+              <span className="text-error ml-1">*</span>
             </label>
             <input
               className="border border-stone-300 p-2 outline-none focus:border-black"
