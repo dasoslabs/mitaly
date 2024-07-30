@@ -32,10 +32,9 @@ export default function AboutPage() {
           src="/about/img02.webp"
           alt="음식 이미지"
           quality={100}
-          className="w-1/2 lg:w-auto"
         />
         <div className="flex flex-col space-y-2 lg:space-y-10 self-end lg:self-auto p-6 lg:p-0">
-          <h2 className="font-bold text-[22px] lg:text-[40px] flex flex-col lg:flex-row lg:flex-x-1">
+          <h2 className="font-bold text-[22px] lg:text-[40px] flex flex-col lg:flex-row lg:space-x-1">
             <p>파스타는 왜</p>
             <p>비싸야 할까요?</p>
           </h2>
