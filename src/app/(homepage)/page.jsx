@@ -43,10 +43,10 @@ export default function Home() {
   return (
     isWindow && (
       <>
-        {/* 배너 */}
+        {/* 동영상 */}
         <section
           className="relative"
-          id="main_banner"
+          id="main_video"
           onMouseEnter={() => setIsHoveredOnVideo(true)}
           onMouseLeave={() => setIsHoveredOnVideo(false)}
         >

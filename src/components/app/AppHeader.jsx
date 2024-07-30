@@ -68,7 +68,7 @@ export default function AppHeader() {
   )
 
   const handleScroll = () => {
-    const section = document.getElementById("main_banner")
+    const section = document.getElementById("main_video")
     if (section) {
       const sectionHeight = section.offsetHeight
       if (sectionHeight - 60 < window.scrollY) {
