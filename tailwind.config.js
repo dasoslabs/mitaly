@@ -18,6 +18,14 @@ module.exports = {
       maxWidth: {
         pc: "1440px",
       },
+      height: {
+        "header-pc": "96px",
+        "header-mobile": "64px",
+      },
+      margin: {
+        "content-pc": "96px",
+        "content-mobile": "64px",
+      },
       boxShadow: {
         form: "0px 16px 40px 0px #0000001A",
       },

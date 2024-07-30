@@ -2,7 +2,7 @@ import Image from "next/image"
 
 export default function AboutPage() {
   return (
-    <section className="mt-16 lg:mt-24 relative">
+    <section className="mt-content-mobile lg:mt-content-pc relative">
       <div className="relative flex justify-end">
         <div className="flex flex-col space-y-6 absolute p-6 -bottom-20 lg:bottom-20 left-0 lg:left-32 z-20">
           <h2 className="font-extrabold text-primary lg:text-2xl">

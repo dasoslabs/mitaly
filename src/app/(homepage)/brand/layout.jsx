@@ -1,6 +1,6 @@
 export default function BrandLayout({ children }) {
   return (
-    <section className="mt-16 lg:mt-24">
+    <section className="mt-content-mobile lg:mt-content-pc">
       {/* 배너 */}
       <div className="relative">
         <div className="w-full h-[174px] lg:h-[400px] bg-[url('/brand/banner.webp')] bg-cover bg-center" />

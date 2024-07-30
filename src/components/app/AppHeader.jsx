@@ -119,7 +119,7 @@ export default function AppHeader() {
   return (
     <>
       <header
-        className={`fixed top-0 left-0 w-full px-6 h-16 lg:h-24 z-50 transition-all duration-300 bg-white ${headerStyle}`}
+        className={`fixed top-0 left-0 w-full px-6 h-header-mobile lg:h-header-pc z-50 transition-all duration-300 bg-white ${headerStyle}`}
       >
         <div className="max-w-pc h-full m-auto flex justify-between items-center">
           <h1>

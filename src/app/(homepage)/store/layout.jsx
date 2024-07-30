@@ -1,3 +1,5 @@
 export default function StoreLayout({ children }) {
-  return <section className="mt-16 lg:mt-24">{children}</section>
+  return (
+    <section className="mt-content-mobile lg:mt-content-pc">{children}</section>
+  )
 }
