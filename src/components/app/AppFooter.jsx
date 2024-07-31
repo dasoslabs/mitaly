@@ -1,6 +1,10 @@
+"use client"
+
 import Link from "next/link"
 import Logo from "../common/Logo"
 import SvgIcon from "../common/SvgIcon"
+
+import { useEffect, useState } from "react"
 
 const data = [
   {
@@ -30,7 +34,13 @@ const data = [
 ]
 
 export default function AppFooter() {
-  return (
+  const [isWindow, setIsWindow] = useState(false)
+
+  useEffect(() => {
+    setIsWindow(true)
+  }, [])
+
+  return isWindow && (
     <footer className="border-t border-light-gray">
       <div className="max-w-pc m-auto py-10 px-6 lg:py-12">
         <div className="lg:flex lg:justify-between lg:items-center">
