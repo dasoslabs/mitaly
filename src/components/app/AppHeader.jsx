@@ -125,9 +125,11 @@ export default function AppHeader() {
           <h1>
             <Link href="/" className="hidden lg:block">
               <Logo color={headerColor} />
+              <span className="sr-only">미태리 로고</span>
             </Link>
             <Link href="/" className="lg:hidden">
               <Logo color={headerColor} size="sm" />
+              <span className="sr-only">미태리 로고</span>
             </Link>
           </h1>
 
@@ -159,6 +161,7 @@ export default function AppHeader() {
             onClick={() => setIsMobileMenuOpen(true)}
           >
             <SvgIcon name="menu" color={headerColor} />
+            <span className="sr-only">메뉴 버튼</span>
           </button>
         </div>
       </header>

@@ -46,8 +46,7 @@ export default function MenuPage() {
                   fill
                   src={imgUrl}
                   alt={`${name} 이미지`}
-                  sizes="100%"
-                  className="w-full h-auto"
+                  className="object-cover"
                 />
               </div>
 

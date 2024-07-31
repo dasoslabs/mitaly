@@ -47,12 +47,14 @@ export default function AppFooter() {
                 target="_blank"
               >
                 <SvgIcon name="facebook" size={24} />
+                <span className="sr-only">페이스북 이동 버튼</span>
               </Link>
               <Link
                 href="https://www.instagram.com/mitaly_delicious/"
                 target="_blank"
               >
                 <SvgIcon name="instagram" size={24} />
+                <span className="sr-only">인스타그램 이동 버튼</span>
               </Link>
             </div>
           </div>
@@ -73,12 +75,14 @@ export default function AppFooter() {
           <div className="hidden lg:flex justify-center items-center space-x-1 self-start">
             <Link href="https://www.facebook.com/mitalyoffice/" target="_blank">
               <SvgIcon name="facebook" />
+              <span className="sr-only">페이스북 이동 버튼</span>
             </Link>
             <Link
               href="https://www.instagram.com/mitaly_delicious/"
               target="_blank"
             >
               <SvgIcon name="instagram" />
+              <span className="sr-only">인스타그램 이동 버튼</span>
             </Link>
           </div>
         </div>
