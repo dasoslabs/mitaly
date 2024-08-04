@@ -6,7 +6,7 @@ import { useEffect } from "react"
 import CommunityPageLayout from "@/components/layout/CommunityPageLayout"
 import Pagination from "@/components/common/Pagination"
 
-import { useNoticeStore } from "@/store/notice"
+import useNoticeStore from "@/store/notice"
 
 export default function NoticePage() {
   const {
