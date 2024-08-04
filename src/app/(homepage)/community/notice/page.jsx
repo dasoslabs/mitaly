@@ -12,6 +12,7 @@ export default function NoticePage() {
   const [currentPage, setCurrentPage] = useState(1)
   const [posts, setPosts] = useState({ 1: [] })
   const [totalPages, setTotalPages] = useState()
+  const [loading, setLoading] = useState(true)
 
   // 전체 게시글 수 조회
   useEffect(() => {
@@ -35,6 +36,9 @@ export default function NoticePage() {
         return
       }
 
+      if (!loading) {
+        setLoading(true)
+      }
       try {
         const { data } = await axiosInstance.get(
           `/api/notice?page=${currentPage}&limit=${PAGE_SIZE}`,
@@ -46,6 +50,8 @@ export default function NoticePage() {
       } catch (e) {
         console.log("--Axios error--")
         console.log(e)
+      } finally {
+        setLoading(false)
       }
     }
 
@@ -66,13 +72,17 @@ export default function NoticePage() {
         </div>
         <div className="lg:hidden w-full h-px bg-black" />
 
-        <NoticePagination
-          totalPages={totalPages}
-          items={posts[currentPage]}
-          ListItem={NoticeItem}
-          currentPage={currentPage}
-          setCurrentPage={setCurrentPage}
-        />
+        {loading ? (
+          <NoticeSkelton />
+        ) : (
+          <NoticePagination
+            totalPages={totalPages}
+            items={posts[currentPage]}
+            ListItem={NoticeItem}
+            currentPage={currentPage}
+            setCurrentPage={setCurrentPage}
+          />
+        )}
       </div>
     </CommunityPageLayout>
   )
@@ -92,5 +102,28 @@ function NoticeItem({ id, title, created_at }) {
         </div>
       </Link>
     </li>
+  )
+}
+
+function NoticeSkelton() {
+  return (
+    <ul>
+      {Array(PAGE_SIZE)
+        .fill(0)
+        .map((_, idx) => (
+          <li
+            key={"notice-skelton" + idx}
+            className="py-4 lg:py-6 border-t border-[#D9D9D9]"
+          >
+            <div className="animate-pulse flex justify-between lg:space-x-10">
+              <p className="w-2/12 h-5 bg-stone-200 rounded-full" />
+              <div className="w-10/12 flex flex-col lg:flex-row lg:justify-between lg:space-x-10">
+                <p className="w-10/12 text-start mb-1 lg:mb-0 h-5 bg-stone-200 rounded-full" />
+                <p className="w-2/12 text-[#999] lg:text-black h-5 bg-stone-200 rounded-full" />
+              </div>
+            </div>
+          </li>
+        ))}
+    </ul>
   )
 }
