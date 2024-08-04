@@ -1,61 +1,30 @@
 "use client"
 
 import Link from "next/link"
-import { useEffect, useState } from "react"
-import axiosInstance from "@/libs/axios"
+import { useEffect } from "react"
+
 import CommunityPageLayout from "@/components/layout/CommunityPageLayout"
 import NoticePagination from "@/components/common/Pagination/NoticePagination"
 
-const PAGE_SIZE = 9
+import { useNoticeStore } from "@/store/notice"
 
 export default function NoticePage() {
-  const [currentPage, setCurrentPage] = useState(1)
-  const [posts, setPosts] = useState({ 1: [] })
-  const [totalPages, setTotalPages] = useState()
-  const [loading, setLoading] = useState(true)
+  const {
+    currentPage,
+    setCurrentPage,
+    posts,
+    totalPages,
+    loading,
+    fetchTotalPages,
+    fetchPagePosts,
+  } = useNoticeStore((state) => state)
 
-  // 전체 게시글 수 조회
   useEffect(() => {
-    const fetchPostTotalCount = async () => {
-      try {
-        const { data } = await axiosInstance.get("/api/notice/count")
-        setTotalPages(Math.ceil(data / PAGE_SIZE))
-      } catch (e) {
-        console.log("--Axios error--")
-        console.log(e)
-      }
-    }
-
-    fetchPostTotalCount()
+    fetchTotalPages()
   }, [])
 
-  // 각 페이지에 해당하는 게시글 조회
   useEffect(() => {
-    const fetchPagePosts = async () => {
-      if (posts[currentPage] && 0 < posts[currentPage].length) {
-        return
-      }
-
-      if (!loading) {
-        setLoading(true)
-      }
-      try {
-        const { data } = await axiosInstance.get(
-          `/api/notice?page=${currentPage}&limit=${PAGE_SIZE}`,
-        )
-        setPosts({
-          ...posts,
-          [currentPage]: data,
-        })
-      } catch (e) {
-        console.log("--Axios error--")
-        console.log(e)
-      } finally {
-        setLoading(false)
-      }
-    }
-
-    fetchPagePosts()
+    fetchPagePosts(currentPage)
   }, [currentPage])
 
   return (
@@ -106,6 +75,7 @@ function NoticeItem({ id, title, created_at }) {
 }
 
 function NoticeSkelton() {
+  const { PAGE_SIZE } = useNoticeStore((state) => state)
   return (
     <ul>
       {Array(PAGE_SIZE)
