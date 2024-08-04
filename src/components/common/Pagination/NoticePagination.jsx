@@ -1,16 +1,15 @@
-"use client"
+import SvgIcon from "../SvgIcon"
 
-import React from "react"
-import { useState } from "react"
-import SvgIcon from "./SvgIcon"
-
-export default function Pagination({
+export default function NoticePagination({
   items,
-  pageSize = 9,
+  totalPages = 0,
+  currentPage = 1,
+  setCurrentPage = () => {},
   ListItem = DefaultListItem,
 }) {
-  const [currentPage, setCurrentPage] = useState(1)
-  const totalPages = Math.ceil(items.length / pageSize)
+  if (!totalPages) {
+    return null
+  }
 
   const handlePageChange = (page) => {
     setCurrentPage(page)
@@ -32,15 +31,10 @@ export default function Pagination({
     pageNumbers.push(i)
   }
 
-  const currentItems = items.slice(
-    (currentPage - 1) * pageSize,
-    currentPage * pageSize,
-  )
-
   return (
     <>
       <ul>
-        {currentItems.map((item, idx) => (
+        {items?.map((item, idx) => (
           <ListItem key={idx} className="border p-4" {...item} />
         ))}
       </ul>

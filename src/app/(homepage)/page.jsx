@@ -7,7 +7,9 @@ import Link from "next/link"
 import VideoPlayer from "@/components/common/VideoPlayer"
 import SvgIcon from "@/components/common/SvgIcon"
 import Slider, { SliderCard } from "@/components/common/Slider"
-import SliderFull, { SliderFullCard } from "@/components/common/SliderFull"
+import SliderFull, {
+  SliderFullCard,
+} from "@/components/common/Slider/SliderFull"
 import ShowMoreLinkButton from "@/components/common/Button/ShowMoreLinkButton"
 import ChipButton from "@/components/common/Button/ChipButton"
 

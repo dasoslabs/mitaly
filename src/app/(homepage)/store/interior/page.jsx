@@ -4,7 +4,9 @@ import { useState } from "react"
 
 import Image from "next/image"
 
-import SliderFull, { SliderFullCard } from "@/components/common/SliderFull"
+import SliderFull, {
+  SliderFullCard,
+} from "@/components/common/Slider/SliderFull"
 import ChipButton from "@/components/common/Button/ChipButton"
 
 import { interior } from "../data"

@@ -4,7 +4,7 @@ import Link from "next/link"
 import { useEffect, useState } from "react"
 import axiosInstance from "@/libs/axios"
 import CommunityPageLayout from "@/components/layout/CommunityPageLayout"
-import NoticePagination from "@/components/common/NoticePagination"
+import NoticePagination from "@/components/common/Pagination/NoticePagination"
 
 const PAGE_SIZE = 9
 
