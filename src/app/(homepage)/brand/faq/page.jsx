@@ -4,7 +4,7 @@ import { useState } from "react"
 
 import BrandPageLayout from "@/components/layout/BrandPageLayout"
 import SvgIcon from "@/components/common/SvgIcon"
-import Pagination from "@/components/common/Pagination"
+import Pagination from "@/components/common/Pagination/AllPagination"
 
 import { category, faqList } from "./data"
 

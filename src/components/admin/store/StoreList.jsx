@@ -3,7 +3,7 @@
 import Link from "next/link"
 
 import axiosInstance from "@/libs/axios"
-import Pagination from "@/components/common/Pagination"
+import Pagination from "@/components/common/Pagination/AllPagination"
 import { useRouter } from "next/navigation"
 
 export default function StoreList({ list = [], isAdmin = false }) {

@@ -3,7 +3,7 @@
 import { useRouter } from "next/navigation"
 import { useState } from "react"
 import axiosInstance from "@/libs/axios"
-import Pagination from "@/components/common/Pagination"
+import Pagination from "@/components/common/Pagination/AllPagination"
 import Modal from "@/components/common/Modal"
 
 export default function ContactList({ list = [], isAdmin = false }) {

@@ -1,15 +1,16 @@
+"use client"
+
+import React from "react"
+import { useState } from "react"
 import SvgIcon from "../SvgIcon"
 
-export default function NoticePagination({
+export default function Pagination({
   items,
-  totalPages = 0,
-  currentPage = 1,
-  setCurrentPage = () => {},
+  pageSize = 9,
   ListItem = DefaultListItem,
 }) {
-  if (!totalPages) {
-    return null
-  }
+  const [currentPage, setCurrentPage] = useState(1)
+  const totalPages = Math.ceil(items.length / pageSize)
 
   const handlePageChange = (page) => {
     setCurrentPage(page)
@@ -31,10 +32,15 @@ export default function NoticePagination({
     pageNumbers.push(i)
   }
 
+  const currentItems = items.slice(
+    (currentPage - 1) * pageSize,
+    currentPage * pageSize,
+  )
+
   return (
     <>
       <ul>
-        {items?.map((item, idx) => (
+        {currentItems.map((item, idx) => (
           <ListItem key={idx} className="border p-4" {...item} />
         ))}
       </ul>
@@ -43,14 +49,14 @@ export default function NoticePagination({
           <button
             onClick={() => handlePageChange(1)}
             disabled={currentPage === 1}
-            className="w-6 h-6 text-grey rounded disabled:opacity-50"
+            className="w-6 h-6 bg-gray-200 text-gray-700 rounded disabled:opacity-50"
           >
             <SvgIcon name="arrow-start" />
           </button>
           <button
             onClick={() => handlePageChange(currentPage - 1)}
             disabled={currentPage === 1}
-            className="w-6 h-6 text-grey rounded disabled:opacity-50"
+            className="w-6 h-6 bg-gray-200 text-gray-700 rounded disabled:opacity-50"
           >
             <SvgIcon name="arrow-prev" />
           </button>
@@ -68,14 +74,14 @@ export default function NoticePagination({
           <button
             onClick={() => handlePageChange(currentPage + 1)}
             disabled={currentPage === totalPages}
-            className="w-6 h-6 text-grey rounded-full disabled:opacity-50"
+            className="w-6 h-6 bg-gray-200 text-gray-700 rounded disabled:opacity-50"
           >
             <SvgIcon name="arrow-next" />
           </button>
           <button
             onClick={() => handlePageChange(totalPages)}
             disabled={currentPage === totalPages}
-            className="w-6 h-6 text-grey rounded-full disabled:opacity-50"
+            className="w-6 h-6 bg-gray-200 text-gray-700 rounded disabled:opacity-50"
           >
             <SvgIcon name="arrow-end" />
           </button>

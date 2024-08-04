@@ -3,7 +3,7 @@
 import { useState } from "react"
 
 import CommunityPageLayout from "@/components/layout/CommunityPageLayout"
-import Pagination from "@/components/common/Pagination"
+import Pagination from "@/components/common/Pagination/AllPagination"
 
 import { category, newsList } from "./data"
 

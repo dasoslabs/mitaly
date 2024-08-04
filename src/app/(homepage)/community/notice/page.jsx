@@ -4,7 +4,7 @@ import Link from "next/link"
 import { useEffect } from "react"
 
 import CommunityPageLayout from "@/components/layout/CommunityPageLayout"
-import NoticePagination from "@/components/common/Pagination/NoticePagination"
+import Pagination from "@/components/common/Pagination"
 
 import { useNoticeStore } from "@/store/notice"
 
@@ -44,7 +44,7 @@ export default function NoticePage() {
         {loading ? (
           <NoticeSkelton />
         ) : (
-          <NoticePagination
+          <Pagination
             totalPages={totalPages}
             items={posts[currentPage]}
             ListItem={NoticeItem}
