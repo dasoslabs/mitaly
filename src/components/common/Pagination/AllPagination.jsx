@@ -49,14 +49,14 @@ export default function Pagination({
           <button
             onClick={() => handlePageChange(1)}
             disabled={currentPage === 1}
-            className="w-6 h-6 bg-gray-200 text-gray-700 rounded disabled:opacity-50"
+            className="w-6 h-6 text-gray-700 rounded disabled:opacity-50"
           >
             <SvgIcon name="arrow-start" />
           </button>
           <button
             onClick={() => handlePageChange(currentPage - 1)}
             disabled={currentPage === 1}
-            className="w-6 h-6 bg-gray-200 text-gray-700 rounded disabled:opacity-50"
+            className="w-6 h-6 text-gray-700 rounded disabled:opacity-50"
           >
             <SvgIcon name="arrow-prev" />
           </button>
@@ -74,14 +74,14 @@ export default function Pagination({
           <button
             onClick={() => handlePageChange(currentPage + 1)}
             disabled={currentPage === totalPages}
-            className="w-6 h-6 bg-gray-200 text-gray-700 rounded disabled:opacity-50"
+            className="w-6 h-6 text-gray-700 rounded disabled:opacity-50"
           >
             <SvgIcon name="arrow-next" />
           </button>
           <button
             onClick={() => handlePageChange(totalPages)}
             disabled={currentPage === totalPages}
-            className="w-6 h-6 bg-gray-200 text-gray-700 rounded disabled:opacity-50"
+            className="w-6 h-6 text-gray-700 rounded disabled:opacity-50"
           >
             <SvgIcon name="arrow-end" />
           </button>
