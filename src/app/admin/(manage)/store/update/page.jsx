@@ -96,7 +96,9 @@ export default function AdminStoreUpdatePage() {
 
   return (
     <>
-      <h2 className="font-semibold text-2xl">매장 정보 수정</h2>
+      <section>
+        <h2 className="font-semibold text-2xl">매장 정보 수정</h2>
+      </section>
 
       <section className="bg-white p-5">
         <form className="space-y-5" onSubmit={handleSubmitUpdateStore}>

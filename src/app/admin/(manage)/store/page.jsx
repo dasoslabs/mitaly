@@ -21,9 +21,7 @@ export default async function AdminStorePage() {
         </div>
       </section>
 
-      <section>
-        <StoreList list={stores} />
-      </section>
+      <StoreList list={stores} />
     </>
   )
 }

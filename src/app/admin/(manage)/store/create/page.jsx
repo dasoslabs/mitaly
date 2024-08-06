@@ -52,7 +52,9 @@ export default function AdminStoreCreatePage() {
 
   return (
     <>
-      <h2 className="font-semibold text-2xl">매장 신규 등록</h2>
+      <section>
+        <h2 className="font-semibold text-2xl">매장 신규 등록</h2>
+      </section>
 
       <section className="bg-white p-5">
         <form className="space-y-5" onSubmit={handleSubmitCreateStore}>

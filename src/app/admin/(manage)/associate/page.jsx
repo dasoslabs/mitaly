@@ -12,9 +12,7 @@ export default async function AdminFranchiseePage() {
         <h2 className="font-semibold text-2xl">제휴문의</h2>
       </section>
 
-      <section>
-        <ContactList list={list} />
-      </section>
+      <ContactList list={list} />
     </>
   )
 }

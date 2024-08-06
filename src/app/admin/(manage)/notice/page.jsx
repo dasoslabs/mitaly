@@ -8,7 +8,7 @@ export default async function AdminNoticePage() {
 
   return (
     <>
-      <div className="flex justify-between items-start">
+      <section className="flex justify-between items-start">
         <h2 className="font-semibold text-2xl">공지사항</h2>
         <Link
           href="/admin/notice/create"
@@ -16,7 +16,8 @@ export default async function AdminNoticePage() {
         >
           글쓰기
         </Link>
-      </div>
+      </section>
+
       <NoticeList list={posts} />
     </>
   )

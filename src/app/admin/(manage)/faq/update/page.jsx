@@ -27,7 +27,9 @@ export default async function AdminNoticeUpdatePage({ searchParams }) {
 
   return (
     <>
-      <h2 className="font-semibold text-2xl">FAQ 수정</h2>
+      <section>
+        <h2 className="font-semibold text-2xl">FAQ 수정</h2>
+      </section>
 
       <section className="bg-white p-5">
         <form className="space-y-5" action={handleUpdateFaq}>
