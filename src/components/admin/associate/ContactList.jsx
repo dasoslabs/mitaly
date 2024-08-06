@@ -2,11 +2,13 @@
 
 import { useRouter } from "next/navigation"
 import { useState } from "react"
-import axiosInstance from "@/libs/axios"
+
 import Pagination from "@/components/common/Pagination/AllPagination"
 import Modal from "@/components/common/Modal"
 
-export default function ContactList({ list = [], isAdmin = false }) {
+import { deleteContact } from "@/libs/db/associate"
+
+export default function ContactList({ list = [] }) {
   return (
     <section className="bg-white p-5">
       <div className="flex justify-between items-center pb-5 font-bold text-center">
@@ -29,11 +31,9 @@ function ContactItem({ id, name, contact, type, title, content, created_at }) {
     e.stopPropagation()
 
     if (confirm("삭제하시겠습니까?")) {
-      const {
-        data: { success, message },
-      } = await axiosInstance.delete(`/api/associate/${id}`)
-      if (!success) {
-        window.alert(message)
+      const result = await deleteContact(id)
+      if (!result) {
+        window.alert("오류 발생")
         return
       }
       router.refresh()

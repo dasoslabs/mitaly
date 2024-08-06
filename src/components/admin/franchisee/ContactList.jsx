@@ -1,10 +1,12 @@
 "use client"
 
-import axiosInstance from "@/libs/axios"
-import Pagination from "@/components/common/Pagination/AllPagination"
 import { useRouter } from "next/navigation"
 
-export default function ContactList({ list = [], isAdmin = false }) {
+import Pagination from "@/components/common/Pagination/AllPagination"
+
+import { deleteContact } from "@/libs/db/franchisee"
+
+export default function ContactList({ list = [] }) {
   return (
     <section className="bg-white p-5">
       <div className="flex justify-between items-center pb-5 font-bold text-center">
@@ -23,11 +25,9 @@ function ContactItem({ id, name, contact, region, created_at }) {
   const router = useRouter()
   const handleDeleteContact = async () => {
     if (confirm("삭제하시겠습니까?")) {
-      const {
-        data: { success, message },
-      } = await axiosInstance.delete(`/api/franchisee/${id}`)
-      if (!success) {
-        window.alert(message)
+      const result = await deleteContact(id)
+      if (!result) {
+        window.alert("오류 발생")
         return
       }
       router.refresh()

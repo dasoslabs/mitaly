@@ -1,3 +1,5 @@
+"use server"
+
 import createSupabase from "../supabase"
 import { formatTimestampToKRDate } from "../utils/time"
 
@@ -54,7 +56,11 @@ export async function createContact({ type, name, contact, title, content }) {
 export async function deleteContact(id) {
   const supabase = createSupabase()
 
-  await supabase.from(TABLE_NAME).delete().eq("id", id)
+  const { error } = await supabase.from(TABLE_NAME).delete().eq("id", id)
+
+  if (error) {
+    return false
+  }
 
   return true
 }

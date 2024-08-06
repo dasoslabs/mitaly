@@ -1,9 +1,10 @@
 "use client"
 
 import Link from "next/link"
+import { useRouter } from "next/navigation"
 
 import Pagination from "@/components/common/Pagination/AllPagination"
-import { useRouter } from "next/navigation"
+
 import { deleteFaq } from "@/libs/db/faq"
 
 export default function FaqList({ list = [] }) {
