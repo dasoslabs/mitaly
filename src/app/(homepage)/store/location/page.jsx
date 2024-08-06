@@ -139,6 +139,7 @@ export default function LocationPage() {
 
 function StoreItem({ id, name, address, address_detail, business_hours }) {
   const [modalOpen, setModalOpen] = useState(false)
+  const [loading, setLoading] = useState(false)
   const [storeDetail, setStoreDetail] = useState()
   const closeModal = (e) => {
     e.stopPropagation()
@@ -148,12 +149,15 @@ function StoreItem({ id, name, address, address_detail, business_hours }) {
   useEffect(() => {
     if (modalOpen === true) {
       const fetchStoreDetail = async () => {
+        setLoading(true)
         try {
           const { data } = await axiosInstance.get(`/api/store/${id}`)
           setStoreDetail(data)
         } catch (e) {
           console.log("--Axios error--")
           console.log(e)
+        } finally {
+          setLoading(false)
         }
       }
       fetchStoreDetail()
@@ -183,63 +187,91 @@ function StoreItem({ id, name, address, address_detail, business_hours }) {
         <ul>
           <li className="border-b border-stone-200">
             <div className="flex items-center space-x-5">
-              <p className="w-40 bg-orange-100 text-center font-semibold py-5 px-5">
+              <p className="w-40 bg-amber-50 text-center font-semibold py-5 px-5">
                 지역
               </p>
-              <p>{storeDetail?.region}</p>
+              {loading ? (
+                <p className="animate-pulse w-40 h-4 bg-stone-200 rounded-full" />
+              ) : (
+                <p>{storeDetail?.region}</p>
+              )}
             </div>
           </li>
           <li className="border-b border-stone-200">
             <div className="flex items-center space-x-5">
-              <p className="w-40 bg-orange-100 text-center font-semibold py-5 px-5">
+              <p className="w-40 bg-amber-50 text-center font-semibold py-5 px-5">
                 매장명
               </p>
-              <p>{storeDetail?.name}</p>
+              {loading ? (
+                <p className="animate-pulse w-80 h-4 bg-stone-200 rounded-full" />
+              ) : (
+                <p>{storeDetail?.name}</p>
+              )}
             </div>
           </li>
           <li className="border-b border-stone-200">
             <div className="flex items-center space-x-5">
-              <p className="w-40 bg-orange-100 text-center font-semibold py-5 px-5">
+              <p className="w-40 bg-amber-50 text-center font-semibold py-5 px-5">
                 주소
               </p>
-              <p>
-                {storeDetail?.address}, {storeDetail?.address_detail}
-              </p>
+              {loading ? (
+                <p className="animate-pulse w-80 h-4 bg-stone-200 rounded-full" />
+              ) : (
+                <p>
+                  {storeDetail?.address}, {storeDetail?.address_detail}
+                </p>
+              )}
             </div>
           </li>
           <li className="border-b border-stone-200">
             <div className="flex items-center space-x-5">
-              <p className="w-40 bg-orange-100 text-center font-semibold py-5 px-5">
+              <p className="w-40 bg-amber-50 text-center font-semibold py-5 px-5">
                 전화
               </p>
-              <p>{storeDetail?.contact}</p>
+              {loading ? (
+                <p className="animate-pulse w-40 h-4 bg-stone-200 rounded-full" />
+              ) : (
+                <p>{storeDetail?.contact}</p>
+              )}
             </div>
           </li>
           <li className="border-b border-stone-200">
             <div className="flex items-center space-x-5">
-              <p className="w-40 bg-orange-100 text-center font-semibold py-10 px-5">
+              <p className="w-40 bg-amber-50 text-center font-semibold py-10 px-5">
                 영업시간
               </p>
               <div className="flex flex-col space-y-2">
-                <p>{storeDetail?.business_hours}</p>
-                <div className="flex space-x-2">
+                {loading ? (
+                  <p className="animate-pulse w-40 h-4 bg-stone-200 rounded-full" />
+                ) : (
+                  <p>{storeDetail?.business_hours}</p>
+                )}
+                <div className="flex items-center space-x-2">
                   <div className="uppercase bg-primary text-white rounded-full w-32 text-center">
                     Break Time
                   </div>
-                  <p>{storeDetail?.break_time ?? "없음"}</p>
+                  {loading ? (
+                    <p className="animate-pulse w-40 h-4 bg-stone-200 rounded-full" />
+                  ) : (
+                    <p>{storeDetail?.break_time ?? "없음"}</p>
+                  )}
                 </div>
-                <div className="flex space-x-2">
+                <div className="flex items-center space-x-2">
                   <div className="uppercase bg-primary text-white rounded-full w-32 text-center">
                     휴일
                   </div>
-                  <p>{storeDetail?.holidays ?? "없음"}</p>
+                  {loading ? (
+                    <p className="animate-pulse w-40 h-4 bg-stone-200 rounded-full" />
+                  ) : (
+                    <p>{storeDetail?.holidays ?? "없음"}</p>
+                  )}
                 </div>
               </div>
             </div>
           </li>
           <li>
             <div className="flex items-center space-x-5">
-              <p className="w-40 bg-orange-100 text-center font-semibold py-8 px-5">
+              <p className="w-40 bg-amber-50 text-center font-semibold py-8 px-5">
                 옵션
               </p>
               <ul className="flex space-x-5">
