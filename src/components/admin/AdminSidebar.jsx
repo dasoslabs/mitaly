@@ -31,6 +31,11 @@ const menu = [
     href: "/admin/faq",
     isOnlyAdminPage: false,
   },
+  {
+    name: "뉴스룸",
+    href: "/admin/news",
+    isOnlyAdminPage: false,
+  },
 ]
 
 export default async function AdminSidebar() {
