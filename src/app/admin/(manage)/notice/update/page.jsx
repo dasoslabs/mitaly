@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react"
 import { useRouter, useSearchParams } from "next/navigation"
 
-import Editor from "@/components/admin/Editor"
+import Editor from "@/components/admin/editor"
 
 import axiosInstance from "@/libs/axios"
 

@@ -1,3 +1,5 @@
+"use server"
+
 import createSupabase from "../supabase"
 import { formatTimestampToKRDate } from "../utils/time"
 
@@ -103,19 +105,28 @@ export async function createPost({ title, content }) {
     .eq("user_id", user?.id)
     .single()
 
-  const { data: post, error } = await supabase
+  const { error } = await supabase
     .from(TABLE_NAME)
     .insert([{ title, content, author_id: userData?.id }])
-    .select()
-    .single()
 
-  return post
+  if (error) {
+    return false
+  }
+
+  return true
 }
 
 export async function updatePost({ id, title, content }) {
   const supabase = createSupabase()
 
-  await supabase.from(TABLE_NAME).update({ title, content }).eq("id", id)
+  const { error } = await supabase
+    .from(TABLE_NAME)
+    .update({ title, content })
+    .eq("id", id)
+
+  if (error) {
+    return false
+  }
 
   return true
 }
