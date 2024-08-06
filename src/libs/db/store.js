@@ -1,3 +1,5 @@
+"use server"
+
 import createSupabase from "../supabase"
 import { formatTimestampToKRDate } from "../utils/time"
 
@@ -85,7 +87,6 @@ export const getStoreDetailById = async (id) => {
     .single()
 
   return {
-    id: store.id,
     region: store.region,
     name: store.name,
     address: store.address,
@@ -101,19 +102,9 @@ export const getStoreDetailById = async (id) => {
   }
 }
 
-export async function createStore(formData) {
+export async function createStore(data) {
   const supabase = createSupabase()
-
-  const region = formData.get("region")
-  const name = formData.get("name")
-  const address = formData.get("address")
-  const address_detail = formData.get("address_detail")
-  const contact = formData.get("contact")
-  const business_hours = formData.get("business_hours")
-  const break_time = formData.get("break_time") ?? null
-  const holidays = formData.get("holidays") ?? null
-  const options = formData.getAll("options")
-  const image_file = formData.get("image_file") ?? null
+  const { image_file } = data
 
   const {
     data: { user },
@@ -141,67 +132,29 @@ export async function createStore(formData) {
     image_url = signedUrl
   }
 
-  const { data: store, error } = await supabase
-    .from(TABLE_NAME)
-    .insert([
-      {
-        author_id: userData?.id,
-        region,
-        name,
-        address,
-        address_detail,
-        contact,
-        business_hours,
-        break_time,
-        holidays,
-        options,
-        image_url,
-        image_name,
-      },
-    ])
-    .select()
-    .single()
+  delete data.image_file
+  const { error } = await supabase.from(TABLE_NAME).insert([
+    {
+      author_id: userData?.id,
+      image_url,
+      image_name,
+      ...data,
+    },
+  ])
 
-  return store
+  if (error) {
+    return false
+  }
+
+  return true
 }
 
-export async function updateStore({ id, formData }) {
+export async function updateStore({ id, data }) {
   const supabase = createSupabase()
-
-  const region = formData.get("region")
-  const name = formData.get("name")
-  const address = formData.get("address")
-  const address_detail = formData.get("address_detail")
-  const contact = formData.get("contact")
-  const business_hours = formData.get("business_hours")
-  const break_time = formData.get("break_time") ?? null
-  const holidays = formData.get("holidays") ?? null
-  const options = formData.getAll("options")
-  const image_file = formData.get("image_file") ?? null
-
-  const {
-    data: { user },
-  } = await supabase.auth.getUser()
-  const { data: userData } = await supabase
-    .from("users")
-    .select("id, name")
-    .eq("user_id", user?.id)
-    .single()
+  const { image_file } = data
 
   let image_url = null
   let image_name = null
-
-  const updateData = {}
-
-  if (region) updateData.region = region
-  if (name) updateData.name = name
-  if (address) updateData.address = address
-  if (address_detail) updateData.address_detail = address_detail
-  if (contact !== null) updateData.contact = contact
-  if (business_hours) updateData.business_hours = business_hours
-  if (break_time !== null) updateData.break_time = break_time
-  if (holidays !== null) updateData.holidays = holidays
-  if (options.length > 0) updateData.options = options
 
   if (image_file) {
     const { data: existingStore } = await supabase
@@ -227,23 +180,39 @@ export async function updateStore({ id, formData }) {
       .from(STORAGE_NAME)
       .createSignedUrl(`stores/${image_name}`, 100 * 365 * 24 * 60 * 60)
     image_url = signedUrl
-
-    updateData.image_url = image_url
-    updateData.image_name = image_name
   }
 
-  const { data: store } = await supabase
+  delete data.image_file
+  const { error } = await supabase
     .from(TABLE_NAME)
-    .update(updateData)
+    .update({
+      image_url,
+      image_name,
+      ...data,
+    })
     .eq("id", id)
-    .select()
-    .single()
+
+  if (error) {
+    return false
+  }
 
   return true
 }
 
 export async function deleteStore(id) {
   const supabase = createSupabase()
+
+  const { data: existingStore } = await supabase
+    .from(TABLE_NAME)
+    .select("image_name")
+    .eq("id", id)
+    .single()
+
+  if (existingStore?.image_name) {
+    await supabase.storage
+      .from(STORAGE_NAME)
+      .remove([`stores/${existingStore.image_name}`])
+  }
 
   await supabase.from(TABLE_NAME).delete().eq("id", id)
 

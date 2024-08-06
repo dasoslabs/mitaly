@@ -1,11 +1,9 @@
-"use client"
+"use server"
 
-import { useReducer } from "react"
-import { useRouter } from "next/navigation"
-
-import { initialState, reducer } from "./reducer"
-import axiosInstance from "@/libs/axios"
 import Link from "next/link"
+import { redirect } from "next/navigation"
+import { revalidatePath } from "next/cache"
+import { createStore } from "@/libs/db/store"
 
 const options = [
   { value: "wifi", name: "와이파이" },
@@ -15,39 +13,42 @@ const options = [
   { value: "parking", name: "주차" },
 ]
 
-export default function AdminStoreCreatePage() {
-  const router = useRouter()
-  const [state, dispatch] = useReducer(reducer, initialState)
+export default async function AdminStoreCreatePage() {
+  const actionCreateStore = async (data) => {
+    "use server"
 
-  const handleSubmitCreateStore = async (e) => {
-    e.preventDefault()
+    const region = data.get("region")
+    const name = data.get("name")
+    const address = data.get("address")
+    const address_detail = data.get("address_detail")
+    const contact = data.get("contact")
+    const business_hours = data.get("business_hours")
+    const break_time = data.get("break_time") ?? null
+    const holidays = data.get("holidays") ?? null
+    const options = data.getAll("options")
+    const image_file =
+      data.get("image_file").name === "undefined"
+        ? null
+        : data.get("image_file")
 
-    try {
-      const form = new FormData()
-      for (let key in state) {
-        if (state[key]) {
-          if (key === "options") {
-            state[key].forEach((option) => {
-              form.append(key, option)
-            })
-          } else {
-            form.append(key, state[key])
-          }
-        }
-      }
-
-      const { data } = await axiosInstance.post("/api/store", form, {
-        headers: {
-          "Content-Type": "multipart/form-data",
-        },
-      })
-
-      router.replace("/admin/store")
-      router.refresh("/admin/store")
-    } catch (e) {
-      console.log("---catch---")
-      console.log(e)
+    const result = await createStore({
+      region,
+      name,
+      address,
+      address_detail,
+      contact,
+      business_hours,
+      break_time,
+      holidays,
+      options,
+      image_file,
+    })
+    if (!result) {
+      console.log("오류 발생")
+      return
     }
+    revalidatePath("/admin/store")
+    redirect("/admin/store")
   }
 
   return (
@@ -57,7 +58,7 @@ export default function AdminStoreCreatePage() {
       </section>
 
       <section className="bg-white p-5">
-        <form className="space-y-5" onSubmit={handleSubmitCreateStore}>
+        <form className="space-y-5" action={actionCreateStore}>
           <div className="flex flex-col space-y-2">
             <label>
               지역
@@ -67,10 +68,7 @@ export default function AdminStoreCreatePage() {
               className="border border-stone-300 p-2 outline-none focus:border-black"
               required
               type="text"
-              value={state.region}
-              onChange={(e) =>
-                dispatch({ type: "SET_REGION", payload: e.target.value })
-              }
+              name="region"
             />
           </div>
 
@@ -83,10 +81,7 @@ export default function AdminStoreCreatePage() {
               className="border border-stone-300 p-2 outline-none focus:border-black"
               required
               type="text"
-              value={state.name}
-              onChange={(e) =>
-                dispatch({ type: "SET_NAME", payload: e.target.value })
-              }
+              name="name"
             />
           </div>
 
@@ -98,10 +93,7 @@ export default function AdminStoreCreatePage() {
               className="border border-stone-300 p-2 outline-none focus:border-black"
               required
               type="text"
-              value={state.address}
-              onChange={(e) =>
-                dispatch({ type: "SET_ADDRESS", payload: e.target.value })
-              }
+              name="address"
             />
           </div>
 
@@ -113,13 +105,7 @@ export default function AdminStoreCreatePage() {
               className="border border-stone-300 p-2 outline-none focus:border-black"
               required
               type="text"
-              value={state.address_detail}
-              onChange={(e) =>
-                dispatch({
-                  type: "SET_ADDRESS_DETAIL",
-                  payload: e.target.value,
-                })
-              }
+              name="address_detail"
             />
           </div>
 
@@ -128,10 +114,7 @@ export default function AdminStoreCreatePage() {
             <input
               className="border border-stone-300 p-2 outline-none focus:border-black"
               type="text"
-              value={state.contact}
-              onChange={(e) =>
-                dispatch({ type: "SET_CONTACT", payload: e.target.value })
-              }
+              name="contact"
             />
           </div>
 
@@ -143,13 +126,7 @@ export default function AdminStoreCreatePage() {
               className="border border-stone-300 p-2 outline-none focus:border-black"
               required
               type="text"
-              value={state.business_hours}
-              onChange={(e) =>
-                dispatch({
-                  type: "SET_BUSINESS_HOURS",
-                  payload: e.target.value,
-                })
-              }
+              name="business_hours"
             />
           </div>
 
@@ -158,10 +135,7 @@ export default function AdminStoreCreatePage() {
             <input
               className="border border-stone-300 p-2 outline-none focus:border-black"
               type="text"
-              value={state.break_time}
-              onChange={(e) =>
-                dispatch({ type: "SET_BREAK_TIME", payload: e.target.value })
-              }
+              name="break_time"
             />
           </div>
 
@@ -170,10 +144,7 @@ export default function AdminStoreCreatePage() {
             <input
               className="border border-stone-300 p-2 outline-none focus:border-black"
               type="text"
-              value={state.holidays}
-              onChange={(e) =>
-                dispatch({ type: "SET_HOLIDAYS", payload: e.target.value })
-              }
+              name="holidays"
             />
           </div>
 
@@ -182,13 +153,7 @@ export default function AdminStoreCreatePage() {
             <div className="flex space-x-5">
               {options.map(({ name, value }) => (
                 <label key={value} className="space-x-1">
-                  <input
-                    type="checkbox"
-                    checked={state.options.includes(value)}
-                    onChange={() =>
-                      dispatch({ type: "TOGGLE_OPTION", payload: value })
-                    }
-                  />
+                  <input type="checkbox" name="options" value={value} />
                   <span>{name}</span>
                 </label>
               ))}
@@ -200,9 +165,7 @@ export default function AdminStoreCreatePage() {
             <input
               className="border border-stone-300 p-2 outline-none focus:border-black"
               type="file"
-              onChange={(e) =>
-                dispatch({ type: "SET_IMAGE_FILE", payload: e.target.files[0] })
-              }
+              name="image_file"
             />
           </div>
 
@@ -214,7 +177,7 @@ export default function AdminStoreCreatePage() {
               취소
             </Link>
             <button className="bg-black border border-black text-white py-2 px-5">
-              발행
+              저장
             </button>
           </div>
         </form>

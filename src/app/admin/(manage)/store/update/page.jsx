@@ -1,12 +1,10 @@
-"use client"
+"use server"
 
-import { useEffect, useReducer, useState } from "react"
-import { useRouter, useSearchParams } from "next/navigation"
-
-import { initialState, reducer } from "./reducer"
-import axiosInstance from "@/libs/axios"
 import Link from "next/link"
 import Image from "next/image"
+import { redirect } from "next/navigation"
+import { revalidatePath } from "next/cache"
+import { getStoreDetailById, updateStore } from "@/libs/db/store"
 
 const options = [
   { value: "wifi", name: "와이파이" },
@@ -16,83 +14,59 @@ const options = [
   { value: "parking", name: "주차" },
 ]
 
-export default function AdminStoreUpdatePage() {
-  const id = useSearchParams().get("id")
-  const router = useRouter()
-  const [state, dispatch] = useReducer(reducer, initialState)
-  const [imageUrl, setImageUrl] = useState("")
+export default async function AdminStoreUpdatePage({ searchParams }) {
+  const { id } = searchParams
+  const {
+    region,
+    name,
+    address,
+    address_detail,
+    contact,
+    business_hours,
+    break_time,
+    holidays,
+    options: defaultOptions,
+    image_url,
+  } = await getStoreDetailById(id)
 
-  const handleSubmitUpdateStore = async (e) => {
-    e.preventDefault()
+  const actionUpdateStore = async (data) => {
+    "use server"
+    const region = data.get("region")
+    const name = data.get("name")
+    const address = data.get("address")
+    const address_detail = data.get("address_detail")
+    const contact = data.get("contact")
+    const business_hours = data.get("business_hours")
+    const break_time = data.get("break_time") ?? null
+    const holidays = data.get("holidays") ?? null
+    const options = data.getAll("options")
+    const image_file =
+      data.get("image_file").name === "undefined"
+        ? null
+        : data.get("image_file")
 
-    try {
-      const form = new FormData()
-      for (let key in state) {
-        if (state[key]) {
-          if (key === "options") {
-            state[key].forEach((option) => {
-              form.append(key, option)
-            })
-          } else {
-            form.append(key, state[key])
-          }
-        }
-      }
-
-      const {
-        data: { success, message },
-      } = await axiosInstance.put(`/api/store/${id}`, form, {
-        headers: {
-          "Content-Type": "multipart/form-data",
-        },
-      })
-
-      if (!success) {
-        window.alert(message)
-        return
-      }
-
-      router.replace("/admin/store")
-      router.refresh("/admin/store")
-    } catch (e) {
-      console.log("---catch---")
-      console.log(e)
+    const result = await updateStore({
+      id,
+      data: {
+        region,
+        name,
+        address,
+        address_detail,
+        contact,
+        business_hours,
+        break_time,
+        holidays,
+        options,
+        image_file,
+      },
+    })
+    if (!result) {
+      console.log("오류 발생")
+      return
     }
+    revalidatePath("/admin/store")
+    redirect("/admin/store")
   }
-
-  useEffect(() => {
-    const fetchPostDetail = async (id) => {
-      if (!id) {
-        window.alert("게시글을 읽어올 수 없습니다.")
-        return
-      }
-
-      try {
-        const { data: store } = await axiosInstance.get(`/api/store/${id}`)
-        const newState = {
-          region: store.region,
-          name: store.name,
-          address: store.address,
-          address_detail: store.address_detail,
-          contact: store.contact ?? "",
-          business_hours: store.business_hours ?? "",
-          break_time: store.break_time ?? "",
-          holidays: store.holidays ?? "",
-          options: store.options ?? [],
-        }
-
-        dispatch({ type: "SET_STATE", payload: newState })
-
-        if (store.image_url) {
-          setImageUrl(store.image_url)
-        }
-      } catch (e) {
-        console.log(e)
-      }
-    }
-
-    fetchPostDetail(id)
-  }, [id])
 
   return (
     <>
@@ -101,7 +75,7 @@ export default function AdminStoreUpdatePage() {
       </section>
 
       <section className="bg-white p-5">
-        <form className="space-y-5" onSubmit={handleSubmitUpdateStore}>
+        <form className="space-y-5" action={actionUpdateStore}>
           <div className="flex flex-col space-y-2">
             <label>
               지역
@@ -111,10 +85,8 @@ export default function AdminStoreUpdatePage() {
               className="border border-stone-300 p-2 outline-none focus:border-black"
               required
               type="text"
-              value={state.region}
-              onChange={(e) =>
-                dispatch({ type: "SET_REGION", payload: e.target.value })
-              }
+              name="region"
+              defaultValue={region}
             />
           </div>
 
@@ -127,10 +99,8 @@ export default function AdminStoreUpdatePage() {
               className="border border-stone-300 p-2 outline-none focus:border-black"
               required
               type="text"
-              value={state.name}
-              onChange={(e) =>
-                dispatch({ type: "SET_NAME", payload: e.target.value })
-              }
+              name="name"
+              defaultValue={name}
             />
           </div>
 
@@ -142,10 +112,8 @@ export default function AdminStoreUpdatePage() {
               className="border border-stone-300 p-2 outline-none focus:border-black"
               required
               type="text"
-              value={state.address}
-              onChange={(e) =>
-                dispatch({ type: "SET_ADDRESS", payload: e.target.value })
-              }
+              name="address"
+              defaultValue={address}
             />
           </div>
 
@@ -157,13 +125,8 @@ export default function AdminStoreUpdatePage() {
               className="border border-stone-300 p-2 outline-none focus:border-black"
               required
               type="text"
-              value={state.address_detail}
-              onChange={(e) =>
-                dispatch({
-                  type: "SET_ADDRESS_DETAIL",
-                  payload: e.target.value,
-                })
-              }
+              name="address_detail"
+              defaultValue={address_detail}
             />
           </div>
 
@@ -172,10 +135,8 @@ export default function AdminStoreUpdatePage() {
             <input
               className="border border-stone-300 p-2 outline-none focus:border-black"
               type="text"
-              value={state.contact}
-              onChange={(e) =>
-                dispatch({ type: "SET_CONTACT", payload: e.target.value })
-              }
+              name="contact"
+              defaultValue={contact}
             />
           </div>
 
@@ -187,13 +148,8 @@ export default function AdminStoreUpdatePage() {
               className="border border-stone-300 p-2 outline-none focus:border-black"
               required
               type="text"
-              value={state.business_hours}
-              onChange={(e) =>
-                dispatch({
-                  type: "SET_BUSINESS_HOURS",
-                  payload: e.target.value,
-                })
-              }
+              name="business_hours"
+              defaultValue={business_hours}
             />
           </div>
 
@@ -202,10 +158,8 @@ export default function AdminStoreUpdatePage() {
             <input
               className="border border-stone-300 p-2 outline-none focus:border-black"
               type="text"
-              value={state.breakTime}
-              onChange={(e) =>
-                dispatch({ type: "SET_BREAK_TIME", payload: e.target.value })
-              }
+              name="break_time"
+              defaultValue={break_time}
             />
           </div>
 
@@ -214,10 +168,8 @@ export default function AdminStoreUpdatePage() {
             <input
               className="border border-stone-300 p-2 outline-none focus:border-black"
               type="text"
-              value={state.holidays}
-              onChange={(e) =>
-                dispatch({ type: "SET_HOLIDAYS", payload: e.target.value })
-              }
+              name="holidays"
+              defaultValue={holidays}
             />
           </div>
 
@@ -228,10 +180,9 @@ export default function AdminStoreUpdatePage() {
                 <label key={value} className="space-x-1">
                   <input
                     type="checkbox"
-                    checked={state.options.includes(value)}
-                    onChange={() =>
-                      dispatch({ type: "TOGGLE_OPTION", payload: value })
-                    }
+                    name="options"
+                    value={value}
+                    defaultChecked={defaultOptions.includes(value)}
                   />
                   <span>{name}</span>
                 </label>
@@ -241,10 +192,10 @@ export default function AdminStoreUpdatePage() {
 
           <div className="flex flex-col space-y-2">
             <label>매장 사진</label>
-            {imageUrl && (
+            {image_url && (
               <div className="relative w-80 h-52">
                 <Image
-                  src={imageUrl}
+                  src={image_url}
                   alt="매장 사진"
                   fill
                   className="object-fit"
@@ -255,9 +206,7 @@ export default function AdminStoreUpdatePage() {
             <input
               className="border border-stone-300 p-2 outline-none focus:border-black"
               type="file"
-              onChange={(e) =>
-                dispatch({ type: "SET_IMAGE_FILE", payload: e.target.files[0] })
-              }
+              name="image_file"
             />
           </div>
 
@@ -269,7 +218,7 @@ export default function AdminStoreUpdatePage() {
               취소
             </Link>
             <button className="bg-black border border-black text-white py-2 px-5">
-              발행
+              저장
             </button>
           </div>
         </form>

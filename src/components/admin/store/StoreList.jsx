@@ -2,9 +2,9 @@
 
 import Link from "next/link"
 
-import axiosInstance from "@/libs/axios"
 import Pagination from "@/components/common/Pagination/AllPagination"
 import { useRouter } from "next/navigation"
+import { deleteStore } from "@/libs/db/store"
 
 export default function StoreList({ list = [] }) {
   return (
@@ -27,11 +27,9 @@ function StoreItem({ id, name, created_at }) {
   const router = useRouter()
   const handleDeleteStore = async () => {
     if (confirm("삭제하시겠습니까?")) {
-      const {
-        data: { success, message },
-      } = await axiosInstance.delete(`/api/store/${id}`)
-      if (!success) {
-        window.alert(message)
+      const result = await deleteStore(id)
+      if (!result) {
+        window.alert("오류 발생")
         return
       }
       router.refresh()
