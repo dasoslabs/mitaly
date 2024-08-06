@@ -58,7 +58,7 @@ export default function AdminNoticeUpdatePage() {
   return (
     <>
       <section>
-        <h2 className="font-semibold text-2xl">글 수정</h2>
+        <h2 className="font-semibold text-2xl">공지사항 수정</h2>
       </section>
 
       <section className="bg-white p-5">

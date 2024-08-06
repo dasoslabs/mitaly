@@ -33,7 +33,7 @@ export default function AdminNoticeCreatePage() {
   return (
     <>
       <section>
-        <h2 className="font-semibold text-2xl">새로운 글쓰기</h2>
+        <h2 className="font-semibold text-2xl">새로운 공지사항</h2>
       </section>
 
       <section className="bg-white p-5">

@@ -57,7 +57,7 @@ export default function Editor({
           className="bg-black border border-black text-white py-2 px-5"
           onClick={() => onClickCreate(quillRef?.current?.value ?? null)}
         >
-          발행
+          저장
         </button>
       </div>
     </>
