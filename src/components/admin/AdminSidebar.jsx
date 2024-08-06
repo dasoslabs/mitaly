@@ -26,6 +26,11 @@ const menu = [
     href: "/admin/associate",
     isOnlyAdminPage: true,
   },
+  {
+    name: "FAQ",
+    href: "/admin/faq",
+    isOnlyAdminPage: false,
+  },
 ]
 
 export default async function AdminSidebar() {

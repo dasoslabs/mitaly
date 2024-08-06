@@ -1,3 +1,5 @@
+"use server"
+
 import createSupabase from "../supabase"
 
 const TABLE_NAME = "mitaly_faq"
@@ -50,4 +52,92 @@ export async function getCategories() {
     .order("id", { ascending: true })
 
   return data
+}
+
+export async function getAllFaq() {
+  const supabase = createSupabase()
+
+  const { data: faqList, error } = await supabase
+    .from(TABLE_NAME)
+    .select(
+      `
+      id,
+      question,
+      answer,
+      category:category_id (name)
+    `,
+    )
+    .order("created_at", { ascending: false })
+
+  return faqList
+    ? faqList.map((faq) => ({
+        id: faq.id,
+        question: faq.question,
+        answer: faq.answer,
+        category_name: faq.category.name,
+      }))
+    : []
+}
+
+export async function getFaqDetailById(id) {
+  const supabase = createSupabase()
+
+  const { data: faq, error } = await supabase
+    .from(TABLE_NAME)
+    .select(
+      `
+      question,
+      answer,
+      category_id
+    `,
+    )
+    .eq("id", id)
+    .single()
+
+  return {
+    question: faq.question,
+    answer: faq.answer,
+    category_id: faq.category_id,
+  }
+}
+
+export async function createFaq({ category_id, question, answer }) {
+  const supabase = createSupabase()
+
+  const { error } = await supabase
+    .from(TABLE_NAME)
+    .insert([{ category_id, question, answer }])
+
+  if (error) {
+    return false
+  }
+
+  return true
+}
+
+export async function updateFaq({ id, question, answer, category_id }) {
+  const supabase = createSupabase()
+
+  const { error } = await supabase
+    .from(TABLE_NAME)
+    .update({ question, answer, category_id })
+    .eq("id", id)
+
+  if (error) {
+    return false
+  }
+
+  return true
+}
+
+export async function deleteFaq(id) {
+  const supabase = createSupabase()
+
+  const { error } = await supabase.from(TABLE_NAME).delete().eq("id", id)
+
+  if (error) {
+    return false
+  }
+
+  return true
 }
