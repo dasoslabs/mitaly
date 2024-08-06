@@ -16,11 +16,11 @@ export default async function AdminLayout({ children }) {
 
   const { data: userData } = await supabase
     .from("users")
-    .select("name, is_approved")
+    .select("name, is_admin")
     .eq("user_id", user?.id)
     .single()
 
-  if (!userData?.is_approved) {
+  if (!userData?.is_admin) {
     return <AdminPendingRegister userName={user.user_metadata.full_name} />
   }
 
