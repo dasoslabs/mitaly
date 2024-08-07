@@ -179,19 +179,19 @@ function StoreItem({ id, name, address, address_detail, business_hours }) {
 
       <Modal open={modalOpen} className="text-start rounded-lg">
         <div className="border-b border-stone-200 py-5">
-          <h3 className="font-semibold text-xl px-5 text-stone-500">
+          <h3 className="font-semibold lg:text-xl px-5 text-stone-500">
             <span className="text-black">매장정보</span>
           </h3>
         </div>
 
-        <ul>
+        <ul className="text-xs lg:text-base">
           <li className="border-b border-stone-200">
             <div className="flex items-center space-x-5">
-              <p className="w-40 bg-amber-50 text-center font-semibold py-5 px-5">
+              <p className="w-24 shrink-0 lg:w-40 bg-amber-50 text-center font-semibold py-5 px-5">
                 지역
               </p>
               {loading ? (
-                <p className="animate-pulse w-40 h-4 bg-stone-200 rounded-full" />
+                <p className="animate-pulse w-1/4 lg:w-40 h-3 lg:h-4 bg-stone-200 rounded-full" />
               ) : (
                 <p>{storeDetail?.region}</p>
               )}
@@ -199,11 +199,11 @@ function StoreItem({ id, name, address, address_detail, business_hours }) {
           </li>
           <li className="border-b border-stone-200">
             <div className="flex items-center space-x-5">
-              <p className="w-40 bg-amber-50 text-center font-semibold py-5 px-5">
+              <p className="w-24 shrink-0 lg:w-40 bg-amber-50 text-center font-semibold py-5 px-5">
                 매장명
               </p>
               {loading ? (
-                <p className="animate-pulse w-80 h-4 bg-stone-200 rounded-full" />
+                <p className="animate-pulse w-1/2 lg:w-80 h-3 lg:h-4 bg-stone-200 rounded-full" />
               ) : (
                 <p>{storeDetail?.name}</p>
               )}
@@ -211,11 +211,11 @@ function StoreItem({ id, name, address, address_detail, business_hours }) {
           </li>
           <li className="border-b border-stone-200">
             <div className="flex items-center space-x-5">
-              <p className="w-40 bg-amber-50 text-center font-semibold py-5 px-5">
+              <p className="w-24 shrink-0 lg:w-40 bg-amber-50 text-center font-semibold py-5 px-5">
                 주소
               </p>
               {loading ? (
-                <p className="animate-pulse w-80 h-4 bg-stone-200 rounded-full" />
+                <p className="animate-pulse w-1/2 lg:w-80 h-3 lg:h-4 bg-stone-200 rounded-full" />
               ) : (
                 <p>
                   {storeDetail?.address}, {storeDetail?.address_detail}
@@ -225,11 +225,11 @@ function StoreItem({ id, name, address, address_detail, business_hours }) {
           </li>
           <li className="border-b border-stone-200">
             <div className="flex items-center space-x-5">
-              <p className="w-40 bg-amber-50 text-center font-semibold py-5 px-5">
+              <p className="w-24 shrink-0 lg:w-40 bg-amber-50 text-center font-semibold py-5 px-5">
                 전화
               </p>
               {loading ? (
-                <p className="animate-pulse w-40 h-4 bg-stone-200 rounded-full" />
+                <p className="animate-pulse w-1/3 lg:w-40 h-3 lg:h-4 bg-stone-200 rounded-full" />
               ) : (
                 <p>{storeDetail?.contact}</p>
               )}
@@ -237,31 +237,31 @@ function StoreItem({ id, name, address, address_detail, business_hours }) {
           </li>
           <li className="border-b border-stone-200">
             <div className="flex items-center space-x-5">
-              <p className="w-40 bg-amber-50 text-center font-semibold py-10 px-5">
+              <p className="w-24 shrink-0 lg:w-40 bg-amber-50 text-center font-semibold py-10 px-5">
                 영업시간
               </p>
               <div className="flex flex-col space-y-2">
                 {loading ? (
-                  <p className="animate-pulse w-40 h-4 bg-stone-200 rounded-full" />
+                  <p className="animate-pulse w-1/2 lg:w-40 h-3 lg:h-4 bg-stone-200 rounded-full" />
                 ) : (
                   <p>{storeDetail?.business_hours}</p>
                 )}
                 <div className="flex items-center space-x-2">
-                  <div className="uppercase bg-primary text-white rounded-full w-32 text-center">
+                  <div className="uppercase bg-primary text-white shrink-0 rounded-full w-24 lg:w-32 text-center">
                     Break Time
                   </div>
                   {loading ? (
-                    <p className="animate-pulse w-40 h-4 bg-stone-200 rounded-full" />
+                    <p className="animate-pulse w-14 lg:w-40 h-3 lg:h-4 bg-stone-200 rounded-full" />
                   ) : (
                     <p>{storeDetail?.break_time ?? "없음"}</p>
                   )}
                 </div>
                 <div className="flex items-center space-x-2">
-                  <div className="uppercase bg-primary text-white rounded-full w-32 text-center">
+                  <div className="uppercase bg-primary text-white shrink-0 rounded-full w-24 lg:w-32 text-center">
                     휴일
                   </div>
                   {loading ? (
-                    <p className="animate-pulse w-40 h-4 bg-stone-200 rounded-full" />
+                    <p className="animate-pulse w-14 lg:w-40 h-3 lg:h-4 bg-stone-200 rounded-full" />
                   ) : (
                     <p>{storeDetail?.holidays ?? "없음"}</p>
                   )}
@@ -271,21 +271,21 @@ function StoreItem({ id, name, address, address_detail, business_hours }) {
           </li>
           <li>
             <div className="flex items-center space-x-5">
-              <p className="w-40 bg-amber-50 text-center font-semibold py-8 px-5">
+              <p className="w-24 shrink-0 lg:w-40 bg-amber-50 text-center font-semibold py-8 px-5">
                 옵션
               </p>
-              <ul className="flex space-x-5">
+              <ul className="flex flex-wrap gap-3 lg:gap-5">
                 {OPTIONS.map(({ name, option }, idx) => (
                   <li
                     key={storeDetail?.name + option + idx}
                     className="flex flex-col items-center space-y-1"
                   >
                     <div
-                      className={`p-3 rounded-full ${storeDetail?.options.includes(option) ? "bg-primary" : "bg-stone-300"}`}
+                      className={`p-2 lg:p-3 rounded-full ${storeDetail?.options.includes(option) ? "bg-primary" : "bg-stone-300"}`}
                     >
                       <SvgIcon name={option} />
                     </div>
-                    <p className="text-sm">{name}</p>
+                    <p className="text-[10px] lg:text-sm">{name}</p>
                   </li>
                 ))}
               </ul>
@@ -296,7 +296,7 @@ function StoreItem({ id, name, address, address_detail, business_hours }) {
         <div className="border-t border-stone-200 py-3 text-end">
           <button
             onClick={closeModal}
-            className="bg-black text-white py-2 px-5 mr-5"
+            className="bg-black text-white py-2 px-5 mr-5 text-xs lg:text-base"
           >
             닫기
           </button>
