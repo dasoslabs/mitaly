@@ -46,7 +46,7 @@ export default async function AdminNoticeCreatePage({ searchParams }) {
   return (
     <>
       <section>
-        <h2 className="font-semibold text-2xl">새로운 뉴스</h2>
+        <h2 className="font-semibold text-2xl">뉴스 수정</h2>
       </section>
 
       <section className="bg-white p-5">

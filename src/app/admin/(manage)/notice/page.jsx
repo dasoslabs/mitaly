@@ -14,7 +14,7 @@ export default async function AdminNoticePage() {
           href="/admin/notice/create"
           className="block bg-black text-white py-2 px-5"
         >
-          글쓰기
+          신규 등록
         </Link>
       </section>
 

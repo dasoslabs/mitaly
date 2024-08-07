@@ -15,7 +15,7 @@ export default async function AdminFaqPage() {
           href="/admin/faq/create"
           className="block bg-black text-white py-2 px-5"
         >
-          만들기
+          신규 등록
         </Link>
       </section>
 
