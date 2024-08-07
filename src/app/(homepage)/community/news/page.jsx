@@ -42,11 +42,11 @@ export default function NewsPage() {
 
         {/* 카테고리 탭 */}
         {loading ? (
-          <div className="py-4 lg:py-5 border-b-2 border-black">
+          <div className="hidden lg:block py-4 lg:py-5 border-b-2 border-black">
             <div className="w-1/2 lg:w-1/3 h-5 bg-stone-200 rounded-full animate-pulse" />
           </div>
         ) : (
-          <ul className="flex py-4 lg:py-5 border-b-2 border-black">
+          <ul className="hidden lg:flex py-4 lg:py-5 border-b-2 border-black">
             {categories.map(({ id, name }, idx) => (
               <li key={id} className="text-[#999]">
                 <button
@@ -135,7 +135,7 @@ function NewsSkelton() {
             key={"news-skelton" + idx}
             className="flex flex-col lg:flex-row lg:items-center lg:space-x-6 px-6 pb-6 lg:p-6 lg:border-t border-[#D9D9D9] animate-pulse"
           >
-            <div className="flex items-center justify-center lg:w-52 lg:h-40 bg-stone-300 rounded shrink-0">
+            <div className="flex items-center justify-center h-40 lg:w-52 lg:h-40 bg-stone-300 rounded shrink-0">
               <svg
                 className="w-10 h-10 text-stone-200"
                 aria-hidden="true"
