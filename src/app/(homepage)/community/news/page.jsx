@@ -108,6 +108,7 @@ function NewsItem({
             alt={thumbnail_name}
             fill
             className="object-cover"
+            sizes=""
           />
         </div>
         <div>
@@ -137,7 +138,7 @@ function NewsSkelton() {
             <div className="flex items-center justify-center lg:w-52 lg:h-40 bg-stone-300 rounded shrink-0">
               <svg
                 className="w-10 h-10 text-stone-200"
-                ariaHidden="true"
+                aria-hidden="true"
                 xmlns="http://www.w3.org/2000/svg"
                 fill="currentColor"
                 viewBox="0 0 20 18"

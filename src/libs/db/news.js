@@ -30,7 +30,7 @@ export async function getAllNewsWithPagination({ page = 1, limit = 5 } = {}) {
       thumbnail_url,
       thumbnail_name,
       created_at,
-      category:category_id (name)
+      category:category_id (id, name)
     `,
     )
     .order("created_at", { ascending: false })
@@ -42,6 +42,7 @@ export async function getAllNewsWithPagination({ page = 1, limit = 5 } = {}) {
         title: news.title,
         thumbnail_url: news.thumbnail_url,
         thumbnail_name: news.thumbnail_name,
+        category_id: news.category.id,
         category_name: news.category.name,
         created_at: formatTimestampToKRDate(news.created_at),
       }))
