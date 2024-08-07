@@ -49,28 +49,33 @@ export default function KakaoMap({
     const geocoder = new kakao.maps.services.Geocoder()
     const bounds = new kakao.maps.LatLngBounds()
 
-    list.forEach(({ name, address }) => {
-      // 주소로 검색
-      geocoder.addressSearch(address, (result, status) => {
-        if (status === kakao.maps.services.Status.OK) {
-          // 좌표
-          const coords = new kakao.maps.LatLng(result[0].y, result[0].x)
-          // 마커
-          const marker = new kakao.maps.Marker({
-            map,
-            position: coords,
-          })
+    const searchAddress = (address, name) => {
+      return new Promise((resolve, reject) => {
+        geocoder.addressSearch(address, (result, status) => {
+          if (status === kakao.maps.services.Status.OK) {
+            const coords = new kakao.maps.LatLng(result[0].y, result[0].x)
+            const marker = new kakao.maps.Marker({
+              map,
+              position: coords,
+            })
+            const infowindow = new kakao.maps.InfoWindow({
+              content: `<div style="width:200px;text-align:center;padding:6px 0">${name}</div>`,
+            })
+            infowindow.open(map, marker)
+            bounds.extend(coords)
 
-          // 설명
-          const infowindow = new kakao.maps.InfoWindow({
-            content: `<div style="width:200px;text-align:center;padding:6px 0">${name}</div>`,
-          })
-          infowindow.open(map, marker)
-          bounds.extend(coords)
-
-          markersRef.current.push({ marker, infowindow })
-        }
+            markersRef.current.push({ marker, infowindow })
+            resolve() // 완료
+          } else {
+            reject(status) // 실패
+          }
+        })
       })
+    }
+    Promise.all(
+      list.map(({ name, address }) => searchAddress(address, name)),
+    ).then(() => {
+      map.setBounds(bounds)
     })
   }, [list])
 
