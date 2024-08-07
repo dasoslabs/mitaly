@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation"
 
 import Pagination from "@/components/common/Pagination/AllPagination"
 
-import { deleteFaq } from "@/libs/db/faq"
+import { deleteNews } from "@/libs/db/news"
 
 export default function NewsList({ list = [] }) {
   return (
@@ -28,7 +28,7 @@ function NewsItem({ id, title, category_name }) {
   const router = useRouter()
   const handleDeleteNotice = async () => {
     if (confirm("삭제하시겠습니까?")) {
-      const result = await deleteFaq(id)
+      const result = await deleteNews(id)
       if (!result) {
         window.alert("오류 발생")
         return
@@ -45,7 +45,7 @@ function NewsItem({ id, title, category_name }) {
         <p className="w-2/12 text-[#999] lg:text-black">{category_name}</p>
       </div>
       <div className="w-2/12 flex justify-center space-x-2">
-        <Link href={{ pathname: "/admin/faq/update", query: { id } }}>
+        <Link href={{ pathname: "/admin/news/update", query: { id } }}>
           수정
         </Link>
         <button onClick={handleDeleteNotice}>삭제</button>

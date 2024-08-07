@@ -202,16 +202,16 @@ export async function updateStore({ id, data }) {
 export async function deleteStore(id) {
   const supabase = createSupabase()
 
-  const { data: existingStore } = await supabase
+  const { data: store } = await supabase
     .from(TABLE_NAME)
     .select("image_name")
     .eq("id", id)
     .single()
 
-  if (existingStore?.image_name) {
+  if (store?.image_name) {
     await supabase.storage
       .from(STORAGE_NAME)
-      .remove([`stores/${existingStore.image_name}`])
+      .remove([`stores/${store.image_name}`])
   }
 
   await supabase.from(TABLE_NAME).delete().eq("id", id)

@@ -5,7 +5,7 @@ import { redirect } from "next/navigation"
 import { revalidatePath } from "next/cache"
 import { getCategories, createFaq } from "@/libs/db/faq"
 
-export default async function AdminNoticeCreatePage() {
+export default async function AdminFaqCreatePage() {
   const categories = await getCategories()
 
   const handleCreateFaq = async (data) => {

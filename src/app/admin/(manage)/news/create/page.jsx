@@ -1,38 +1,49 @@
-"use server"
-
 import Link from "next/link"
 import { redirect } from "next/navigation"
 import { revalidatePath } from "next/cache"
-import { getCategories, getFaqDetailById, updateFaq } from "@/libs/db/faq"
+import { getCategories, createNews } from "@/libs/db/news"
 
-export default async function AdminFaqUpdatePage({ searchParams }) {
-  const { id } = searchParams
+import DynamicEditor from "@/components/admin/editor/DynamicEditor"
+
+export default async function AdminNoticeCreatePage() {
   const categories = await getCategories()
-  const faqDetail = await getFaqDetailById(id)
 
-  const handleUpdateFaq = async (data) => {
+  const actionCreateNotice = async (data) => {
     "use server"
-    const question = data.get("question")
-    const answer = data.get("answer")
     const category_id = data.get("category")
+    const title = data.get("title")
+    const content = data.get("content")
+    const image_file =
+      data.get("image_file").name === "undefined"
+        ? null
+        : data.get("image_file")
+    const files =
+      data.getAll("files")[0].name === "undefined" ? null : data.getAll("files")
 
-    const result = await updateFaq({ id, category_id, question, answer })
+    const result = await createNews({
+      category_id,
+      title,
+      content,
+      image_file,
+      files,
+    })
+
     if (!result) {
       console.log("오류 발생")
       return
     }
-    revalidatePath("/admin/faq")
-    redirect("/admin/faq")
+    revalidatePath("/admin/news")
+    redirect("/admin/news")
   }
 
   return (
     <>
       <section>
-        <h2 className="font-semibold text-2xl">FAQ 수정</h2>
+        <h2 className="font-semibold text-2xl">새로운 뉴스</h2>
       </section>
 
       <section className="bg-white p-5">
-        <form className="space-y-5" action={handleUpdateFaq}>
+        <form className="space-y-5" action={actionCreateNotice}>
           <div>
             <p>
               분류
@@ -46,7 +57,6 @@ export default async function AdminFaqUpdatePage({ searchParams }) {
                   value={id}
                   className="mr-1"
                   required
-                  defaultChecked={id === faqDetail.category_id}
                 />
                 {name}
               </label>
@@ -54,34 +64,38 @@ export default async function AdminFaqUpdatePage({ searchParams }) {
           </div>
           <div className="flex flex-col space-y-2">
             <label>
-              질문
+              제목
               <span className="text-error ml-1">*</span>
             </label>
             <input
-              name="question"
               className="border border-stone-300 p-2 outline-none focus:border-black"
               type="text"
               required
-              defaultValue={faqDetail.question}
+              name="title"
             />
           </div>
           <div className="flex flex-col space-y-2">
-            <label>
-              답변
-              <span className="text-error ml-1">*</span>
-            </label>
+            <label>이미지</label>
             <input
-              name="answer"
               className="border border-stone-300 p-2 outline-none focus:border-black"
-              type="text"
-              required
-              defaultValue={faqDetail.answer}
+              type="file"
+              name="image_file"
             />
           </div>
+          <div className="flex flex-col space-y-2">
+            <label>첨부파일</label>
+            <input
+              className="border border-stone-300 p-2 outline-none focus:border-black"
+              multiple
+              type="file"
+              name="files"
+            />
+          </div>
+          <DynamicEditor name="content" />
 
           <div className="flex space-x-5 justify-end">
             <Link
-              href="/admin/faq"
+              href="/admin/news"
               className="inline-block border border-stone-300 bg-white py-2 px-5"
             >
               취소

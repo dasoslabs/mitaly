@@ -2,8 +2,10 @@
 
 import Link from "next/link"
 import NewsList from "@/components/admin/news/NewsList"
+import { getAllNews } from "@/libs/db/news"
 
 export default async function AdminNewsPage() {
+  const news = await getAllNews()
   return (
     <>
       <section className="flex justify-between items-start">
@@ -16,7 +18,7 @@ export default async function AdminNewsPage() {
         </Link>
       </section>
 
-      <NewsList list={[]} />
+      <NewsList list={news} />
     </>
   )
 }
