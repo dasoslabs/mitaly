@@ -2,10 +2,10 @@
 
 import Link from "next/link"
 import NewsList from "@/components/admin/news/NewsList"
-import { getAllNews } from "@/libs/db/news"
+import { getAllNewsForAdmin } from "@/libs/db/news"
 
 export default async function AdminNewsPage() {
-  const news = await getAllNews()
+  const news = await getAllNewsForAdmin()
   return (
     <>
       <section className="flex justify-between items-start">

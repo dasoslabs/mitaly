@@ -7,7 +7,7 @@ import "react-quill/dist/quill.snow.css"
 const DynamicQuill = dynamic(() => import("react-quill"), { ssr: false })
 
 export default function DynamicEditor(props) {
-  const [editor, setEditor] = useState("")
+  const [editor, setEditor] = useState(props.defaultValue ?? "")
 
   return (
     <>
