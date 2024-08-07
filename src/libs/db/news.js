@@ -7,6 +7,47 @@ const TABLE_NAME = "mitaly_news"
 const CATEGORY_TABLE_NAME = "mitaly_news_categories"
 const STORAGE_NAME = "mitaly"
 
+export async function getNewsTotalCount() {
+  const supabase = createSupabase()
+  const { count } = await supabase
+    .from(TABLE_NAME)
+    .select("*", { count: "exact", head: true })
+  return count
+}
+
+export async function getAllNewsWithPagination({ page = 1, limit = 5 } = {}) {
+  const supabase = createSupabase()
+
+  const start = (parseInt(page) - 1) * parseInt(limit)
+  const end = start + parseInt(limit) - 1
+
+  const { data: newsList, error } = await supabase
+    .from(TABLE_NAME)
+    .select(
+      `
+      id,
+      title,
+      thumbnail_url,
+      thumbnail_name,
+      created_at,
+      category:category_id (name)
+    `,
+    )
+    .order("created_at", { ascending: false })
+    .range(start, end)
+
+  return newsList
+    ? newsList.map((news) => ({
+        id: news.id,
+        title: news.title,
+        thumbnail_url: news.thumbnail_url,
+        thumbnail_name: news.thumbnail_name,
+        category_name: news.category.name,
+        created_at: formatTimestampToKRDate(news.created_at),
+      }))
+    : []
+}
+
 export async function getCategories() {
   const supabase = createSupabase()
 
@@ -120,7 +161,7 @@ export const getNewsDetailById = async (id) => {
       thumbnail_url,
       files,
       created_at,
-      category:category_id (id)
+      category:category_id (id, name)
     `,
     )
     .eq("id", id)
@@ -133,6 +174,7 @@ export const getNewsDetailById = async (id) => {
     thumbnail_url: news.thumbnail_url,
     files: news.files,
     category_id: news.category.id,
+    category_name: news.category.name,
     created_at: formatTimestampToKRDate(news.created_at),
   }
 }

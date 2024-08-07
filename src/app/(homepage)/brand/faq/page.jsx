@@ -147,8 +147,8 @@ function FaqSkelton() {
             key={"faq-skelton" + idx}
             className="p-6 border-t border-light-gray flex justify-between"
           >
-            <p className="font-bg w-16 lg:w-2/12 h-5 bg-stone-200 rounded-full animate-pulse" />
-            <h4 className="text-start w-10/12 lg:w-9/12 h-5 bg-stone-200 rounded-full animate-pulse" />
+            <p className="w-16 lg:w-2/12 h-5 bg-stone-200 rounded-full animate-pulse" />
+            <h4 className="w-10/12 lg:w-9/12 h-5 bg-stone-200 rounded-full animate-pulse" />
           </li>
         ))}
     </ul>
