@@ -125,6 +125,7 @@ export async function updatePost({ id, title, content }) {
     .eq("id", id)
 
   if (error) {
+    console.log(error)
     return false
   }
 

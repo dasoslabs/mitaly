@@ -1,59 +1,27 @@
-"use client"
+import Link from "next/link"
+import { redirect } from "next/navigation"
+import { revalidatePath } from "next/cache"
+import { getPostDetailById, updatePost } from "@/libs/db/notice"
 
-import { useEffect, useState } from "react"
-import { useRouter, useSearchParams } from "next/navigation"
+import DynamicEditor from "@/components/admin/editor/DynamicEditor"
 
-import Editor from "@/components/admin/editor"
+export default async function AdminNoticeUpdatePage({ searchParams }) {
+  const { id } = searchParams
+  const postDetail = await getPostDetailById(id)
 
-import axiosInstance from "@/libs/axios"
+  const actionUpdateNotice = async (data) => {
+    "use server"
+    const title = data.get("title")
+    const content = data.get("content")
+    const result = await updatePost({ id, title, content })
 
-export default function AdminNoticeUpdatePage() {
-  const id = useSearchParams().get("id")
-  const router = useRouter()
-  const [title, setTitle] = useState("")
-  const [content, setContent] = useState("")
-
-  const handleUpdatePost = async (content = "") => {
-    if (!title) {
+    if (!result) {
+      console.log("오류 발생")
       return
     }
-
-    try {
-      const {
-        data: { success, message },
-      } = await axiosInstance.put(`/api/notice/${id}`, { title, content })
-
-      if (!success) {
-        window.alert(message)
-        return
-      }
-
-      router.replace("/admin/notice")
-      router.refresh("/admin/notice")
-    } catch (e) {
-      console.log("---catch---")
-      console.log(e)
-    }
+    revalidatePath("/admin/notice")
+    redirect("/admin/notice")
   }
-
-  useEffect(() => {
-    const fetchPostDetail = async (id) => {
-      if (!id) {
-        window.alert("게시글을 읽어올 수 없습니다.")
-        return
-      }
-
-      try {
-        const { data: post } = await axiosInstance.get(`/api/notice/${id}`)
-        setTitle(post.title)
-        setContent(post.content)
-      } catch (e) {
-        console.log(e)
-      }
-    }
-
-    fetchPostDetail(id)
-  }, [id])
 
   return (
     <>
@@ -62,7 +30,7 @@ export default function AdminNoticeUpdatePage() {
       </section>
 
       <section className="bg-white p-5">
-        <form className="space-y-5" onSubmit={(e) => e.preventDefault()}>
+        <form className="space-y-5" action={actionUpdateNotice}>
           <div className="flex flex-col space-y-2">
             <label>
               제목
@@ -71,16 +39,24 @@ export default function AdminNoticeUpdatePage() {
             <input
               className="border border-stone-300 p-2 outline-none focus:border-black"
               type="text"
-              value={title}
-              onChange={(e) => setTitle(e.target.value)}
               required
+              name="title"
+              defaultValue={postDetail.title}
             />
           </div>
-          <Editor
-            defaultValue={content}
-            onClickCreate={handleUpdatePost}
-            cancelHref="/admin/notice"
-          />
+          <DynamicEditor name="content" defaultValue={postDetail.content} />
+
+          <div className="flex space-x-5 justify-end">
+            <Link
+              href="/admin/notice"
+              className="inline-block border border-stone-300 bg-white py-2 px-5"
+            >
+              취소
+            </Link>
+            <button className="bg-black border border-black text-white py-2 px-5">
+              저장
+            </button>
+          </div>
         </form>
       </section>
     </>
